@@ -2,20 +2,22 @@ import React from 'react';
 import { Routes, Route, Link } from "react-router-dom";
 import TopicsPage from '../topics/TopicsPage.jsx';
 import Chatroom from '../chatroom/Chatroom.jsx';
+import Topbar from './topbar/Topbar';
 import "./home.scss"
 
 let Home = (props) => {
 
   return (
     <div className="homepage" id="homepage">
-      <nav>
-        <Link to="/topics">Topics Page</Link>
-      </nav>
-      <div className="test">
+      <Topbar/>
+      <div className="irrelavant">
+        <nav>
+          <Link to="/topics">Topics Page</Link>
+        </nav>
+        <nav>
+          <Link to="/chatroom">Chatroom Page</Link>
+        </nav>
       </div>
-      <nav>
-        <Link to="/chatroom">Chatroom Page</Link>
-      </nav>
     </div>
   )
 }
