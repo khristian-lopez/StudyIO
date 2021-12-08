@@ -3,21 +3,47 @@ import { Routes, Route, Link } from "react-router-dom";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import IconButton from '@mui/material/IconButton';
 import Drawer from '@mui/material/Drawer';
+import Room from './Room.jsx';
+
+let roomsMockData = [
+  { room: "Biology 1A" },
+  { room: "Chemistry 2" },
+  { room: "OChem 12C" },
+];
+
+let archivedRoomsMockData = [
+  { room: "Intro Bio 1A" },
+  { room: "Alchemy 2" },
+  { room: "Addition 101" },
+];
+
+let drawerSx = {
+  minWidth: '350px',
+  paddingLeft: '48px',
+  paddingRight: '48px',
+  paddingTop: '28px'
+}
+
+let roomListSx = {
+  marginLeft: '16px',
+}
+
+let signOutSx = {
+  float: 'left',
+  border: '1px solid black',
+  width: '84px',
+  height: '36px',
+  borderRadius: '4px',
+  background: 'white',
+}
+
 
 let Account = (props) => {
-
   // drawer hooks
   const [right, setState] = React.useState(false);
   const toggleDrawer = (open) => (event) => {
     setState(open);
   };
-
-  let drawerSx = {
-    minWidth: '350px',
-    paddingLeft: '48px',
-    paddingRight: '48px',
-    paddingTop: '28px'
-  }
 
   return (
     <div>
@@ -32,13 +58,16 @@ let Account = (props) => {
       </IconButton>
 
       <Drawer anchor={'right'} open={right} onClose={toggleDrawer(false)}>
-        <div style={drawerSx}>
-          <div>
-            Your rooms
+        <div className="account-drawer" style={drawerSx}>
+          <h2>Your rooms</h2>
+          <div className="rooms-list" style={roomListSx}>
+            {roomsMockData.map((room, i) => <Room room={room} active={true} key={i} />)}
           </div>
-          <div>
-            Your archived rooms
+          <h2>Archived rooms</h2>
+          <div className="rooms-list" style={roomListSx}>
+            {archivedRoomsMockData.map((room, i) => <Room room={room} active={false} key={i} />)}
           </div>
+          <button style={signOutSx}>Sign out</button>
         </div>
       </Drawer>
     </div>

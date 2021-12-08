@@ -7,7 +7,7 @@ import Navbar from './navbar/Navbar.jsx';
 
 
 let App = () => {
-  const [user, setUser] = useState('not logged in');
+  const [user, setUser] = useState(null);
 
   return (
     <div>

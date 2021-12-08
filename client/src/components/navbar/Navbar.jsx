@@ -4,24 +4,23 @@ import Account from './Account.jsx';
 import LoginModal from './LoginModal.jsx';
 import IconButton from '@mui/material/IconButton';
 
+let navSx = {
+  color: 'white',
+  width: '100%',
+  height: '56px',
+  position: 'absolute',
+  top: 0,
+  left: 0,
+  right: 0,
+  background: '#4285F4',
+  // background: '#888b8e',
+  display: 'flex',
+  mb: '20px',
+  justifyContent: 'space-between',
+  alignItems: 'center'
+}
 
 let Navbar = (props) => {
-
-  let navSx = {
-    color: 'white',
-    width: '100%',
-    height: '56px',
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    background: '#4285F4',
-    display: 'flex',
-    mb: '20px',
-    justifyContent: 'space-between',
-    alignItems: 'center'
-  }
-
   const navigate = useNavigate();
   const handleHomeClick = (e) => {
     navigate('/')
@@ -39,7 +38,7 @@ let Navbar = (props) => {
         StudyIO
       </IconButton>
 
-      {props.user !== 'not logge in' ? <Account user={props.user} /> : <LoginModal />}
+      {props.user !== null ? <Account user={props.user} /> : <LoginModal />}
 
     </div>
   )
