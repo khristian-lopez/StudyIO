@@ -1,4 +1,3 @@
-
 Blue Ocean
 Welcome to the Team!
 Project Milestones
