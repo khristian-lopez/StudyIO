@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
 
 export default function TopicCard(props) {
-  const {pic, topic, clickHandler} = this.props;
+  const {pic, topic, clickHandler} = props;
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardActionArea onClick={clickHandler}>
@@ -18,7 +18,7 @@ export default function TopicCard(props) {
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
-            {Topic}
+            {topic}
           </Typography>
           {/* <Typography variant="body2" color="text.secondary">
             Potentially a small description, maybe as a tooltip
