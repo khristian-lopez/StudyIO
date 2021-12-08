@@ -1,10 +1,14 @@
-import React from 'react';
+import React, {useState} from 'react';
+import TopicsModal from './TopicsModal.jsx';
 
-let TopicsPage = (props) => {
+let TopicsPage = () => {
 
   return (
     <div>
       Topics Page
+      <div >
+        <TopicsModal />
+      </div>
     </div>
   )
 }
