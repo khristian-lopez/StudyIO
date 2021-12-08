@@ -1,7 +1,49 @@
 .homepage {
-  .irrelavant{
-    background-color: red;
-    height: 10px;
+  height: 100vh;
+
+  .container{
+    width: 100%;
+    height: calc(100vh - 70px);
+    background-color:rgb(241, 217, 217);
     position:relative;
+    top:70px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    overflow:hidden;
+
+    .left{
+      flex:0.5;
+      position: relative;
+
+      .wrapper{
+        width:80%;
+        height: 100%;
+        padding-left:50px;
+        padding-right: 50px;
+        display:flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+    }
+
+    .right{
+      flex:0.5;
+      overflow:hidden;
+
+      .imgContainer{
+        width:500px;
+        height:300px;
+        background-color: white;
+        border-radius:5%;
+        display:flex;
+        align-items: center;
+        justify-content: center;
+        float:center;
+      }
+
+    }
   }
+
 }
