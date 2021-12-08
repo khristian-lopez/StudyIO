@@ -2,11 +2,11 @@ import React, {useState, useEffect} from 'react';
 import Button from '@mui/material/Button';
 
 const RoomsList = () => {
-    // const [rooms, getRooms] = useState([])
-    const rooms = [{id: 1, name: 'math'}, {id: 2, name: 'science'}, {id: 3, name: 'english'}]
+    const roomData = [{id: 1, name: 'math'}, {id: 2, name: 'science'}, {id: 3, name: 'english'}]
+    const [rooms, getRooms] = useState(roomData)
     if (rooms.length) {
         return (
-            <div>
+            <div className="RoomsList" >
                 {rooms.map(room => {
                     return <div key={room.id}>Room {room.id} {room.name}
                             <Button

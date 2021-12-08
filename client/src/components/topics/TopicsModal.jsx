@@ -10,12 +10,12 @@ const TopicsModal = () => {
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
     
-    const handleFormClose = () => {
+    const closeForm = () => {
         showForm(false)
         handleClose()
     }
 
-    const addRoom = (e) => {
+    const openForm = (e) => {
         e.preventDefault()
         showForm(true)
     }
@@ -25,7 +25,7 @@ const TopicsModal = () => {
                  <div onClick={handleOpen} >Card Example</div>
                 <Modal
                     open={open}
-                    onClose={handleFormClose}
+                    onClose={closeForm}
                     aria-labelledby="modal-form-title"
                     aria-describedby="modal-form-description"
                 >
@@ -33,11 +33,6 @@ const TopicsModal = () => {
                         sx={boxStyle}  
                     >
                         <RoomForm />
-                        <Button
-                            onClick={e => addRoom(e)}
-                        >
-                            Submit
-                        </Button>
                     </Box>
                 </Modal>
             </div>
@@ -70,7 +65,7 @@ const TopicsModal = () => {
                                 Create new study room
                             </Typography>
                             <Button
-                                onClick={e => addRoom(e)}
+                                onClick={e => openForm(e)}
                             >
                                 Create Room
                             </Button>
@@ -92,39 +87,3 @@ const boxStyle = {
     border: "2px solid #000",
     backgroundColor: "white",
 }
-
-// return (
-//     <div>
-//         <div onClick={handleOpen} >Card Example</div>
-//             <Modal
-//                 open={open}
-//                 onClose={handleClose}
-//                 aria-labelledby="modal-title"
-//                 aria-describedby="modal-description"
-//             >
-//                 <Box 
-//                     sx={boxStyle}  
-//                 >
-//                     <Typography 
-//                         id="modal-title"
-//                         variant="h6"
-//                         component="h2"
-//                     >
-//                         Rooms
-//                     </Typography>
-//                     <RoomsList />
-//                     <Typography 
-//                         id="modal-description"
-//                         sx={{ mt: 2 }}
-//                     >
-//                         Create new study room
-//                     </Typography>
-//                     <Button
-//                         onClick={e => addRoom(e)}
-//                     >
-//                         Create Room
-//                     </Button>
-//                 </Box>
-//             </Modal>
-//     </div>
-// )
