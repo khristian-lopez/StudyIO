@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import TopicsModal from './TopicsModal.jsx';
 
 let TopicsPage = () => {
