@@ -5,11 +5,15 @@ const socket = require('socket.io');
 
 const app = express();
 const port = 3000;
+const router = require('./router/routes.js');
 
 app.use(express.static(path.join(__dirname, '../client/dist')))
+app.use('/topics', express.static(path.join(__dirname, '../client/dist')))
+app.use('/chatroom', express.static(path.join(__dirname, '../client/dist')))
 app.use(express.json());
 app.use(cors());
 
+app.use('/api/', router);
 
 const server = app.listen(port, () => {
   console.log(`listening on port ${port}`)

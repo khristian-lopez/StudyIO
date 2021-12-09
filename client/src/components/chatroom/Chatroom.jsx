@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import io from 'socket.io-client';
+import Navbar from '../navbar/Navbar.jsx';
 
 let socket;
 const connection_port = 'localhost:3000/'
@@ -74,6 +75,8 @@ let Chatroom = (props) => {
           <button onClick={handleSendMessage}>Send</button>
         </div>
       </div>
+
+      <Navbar user={props.user} />
     </div>
   )
 }
