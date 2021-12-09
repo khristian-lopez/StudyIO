@@ -46,7 +46,7 @@ const TopicsModal = () => {
                         aria-describedby="modal-description"
                     >
                         <Box container sx={boxStyle} >
-                            <Grid container direction="column" alignItems="center" >
+                            <Grid container direction="column" sx={gridStyle} >
                                 <Typography 
                                     id="modal-title"
                                     variant="h6"
@@ -54,14 +54,20 @@ const TopicsModal = () => {
                                 >
                                     Rooms
                                 </Typography>
+                                <Grid sx={innerGrid}>
                                 <RoomsList />
+                                </Grid>
                                 <Typography 
                                     id="modal-description"
                                     sx={{ mt: 2 }}
                                 >
                                     Create new study room
                                 </Typography>
-                                <Button onClick={e => openForm(e)} >
+                                <Button
+                                    variant="outlined"
+                                    size="small"
+                                    onClick={e => openForm(e)} 
+                                >
                                     Create Room
                                 </Button>
                             </Grid>
@@ -77,9 +83,22 @@ export default TopicsModal;
 const boxStyle = {
     position: "absolute",
     margin: "auto",
+    padding: "10px",
     top: "25%",
     left: "25%",
     width: 500,
-    border: "2px solid #000",
+    border: "1px solid #000",
     backgroundColor: "white",
+}
+
+const gridStyle = {
+    gap: 1, 
+    padding: "10px",
+    alignItems: "center"
+}
+
+const innerGrid = {
+    border: "1px solid #000",
+    margin: "auto",
+    padding: "10px",
 }

@@ -1,47 +1,74 @@
 import React, {useState} from 'react';
 import {Button, Grid, TextField, ToggleButton, ToggleButtonGroup, styled} from '@mui/material';
+import {Typography} from '@mui/material';
 import axios from 'axios';
 
 const RoomForm = () => {
     const [inputs, setInputs] = useState({ name: "", count: "", setting: "" });
+    const [image, setImage] = useState("");
 
     const handleInputChange = e => {
         const {name, value} = e.target;
-        setInputs(inputs => ({...inputs, [name]: value}))
+        setInputs(inputs => ({...inputs, [name]: value}));
+    }
+
+    const handleImageChange = e => {
+        let url = URL.createObjectURL(e.target.files[0]);
+        setImage(url);
     }
 
     const addRoom = e => {
         e.preventDefault()
         // TODO: data for file upload
-        axios.post('/', inputs)
-            .then((result) => {
-                console.log(result.data)
-            })
-            .catch(err => {
-                console.log(err.response)
-            })
+        const data = {
+            name: inputs.name,
+            count: inputs.count,
+            setting: inputs.setting,
+            image: image
+        }
+        console.log(data)
+        // axios.post('/', inputs)
+        //     .then((result) => {
+        //         console.log(result.data)
+        //     })
+        //     .catch(err => {
+        //         console.log(err.response)
+        //     })
     }
-
-    // console.log(inputs)
+    console.log(image)
     return (
         <div className="RoomForm" >
-            <Grid container direction="column" alignItems="center" >Create a Room
+            <Grid container direction="column" sx={gridStyle}>
+                <Typography 
+                    id="form-title"
+                    variant="h6"
+                    components="h2"
+                >
+                    Create a Room
+                </Typography>
                 <TextField 
                     label="Room name" 
-                    variant="standard" 
+                    variant="outlined" 
                     name="name" 
                     value={inputs.name} 
                     onChange={handleInputChange}
+                    size="small"
                 />
-                    <br></br>
                 <TextField 
-                    label="Max member count" 
-                    variant="standard" 
+                    label="# of members" 
+                    variant="outlined" 
                     name="count" 
                     value={inputs.count} 
                     onChange={handleInputChange}
+                    size="small"
                 />
-                    <br></br>
+                <Typography 
+                id="toggle-button-form"
+                variant="h8"
+                components="h6"
+                >
+                    Room Setting
+                </Typography>
                 <ToggleButtonGroup 
                     exclusive 
                     onChange={handleInputChange} 
@@ -61,24 +88,31 @@ const RoomForm = () => {
                         Private
                     </ToggleButton>
                 </ToggleButtonGroup>
-                    <br></br>
                 <label htmlFor="contained-button-file" >
                     <Input
                         id="contained-button-file"
-                        type="file" 
+                        type="file"
+                        name="image"
                         accept="image/*" 
-                        multiple 
-                        label="Upload" 
+                        label="Upload"
+                        onChange={e => handleImageChange(e)}
                     />
                     <Button
                         variant="contained"
+                        size="small"
                         component="span"
                     >
-                        Add File
+                        Add Thumbnail
                     </Button>
+                        <br></br>
                 </label>
+                { image ? <div>
+                    <img src={image} alt='' style={imageStyle} />
+                </div> : <div></div> }
                     <br></br>
                 <Button
+                    variant="outlined"
+                    size="small"
                     onClick={e => addRoom(e)}
                 >
                     Create Room
@@ -93,3 +127,15 @@ export default RoomForm;
 const Input = styled('input')({
     display: 'none'
 })
+
+const gridStyle = {
+    gap: 1,
+    padding: "10px",
+    alignItems: "center"
+}
+
+const imageStyle = {
+    margin: "5px",
+    width: "100px",
+    height: "100px"
+}
