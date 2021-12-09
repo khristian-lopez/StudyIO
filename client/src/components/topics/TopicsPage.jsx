@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-// import Container from '@mui/material/Container';
+import Container from '@mui/material/Container';
 import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 // import Carousel from 'react-bootstrap/Carousel';
+import Navbar from '../navbar/Navbar.jsx';
 
 import TopicCard from './componets/topicCard.jsx';
 import Motivational from'./componets/motivation.jsx';
@@ -40,6 +41,8 @@ const TopicsPage = (props) => {
   const split = Math.floor(topics.length/2)
 
   return (
+    <Container>
+    <Navbar user={props.user}/>
     <Grid container spacing={1}>
       <Grid container item spacing={3}>
         <Grid item xs={2}><h1>Choose a Topic</h1></Grid>
@@ -88,6 +91,7 @@ const TopicsPage = (props) => {
       </Carousel> */}
 
     </Grid>
+    </Container>
   )
 }
 
