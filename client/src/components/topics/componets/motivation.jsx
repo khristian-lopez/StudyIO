@@ -21,7 +21,7 @@ export default function Motivational() {
   return (
     <Card sx={{ minWidth: 275 }}>
       <CardContent>
-        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+        <Typography sx={{ fontSize: 10 }} color="text.secondary" gutterBottom>
           Quote of the Day
         </Typography>
         <Typography variant="h5" component="div">

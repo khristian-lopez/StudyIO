@@ -12,10 +12,10 @@ import Motivational from'./componets/motivation.jsx';
 
 
 const mock = [
-  {topic: 'test1', pic: 'url1', topic_id: 0},
-  {topic: 'test2', pic: 'url2', topic_id: 1},
-  {topic: 'test3', pic: 'url3', topic_id: 2},
-  {topic: 'test4', pic: 'url4', topic_id: 3}
+  {topic: 'Science', pic: 'https://i.guim.co.uk/img/media/5cbce71c025dd78ca31d03111bd2ee4453a7029e/0_167_2400_1440/master/2400.jpg?width=465&quality=45&auto=format&fit=max&dpr=2&s=b44c9a27a5b38c0388b092e5b0291c32', topic_id: 0},
+  {topic: 'The Arts', pic: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQB--J64zOGkFhNPx7naWZQxQhFVVUfZ-3gtA&usqp=CAU://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7iQG9P8XMLQS4RJNFnDLO8164dqCdUqN1qQ&usqp=CAU', topic_id: 1},
+  {topic: 'Literature', pic: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT650hUko7pspwuYUmrP_Y-PJIiWJjOoVipyw&usqp=CAU', topic_id: 2},
+  {topic: 'Fitness', pic: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvTWEy8_qDLMNxnlJV48zlNgsNc9pA5jkqfg&usqp=CAU', topic_id: 3}
 ]
 
 const TopicsPage = (props) => {
