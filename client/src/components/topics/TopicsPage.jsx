@@ -53,9 +53,8 @@ const TopicsPage = (props) => {
         <Grid container spacing={1}>
           <Grid container item spacing={3}>
             {topics.slice(0,split).map((topic) => (
-              <Grid item xs={4}>
+              <Grid item xs={4} key={topic.topic_id}>
                 <TopicCard
-                  key={topic.topic_id}
                   topic={topic.topic}
                   pic={topic.pic}
                   clickHandler={() => clickTopic(topic.topic_id)}
@@ -65,9 +64,8 @@ const TopicsPage = (props) => {
           </Grid>
           <Grid container item spacing={3}>
             {topics.slice(split).map((topic) => (
-              <Grid item xs={4}>
+              <Grid item xs={4} key={topic.topic_id}>
                 <TopicCard
-                  key={topic.topic_id}
                   topic={topic.topic}
                   pic={topic.pic}
                   clickHandler={() => clickTopic(topic.topic_id)}

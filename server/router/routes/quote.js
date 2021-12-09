@@ -4,7 +4,7 @@ const url = 'https://zenquotes.io/api/today';
 
 const router = express.Router();
 
-router.get('/quote', (req, res) => {
+router.get('/', (req, res) => {
   axios.get(url)
     .then((data) => {
       res.send(data.data).status(200);
