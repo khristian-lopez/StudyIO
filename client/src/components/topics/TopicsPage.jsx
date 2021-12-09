@@ -4,7 +4,6 @@ import Container from '@mui/material/Container';
 import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-// import Carousel from 'react-bootstrap/Carousel';
 import Navbar from '../navbar/Navbar.jsx';
 
 import TopicCard from './componets/topicCard.jsx';
