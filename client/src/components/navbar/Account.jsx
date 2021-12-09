@@ -5,16 +5,19 @@ import IconButton from '@mui/material/IconButton';
 import Drawer from '@mui/material/Drawer';
 import Room from './Room.jsx';
 
+
+// add crown next rooms where you are an admin
+// needs room ids
 let roomsMockData = [
-  { room: "Biology 1A" },
-  { room: "Chemistry 2" },
-  { room: "OChem 12C" },
+  { room: "Biology 1A", roomId: 2 },
+  { room: "Chemistry 2", roomId: 5 },
+  { room: "OChem 12C", roomId: 3 },
 ];
 
 let archivedRoomsMockData = [
-  { room: "Intro Bio 1A" },
-  { room: "Alchemy 2" },
-  { room: "Addition 101" },
+  { room: "Intro Bio 1A", roomId: 21 },
+  { room: "Alchemy 2", roomId: 1 },
+  { room: "Addition 101", roomId: 4 },
 ];
 
 let drawerSx = {
@@ -35,6 +38,7 @@ let signOutSx = {
   height: '36px',
   borderRadius: '4px',
   background: 'white',
+  cursor: 'pointer',
 }
 
 

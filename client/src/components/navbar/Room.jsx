@@ -20,6 +20,7 @@ let buttonSx = {
   height: '36px',
   borderRadius: '4px',
   background: 'white',
+  cursor: 'pointer',
 }
 
 
