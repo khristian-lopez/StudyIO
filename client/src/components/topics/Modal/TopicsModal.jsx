@@ -29,9 +29,7 @@ const TopicsModal = () => {
                     aria-labelledby="modal-form-title"
                     aria-describedby="modal-form-description"
                 >
-                    <Box
-                        sx={boxStyle}  
-                    >
+                    <Box sx={boxStyle} >
                         <RoomForm />
                     </Box>
                 </Modal>
@@ -47,10 +45,7 @@ const TopicsModal = () => {
                         aria-labelledby="modal-title"
                         aria-describedby="modal-description"
                     >
-                        <Box
-                            container
-                            sx={boxStyle}
-                        >
+                        <Box container sx={boxStyle} >
                             <Grid container direction="column" alignItems="center" >
                                 <Typography 
                                     id="modal-title"
@@ -66,9 +61,7 @@ const TopicsModal = () => {
                                 >
                                     Create new study room
                                 </Typography>
-                                <Button
-                                    onClick={e => openForm(e)}
-                                >
+                                <Button onClick={e => openForm(e)} >
                                     Create Room
                                 </Button>
                             </Grid>
