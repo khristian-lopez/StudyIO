@@ -42,9 +42,9 @@ const TopicsPage = (props) => {
   return (
     <Grid container spacing={1}>
       <Grid container item spacing={3}>
-        <Grid item xs={4}><h1>Choose a Topic</h1></Grid>
+        <Grid item xs={2}><h1>Choose a Topic</h1></Grid>
         <Grid item xs={4}>< Motivational /></Grid>
-        <Grid item xs={4}><TextField label="Find a Room" onChange={e=>searchHandler(e)}/></Grid>
+        <Grid item xs={2}><TextField label="Find a Room" onChange={e=>searchHandler(e)}/></Grid>
       </Grid>
       <Box sx={{ flexGrow: 1 }}>
         <Grid container spacing={1}>
