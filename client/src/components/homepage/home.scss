@@ -1,0 +1,81 @@
+.homepage {
+  height: 100vh;
+
+  .container{
+    width: 100%;
+    height: calc(100vh - 70px);
+    background-color:rgb(241, 217, 217);
+    position:relative;
+    top:70px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    overflow:hidden;
+
+    .left{
+      flex:0.5;
+      position: relative;
+
+      .wrapper{
+        width:80%;
+        height: 100%;
+        padding-left:50px;
+        padding-right: 50px;
+        display:flex;
+        flex-direction: column;
+        align-items:center;
+
+        h2 {
+          font-size:35px;
+          margin-bottom: 10px;
+        }
+        h3{
+          margin-left: 30px;
+          margin-right: 30px;
+          font-size: 20px;
+          margin-bottom: 40px;
+          font-weight: 500;
+        }
+
+        button{
+          width:200px;
+          height:50px;
+          color:white;
+          border:none;
+          border-radius: 10px;
+          font-weight:500;
+          font-size: 20px;
+          cursor:pointer;
+          background-color: crimson;
+          &:focus{ //when click, there will be outline, this will prevent it
+            outline:none;
+          }
+        }
+
+        .link{
+          visibility: hidden;
+        }
+      }
+    }
+
+    .right{
+      flex:0.5;
+      overflow:hidden;
+
+      .imgContainer{
+        width:500px;
+        height:300px;
+        background-color: white;
+        border-radius:5%;
+        display:flex;
+        align-items: center;
+        justify-content: center;
+        float:center;
+        overflow: hidden;
+      }
+
+    }
+  }
+
+}
