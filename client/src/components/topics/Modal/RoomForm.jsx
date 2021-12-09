@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Box, Button, TextField, ToggleButton, ToggleButtonGroup, styled} from '@mui/material';
+import {Button, Grid, TextField, ToggleButton, ToggleButtonGroup, styled} from '@mui/material';
 import axios from 'axios';
 
 const RoomForm = () => {
@@ -22,10 +22,10 @@ const RoomForm = () => {
             })
     }
 
-    console.log(inputs)
+    // console.log(inputs)
     return (
         <div className="RoomForm" >
-            <Box component="form" autoComplete="off" sx={{'& > :not(style)': { m: 1, width: '25ch' },}}>
+            <Grid container direction="column" alignItems="center" >Create a Room
                 <TextField 
                     label="Room name" 
                     variant="standard" 
@@ -74,7 +74,7 @@ const RoomForm = () => {
                         variant="contained"
                         component="span"
                     >
-                        Upload
+                        Add File
                     </Button>
                 </label>
                     <br></br>
@@ -83,7 +83,7 @@ const RoomForm = () => {
                 >
                     Create Room
                 </Button>
-            </Box>
+            </Grid>
         </div>
     )
 }

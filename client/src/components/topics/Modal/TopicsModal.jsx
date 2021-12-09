@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Box, Button, Modal, Typography} from '@mui/material';
+import {Box, Button, Grid, Modal, Typography} from '@mui/material';
 import RoomsList from './RoomsList.jsx';
 import RoomForm from './RoomForm.jsx';
 
@@ -29,7 +29,7 @@ const TopicsModal = () => {
                     aria-labelledby="modal-form-title"
                     aria-describedby="modal-form-description"
                 >
-                    <Box 
+                    <Box
                         sx={boxStyle}  
                     >
                         <RoomForm />
@@ -47,28 +47,31 @@ const TopicsModal = () => {
                         aria-labelledby="modal-title"
                         aria-describedby="modal-description"
                     >
-                        <Box 
-                            sx={boxStyle}  
+                        <Box
+                            container
+                            sx={boxStyle}
                         >
-                            <Typography 
-                                id="modal-title"
-                                variant="h6"
-                                component="h2"
-                            >
-                                Rooms
-                            </Typography>
-                            <RoomsList />
-                            <Typography 
-                                id="modal-description"
-                                sx={{ mt: 2 }}
-                            >
-                                Create new study room
-                            </Typography>
-                            <Button
-                                onClick={e => openForm(e)}
-                            >
-                                Create Room
-                            </Button>
+                            <Grid container direction="column" alignItems="center" >
+                                <Typography 
+                                    id="modal-title"
+                                    variant="h6"
+                                    component="h2"
+                                >
+                                    Rooms
+                                </Typography>
+                                <RoomsList />
+                                <Typography 
+                                    id="modal-description"
+                                    sx={{ mt: 2 }}
+                                >
+                                    Create new study room
+                                </Typography>
+                                <Button
+                                    onClick={e => openForm(e)}
+                                >
+                                    Create Room
+                                </Button>
+                            </Grid>
                         </Box>
                     </Modal>
             </div>

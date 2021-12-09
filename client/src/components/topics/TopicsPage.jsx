@@ -1,5 +1,5 @@
 import React from 'react';
-import TopicsModal from './TopicsModal.jsx';
+import TopicsModal from './Modal/TopicsModal.jsx';
 
 let TopicsPage = () => {
 
