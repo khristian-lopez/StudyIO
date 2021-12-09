@@ -6,9 +6,11 @@ import Topbar from './topbar/Topbar';
 import Menu from './menu/Menu';
 import "./home.scss"
 
+
 const Home = (props) => {
   const [menuOpen, setMenuOpen] = useState(false);
   return (
+
     <div className="homepage" id="homepage">
       <Topbar menuOpen={menuOpen} setMenuOpen={setMenuOpen}/>
       <Menu menuOpen={menuOpen} setMenuOpen={setMenuOpen}/>
@@ -38,6 +40,7 @@ const Home = (props) => {
         </div>
 
       </div>
+
 
     </div>
   )
