@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import Container from '@mui/material/Container';
+// import Container from '@mui/material/Container';
 import TextField from '@mui/material/TextField';
-import Carousel from 'react-bootstrap/Carousel'
-import TopicCard from './componets/topicCard.jsx';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+// import Carousel from 'react-bootstrap/Carousel';
 
+import TopicCard from './componets/topicCard.jsx';
+import Motivational from'./componets/motivation.jsx';
 
 
 const mock = [
@@ -31,14 +34,48 @@ const TopicsPage = (props) => {
 
   const searchHandler = (e) => {
     setSearch(e.target.value);
-    console.log(search); // open room modal with name = search query
+    console.log(search); // open room modal with (name = search) query
   }
 
+  const split = Math.floor(topics.length/2)
+
   return (
-    <Container>
-      <h1>Topics Page</h1>
-      <TextField fullWidth label="Find a Room" id="fullWidth" onChange={e=>searchHandler(e)}/>
-      <Carousel>
+    <Grid container spacing={1}>
+      <Grid container item spacing={3}>
+        <Grid item xs={4}><h1>Choose a Topic</h1></Grid>
+        <Grid item xs={4}>< Motivational /></Grid>
+        <Grid item xs={4}><TextField label="Find a Room" onChange={e=>searchHandler(e)}/></Grid>
+      </Grid>
+      <Box sx={{ flexGrow: 1 }}>
+        <Grid container spacing={1}>
+          <Grid container item spacing={3}>
+            {topics.slice(0,split).map((topic) => (
+              <Grid item xs={4}>
+                <TopicCard
+                  key={topic.topic_id}
+                  topic={topic.topic}
+                  pic={topic.pic}
+                  clickHandler={() => clickTopic(topic.topic_id)}
+                />
+              </Grid>
+            ))}
+          </Grid>
+          <Grid container item spacing={3}>
+            {topics.slice(split).map((topic) => (
+              <Grid item xs={4}>
+                <TopicCard
+                  key={topic.topic_id}
+                  topic={topic.topic}
+                  pic={topic.pic}
+                  clickHandler={() => clickTopic(topic.topic_id)}
+                />
+              </Grid>
+            ))}
+          </Grid>
+        </Grid>
+      </Box>
+
+      {/* <Carousel>
         {topics.map((topic) => (
           <Carousel.Item key={topic.topic_id}>
             <TopicCard
@@ -48,8 +85,9 @@ const TopicsPage = (props) => {
             />
           </Carousel.Item>
         ))}
-      </Carousel>
-    </Container>
+      </Carousel> */}
+
+    </Grid>
   )
 }
 
