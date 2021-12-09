@@ -17,7 +17,7 @@ export default function TopicCard(props) {
           alt={topic}
         />
         <CardContent>
-          <Typography gutterBottom variant="h3" component="div">
+          <Typography gutterBottom variant="h4" component="div">
             {topic}
           </Typography>
           {/* <Typography variant="body2" color="text.secondary">
