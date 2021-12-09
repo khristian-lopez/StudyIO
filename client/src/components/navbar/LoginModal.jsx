@@ -17,15 +17,19 @@ const modalStyle = {
 };
 
 const LoginSx = {
-  border: '1px solid black',
-  borderRadius: '4px',
+  // border: '1px solid black',
+  border: 'none',
+  // borderRadius: '4px',
   // background: '#ffbd33',
-  background: 'white',
+  // background: 'white',
+  background: 'transparent',
   height: '36px',
   width: '100px',
   marginRight: '36px',
-  color: '#333',
+  // color: '#333',
+  color: 'white',
   fontFamily: 'sans-serif',
+  fontSize: '20px',
 }
 
 const inputContainerSx = {
