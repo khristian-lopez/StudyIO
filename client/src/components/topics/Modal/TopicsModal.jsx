@@ -1,15 +1,13 @@
 import React, {useState} from 'react';
 import {Box, Button, Grid, Modal, Typography} from '@mui/material';
+import TopicCard from '../componets/topicCard.jsx';
 import RoomsList from './RoomsList.jsx';
 import RoomForm from './RoomForm.jsx';
+import axios from 'axios';
 
-const TopicsModal = () => {
-    const [open, setOpen] = useState(false);
+const TopicsModal = ({openModal, id, handleClose}) => {
     const [form, showForm] = useState(false);
 
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
-    
     const closeForm = () => {
         showForm(false)
         handleClose()
@@ -19,12 +17,20 @@ const TopicsModal = () => {
         e.preventDefault()
         showForm(true)
     }
+
+    // const getRoomId = () => {
+    //     axios.get('/rooms')
+    //         .then(result => {
+    //             setId(result.data)
+    //         })
+    //         .catch(err => console.log(err))
+    // }
+
     if (form) {
         return (
             <div>
-                 <div onClick={handleOpen} >Card Example</div>
                 <Modal
-                    open={open}
+                    open={openModal}
                     onClose={closeForm}
                     aria-labelledby="modal-form-title"
                     aria-describedby="modal-form-description"
@@ -38,9 +44,8 @@ const TopicsModal = () => {
     } else {
         return (
             <div>
-                <div onClick={handleOpen} >Card Example</div>
                     <Modal
-                        open={open}
+                        open={openModal}
                         onClose={handleClose}
                         aria-labelledby="modal-title"
                         aria-describedby="modal-description"
@@ -52,10 +57,10 @@ const TopicsModal = () => {
                                     variant="h6"
                                     component="h2"
                                 >
-                                    Rooms
+                                    Rooms {id}
                                 </Typography>
                                 <Grid sx={innerGrid}>
-                                <RoomsList />
+                                <RoomsList id={id}/>
                                 </Grid>
                                 <Typography 
                                     id="modal-description"

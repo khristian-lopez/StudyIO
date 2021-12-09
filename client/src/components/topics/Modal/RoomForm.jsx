@@ -16,15 +16,20 @@ const RoomForm = () => {
         let url = URL.createObjectURL(e.target.files[0]);
         setImage(url);
     }
-
+    
     const addRoom = e => {
         e.preventDefault()
-        // TODO: data for file upload
+        let setting;
+        if (inputs.setting === "public") {
+            setting = false;
+        } else {
+            setting = true;
+        }
         const data = {
             name: inputs.name,
-            count: inputs.count,
-            setting: inputs.setting,
-            image: image
+            max_users: inputs.count,
+            is_private: setting,
+            thumbnail: image
         }
         console.log(data)
         // axios.post('/', inputs)
@@ -35,7 +40,7 @@ const RoomForm = () => {
         //         console.log(err.response)
         //     })
     }
-    console.log(image)
+    // TODO: once user creates room, redirect them to newly created room **
     return (
         <div className="RoomForm" >
             <Grid container direction="column" sx={gridStyle}>
