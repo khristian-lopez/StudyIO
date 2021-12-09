@@ -17,9 +17,7 @@ const Home = (props) => {
 
           <div className="wrapper">
             <h2>Our Mission</h2>
-            <h3>
-            Snap half of the universe away, LMAO
-            </h3>
+            <h3>Protect universe from Thanos</h3>
 
             <button>
               <nav>
