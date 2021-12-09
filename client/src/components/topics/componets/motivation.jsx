@@ -8,12 +8,14 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
 export default function Motivational() {
-  const [quote, setQuote] = useState('');
+  const [quote, setQuote] = useState({});
 
   useEffect (() => {
-    axios.get('api/quote')
-    .then(res=>console.log(res.data))
-    .catch(err=>console.log(err))
+    if(quote.a === undefined) {
+      axios.get('api/quote')
+      .then(res=>setQuote(res.data[0]))
+     .catch(err=>console.log(err))
+    }
   })
 
   return (
@@ -23,10 +25,10 @@ export default function Motivational() {
           Quote of the Day
         </Typography>
         <Typography variant="h5" component="div">
-          Quote from some person
+          {quote.q}
         </Typography>
         <Typography sx={{ mb: 1.5 }} color="text.secondary">
-          some person
+          {quote.a}
         </Typography>
       </CardContent>
     </Card>
