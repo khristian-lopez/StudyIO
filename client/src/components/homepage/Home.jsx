@@ -23,13 +23,13 @@ const Home = (props) => {
 
             <button>
               <nav>
-                <Link to="/chatroom" style={{ textDecoration: 'none', color:'white' }}>
+                <Link to="/topics" style={{ textDecoration: 'none', color:'white' }}>
                   GET STARTED
                 </Link>
               </nav>
             </button>
               <nav className="link">
-                <Link to="/topics">Topics Page</Link>
+                <Link to="/chatroom">Chat Room</Link>
               </nav>
           </div>
         </div>
