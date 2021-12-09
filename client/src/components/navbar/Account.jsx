@@ -40,9 +40,9 @@ let signOutSx = {
 
 let Account = (props) => {
   // drawer hooks
-  const [right, setState] = React.useState(false);
+  const [drawerStatus, setDrawerStatus] = React.useState(false);
   const toggleDrawer = (open) => (event) => {
-    setState(open);
+    setDrawerStatus(open);
   };
 
   return (
@@ -57,7 +57,7 @@ let Account = (props) => {
         <AccountCircleIcon style={{ fontSize: 40 }} />
       </IconButton>
 
-      <Drawer anchor={'right'} open={right} onClose={toggleDrawer(false)}>
+      <Drawer anchor={'right'} open={drawerStatus} onClose={toggleDrawer(false)}>
         <div className="account-drawer" style={drawerSx}>
           <h2>Your rooms</h2>
           <div className="rooms-list" style={roomListSx}>
