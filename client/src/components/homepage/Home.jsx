@@ -5,6 +5,7 @@ import Chatroom from '../chatroom/Chatroom.jsx';
 import Topbar from './topbar/Topbar';
 import Menu from './menu/Menu';
 import "./home.scss"
+import NavBar from '../navbar/Navbar'
 
 
 const Home = (props) => {
@@ -12,8 +13,9 @@ const Home = (props) => {
   return (
 
     <div className="homepage" id="homepage">
-      <Topbar menuOpen={menuOpen} setMenuOpen={setMenuOpen}/>
-      <Menu menuOpen={menuOpen} setMenuOpen={setMenuOpen}/>
+      {/* <Topbar menuOpen={menuOpen} setMenuOpen={setMenuOpen}/> */}
+      <NavBar user={props.user}/>
+      {/* <Menu menuOpen={menuOpen} setMenuOpen={setMenuOpen}/> */}
       <div className="container">
         <div className="left">
 
@@ -28,7 +30,7 @@ const Home = (props) => {
                 </Link>
               </nav>
             </button>
-              <nav className="link">
+              <nav>
                 <Link to="/chatroom">Chat Room</Link>
               </nav>
           </div>
