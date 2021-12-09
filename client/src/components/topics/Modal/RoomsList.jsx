@@ -7,7 +7,7 @@ const RoomsList = () => {
     const roomData = [
         {id: 1, name: 'math', image: "https://www.suicideinfo.ca/wp-content/uploads/2016/07/Small-Talk-Logo.png" }, 
         {id: 2, name: 'science', image: "https://www.pinclipart.com/picdir/middle/167-1677865_facebook-button-image-facebook-small-icon-png-clipart.png" }, 
-        {id: 3, name: 'english', image: "https://spng.pngfind.com/pngs/s/55-552671_apple-iphone-clipart-samsung-logo-apple-logo-small.png" }
+        {id: 3, name: 'english', image: "https://www.vhv.rs/dpng/d/497-4977652_facebook-icon-small-twitter-icon-small-logo-twitter.png" }
     ]
     const [rooms, getRooms] = useState(roomData)
 
