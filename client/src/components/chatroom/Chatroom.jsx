@@ -86,6 +86,7 @@ let Chatroom = (props) => {
               <StudyDocs room={room}/>
             </div>
           </div>
+
           <div id='messageInput'>
             <input type='text' placeholder='Message...' value={message} onChange={(e) => { setMessage(e.target.value) }} />
             <button onClick={handleSendMessage}>Send</button>

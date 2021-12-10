@@ -16,7 +16,6 @@ let App = () => {
         <Route path="/" element={<Home user={user}/>} />
         <Route path="/topics" element={<TopicsPage user={user}/>} />
         <Route path="/chatroom" element={<Chatroom user={user}/>} />
-        <Route path="/file-share" element={<Upload />} />
       </Routes>
     </>
   )

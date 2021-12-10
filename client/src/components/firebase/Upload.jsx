@@ -38,8 +38,10 @@ let Upload = (props) => {
         getDownloadURL(uploadTask.snapshot.ref)
           .then(url => {
             console.log(url);
-            // axios.post('/api/files/upload', {room: props.room, name: file.name, url: url}).then(results => console.log(results))
+            axios.post('/api/files/', {room: props.room, name: file.name, url: url}).then(results => console.log(results))
+            props.update({name: file.name, url: url})
             setUploading(false)
+            setProgress(0)
           })
       }
     );
@@ -55,7 +57,7 @@ let Upload = (props) => {
             <input type="file" className="input" />
             <button>Upload</button>
           </form>
-          {progress !== 0 ? <h3>Uploaded {progress} %</h3> : null}
+          {progress !== 0 ? <h4>Uploaded {progress} %</h4> : null}
         </div>
       }
     </>
