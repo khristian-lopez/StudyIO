@@ -4,6 +4,7 @@ import io from 'socket.io-client';
 import Navbar from '../navbar/Navbar.jsx';
 import RoomName from './RoomName.jsx';
 import EventsList from './EventsList.jsx';
+import StudyDocs from './userFiles/StudyDocs.jsx';
 
 import "./Chatroom.scss";
 
@@ -80,7 +81,10 @@ let Chatroom = (props) => {
               {messageList.map((value, key) => { return <p>{value.author} {value.body}</p> })}
             </div>
 
-            <div id='userColum'>Members</div>
+            <div id='userColum'>
+              <div>Members</div>
+              <StudyDocs room={room}/>
+            </div>
           </div>
           <div id='messageInput'>
             <input type='text' placeholder='Message...' value={message} onChange={(e) => { setMessage(e.target.value) }} />

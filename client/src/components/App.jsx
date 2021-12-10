@@ -4,6 +4,7 @@ import Home from './homepage/Home.jsx';
 import TopicsPage from './topics/TopicsPage.jsx';
 import Chatroom from './chatroom/Chatroom.jsx';
 import Navbar from './navbar/Navbar.jsx';
+import Upload from './firebase/Upload.jsx';
 
 
 let App = () => {
@@ -15,6 +16,7 @@ let App = () => {
         <Route path="/" element={<Home user={user}/>} />
         <Route path="/topics" element={<TopicsPage user={user}/>} />
         <Route path="/chatroom" element={<Chatroom user={user}/>} />
+        <Route path="/file-share" element={<Upload />} />
       </Routes>
     </>
   )
