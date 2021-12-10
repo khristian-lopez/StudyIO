@@ -3,7 +3,7 @@ import {Button, Grid, Stack} from '@mui/material';
 import Chatroom from '../../chatroom/Chatroom.jsx';
 import axios from 'axios';
 
-const RoomsList = ({id}) => {
+const RoomsList = ({id, name}) => {
     // future: set random thumbnails for room if user do not upload one **
     const roomData = [
         {id: 1, name: 'math', thumbnail: "https://www.suicideinfo.ca/wp-content/uploads/2016/07/Small-Talk-Logo.png" },
@@ -13,12 +13,20 @@ const RoomsList = ({id}) => {
     const [rooms, getRooms] = useState(roomData)
 
     // useEffect(() => {
-    //     axios.get(`api/rooms/:${id}`)
+    //    if (id) {
+    //       axios.get(`api/rooms/topic/:${id}`)
     //         .then(result => {
     //             getRooms(result.data)
     //         })
     //         .catch(err => console.log(err))
-    // })
+    //    } else {
+    //        axios.get(`api/rooms/name/:${name}`)
+    //         .then(result => {
+    //             getRooms(result.data)
+    //         })
+    //         .catch(err => console.log(err))
+    //    }
+    // }, [])
 
     if (rooms.length) {
         return (

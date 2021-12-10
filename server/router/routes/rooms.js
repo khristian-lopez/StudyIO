@@ -8,7 +8,7 @@ const axios = require('axios');
 const router = express.Router();
 
 //Search by name for specific room
-router.get('/:name', (req, res) => {
+router.get('name/:name', (req, res) => {
   axios.get(url)
     .then((data) => {
       res.send(data.data).status(200);
@@ -17,7 +17,7 @@ router.get('/:name', (req, res) => {
 });
 
 //Get array of rooms by Topic ID
-router.get('/:id', (req, res) => {
+router.get('topic/:id', (req, res) => {
   axios.get(url)
     .then((data) => {
       res.send(data.data).status(200);
