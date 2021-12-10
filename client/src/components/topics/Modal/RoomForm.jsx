@@ -4,7 +4,7 @@ import {Typography} from '@mui/material';
 import axios from 'axios';
 
 const RoomForm = () => {
-    const [inputs, setInputs] = useState({ name: "", count: "", setting: "" });
+    const [inputs, setInputs] = useState({ name: "", count: null, setting: "" });
     const [image, setImage] = useState("");
 
     const handleInputChange = e => {

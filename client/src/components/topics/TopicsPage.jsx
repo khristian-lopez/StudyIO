@@ -26,28 +26,29 @@ const TopicsPage = ({user}) => {
   const [openModal, setOpenModal] = useState(false);
 
   const handleOpen = (id) => {
-    console.log('this is the id: ', id)
     setId(id);
-    setOpenModal(true)
+    setOpenModal(true);
   }
-  const handleClose = () => setOpenModal(false);
+  const handleClose = () => {
+    setOpenModal(false);
+    setSearch('');
+  }
 
   useEffect (() => {
     // axios.get('api/topics')
     // .then(res=>setTopics(res.data))
     // .catch(err=>console.log(err))
     setTopics(mock);
-  })
+  },[])
 
   const searchHandler = (e) => {
     setSearch(e.target.value);
   }
 
   const submitHandler = (e)=>{
-    e.preventDefault()
+    e.preventDefault();
     setId(null);
-    console.log(search)
-    setOpenModal(true)
+    setOpenModal(true);
   }
 
   return (
