@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { Routes, Route, Link, useNavigate } from "react-router-dom";
 import Button from '@mui/material/IconButton';
 import Modal from '@mui/material/Modal';
+import Login from './Login.jsx';
 
 const modalStyle = {
   position: 'absolute',
@@ -79,6 +80,9 @@ let LoginModal = (props) => {
     console.log('handleLogin')
   }
 
+  const responseGoogle = (response) => {
+    console.log(response);
+  }
 
   return (
     <div>
@@ -102,6 +106,7 @@ let LoginModal = (props) => {
             </div>
             <button style={loginButtonSx}>Log in</button>
           </form>
+          <Login />
         </div>
       </Modal>
     </div>
