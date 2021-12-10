@@ -16,7 +16,7 @@ export default function Motivational() {
       .then(res=>setQuote(res.data[0]))
      .catch(err=>console.log(err))
     }
-  })
+  }, [])
 
   return (
     <Card sx={{ minWidth: 275 }}>
