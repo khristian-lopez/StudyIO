@@ -1,6 +1,7 @@
 const express = require('express');
 const axios = require('axios');
-const url = 'https://zenquotes.io/api/today';
+// const url = // query our database;
+// expected result: an array of all topics in the database {name: String, url: String, id: Number}
 
 const router = express.Router();
 

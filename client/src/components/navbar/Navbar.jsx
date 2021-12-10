@@ -20,6 +20,7 @@ let navSx = {
   alignItems: 'center'
 }
 
+
 let Navbar = (props) => {
   const navigate = useNavigate();
   const handleHomeClick = (e) => {

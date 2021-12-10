@@ -5,19 +5,19 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
 
-export default function TopicCard(props) {
-  const {pic, topic, clickHandler} = props;
+export default function TopicCard({pic, topic, name}) {
   return (
     <Card sx={{ maxWidth: 345 }}>
-      <CardActionArea onClick={clickHandler}>
+      <CardActionArea>
         <CardMedia
           component="img"
           height="140"
           image={pic}
           alt={topic}
+          name={name}
         />
         <CardContent>
-          <Typography gutterBottom variant="h3" component="div">
+          <Typography gutterBottom variant="h4" component="div">
             {topic}
           </Typography>
           {/* <Typography variant="body2" color="text.secondary">
