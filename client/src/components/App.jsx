@@ -10,13 +10,13 @@ let App = () => {
   const [user, setUser] = useState(null);
 
   return (
-    <div>
+    <>
       <Routes>
         <Route path="/" element={<Home user={user}/>} />
         <Route path="/topics" element={<TopicsPage user={user}/>} />
         <Route path="/chatroom" element={<Chatroom user={user}/>} />
       </Routes>
-    </div>
+    </>
   )
 }
 
