@@ -6,14 +6,14 @@ import axios from 'axios';
 const RoomsList = ({id}) => {
     // future: set random thumbnails for room if user do not upload one **
     const roomData = [
-        {id: 1, name: 'math', thumbnail: "https://www.suicideinfo.ca/wp-content/uploads/2016/07/Small-Talk-Logo.png" }, 
-        {id: 2, name: 'science', thumbnail: "https://www.pinclipart.com/picdir/middle/167-1677865_facebook-button-image-facebook-small-icon-png-clipart.png" }, 
+        {id: 1, name: 'math', thumbnail: "https://www.suicideinfo.ca/wp-content/uploads/2016/07/Small-Talk-Logo.png" },
+        {id: 2, name: 'science', thumbnail: "https://www.pinclipart.com/picdir/middle/167-1677865_facebook-button-image-facebook-small-icon-png-clipart.png" },
         {id: 3, name: 'english', thumbnail: "https://www.vhv.rs/dpng/d/497-4977652_facebook-icon-small-twitter-icon-small-logo-twitter.png" }
     ]
     const [rooms, getRooms] = useState(roomData)
 
     // useEffect(() => {
-    //     axios.get(`/rooms/${id}`)
+    //     axios.get(`api/rooms/:${id}`)
     //         .then(result => {
     //             getRooms(result.data)
     //         })

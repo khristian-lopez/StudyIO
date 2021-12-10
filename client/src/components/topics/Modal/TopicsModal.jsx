@@ -19,7 +19,7 @@ const TopicsModal = ({openModal, id, handleClose}) => {
     }
 
     // const getRoomId = () => {
-    //     axios.get('/rooms')
+    //     axios.get('api/rooms')
     //         .then(result => {
     //             setId(result.data)
     //         })
@@ -52,7 +52,7 @@ const TopicsModal = ({openModal, id, handleClose}) => {
                     >
                         <Box container sx={boxStyle} >
                             <Grid container direction="column" sx={gridStyle} >
-                                <Typography 
+                                <Typography
                                     id="modal-title"
                                     variant="h6"
                                     component="h2"
@@ -62,7 +62,7 @@ const TopicsModal = ({openModal, id, handleClose}) => {
                                 <Grid sx={innerGrid}>
                                 <RoomsList id={id}/>
                                 </Grid>
-                                <Typography 
+                                <Typography
                                     id="modal-description"
                                     sx={{ mt: 2 }}
                                 >
@@ -71,7 +71,7 @@ const TopicsModal = ({openModal, id, handleClose}) => {
                                 <Button
                                     variant="outlined"
                                     size="small"
-                                    onClick={e => openForm(e)} 
+                                    onClick={e => openForm(e)}
                                 >
                                     Create Room
                                 </Button>
@@ -97,7 +97,7 @@ const boxStyle = {
 }
 
 const gridStyle = {
-    gap: 1, 
+    gap: 1,
     padding: "10px",
     alignItems: "center"
 }
