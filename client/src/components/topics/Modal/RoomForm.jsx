@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {Button, Grid, TextField, ToggleButton, ToggleButtonGroup, styled} from '@mui/material';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import {Avatar, Typography} from '@mui/material';
 import axios from 'axios';
 
@@ -50,7 +51,7 @@ const RoomForm = () => {
                 thumbnail: image
             }
             console.log(data)
-            // axios.post('/', data)
+            // axios.post(`api/rooms/${id}/create`, data)
             //     .then((result) => {
             //         console.log(result.data)
             //     })
@@ -70,7 +71,6 @@ const RoomForm = () => {
                 >
                     Create a Room
                 </Typography>
-
                 <TextField sx={inputStyle}
                     label="Room name" 
                     variant="standard" 
@@ -135,7 +135,7 @@ const RoomForm = () => {
                     <Button
                         variant="contained"
                         color="secondary"
-                        size="small"
+                        size="medium"
                         component="span"
                     >
                         Add Thumbnail
@@ -143,14 +143,17 @@ const RoomForm = () => {
                         <br></br>
                 </label>
                 { image ? <div>
-                    <Avatar src={image} style={imageStyle} alt=''/>
-                </div> : <div style={{ marginBottom: "50px", marginTop: "50px"}}></div> }   
+                    <Avatar src={image} style={imageStyle}/>
+                </div> : 
+                <div  >
+                    <Avatar style={imageStyle} alt='https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png'/>
+                </div> }   
                 <Button
                     type="submit"
                     variant="contained"
                     color="secondary"
                     size="large"
-                    style={{ marginTop: "55px" }}
+                    style={{ marginTop: "50px" }}
                     onClick={(e) => {
                         addRoom(e)
                     }}
