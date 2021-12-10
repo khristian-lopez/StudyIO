@@ -1,12 +1,12 @@
 import React, {useState} from 'react';
 import {Box, Button, Grid, Modal, Typography} from '@mui/material';
-import TopicCard from '../componets/topicCard.jsx';
 import RoomsList from './RoomsList.jsx';
 import RoomForm from './RoomForm.jsx';
-import axios from 'axios';
+// import axios from 'axios';
 
 const TopicsModal = ({openModal, id, search, handleClose}) => {
     const [form, showForm] = useState(false);
+    // const [rooms, setRooms] = useState([]);
 
     const closeForm = () => {
         showForm(false)
@@ -18,10 +18,10 @@ const TopicsModal = ({openModal, id, search, handleClose}) => {
         showForm(true)
     }
 
-    // const getRoomId = () => {
-    //     axios.get('api/rooms')
+    // const getTopicRooms = () => {
+    //     axios.get(`/rooms/${id}`)
     //         .then(result => {
-    //             setId(result.data)
+    //             setRooms(result.data)
     //         })
     //         .catch(err => console.log(err))
     // }
@@ -57,21 +57,21 @@ const TopicsModal = ({openModal, id, search, handleClose}) => {
                                     variant="h6"
                                     component="h2"
                                 >
-                                    Rooms {id ? id : search}
+                                    Room {id ? id : search}
                                 </Typography>
                                 <Grid sx={innerGrid}>
                                 <RoomsList id={id} name={search}/>
                                 </Grid>
                                 <Typography
                                     id="modal-description"
-                                    sx={{ mt: 2 }}
+                                    sx={{ mt: 10 }}
                                 >
                                     Create new study room
                                 </Typography>
                                 <Button
                                     variant="outlined"
-                                    size="small"
-                                    onClick={e => openForm(e)}
+                                    size="large"
+                                    onClick={e => openForm(e)} 
                                 >
                                     Create Room
                                 </Button>
@@ -87,17 +87,21 @@ export default TopicsModal;
 
 const boxStyle = {
     position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate( -50%, -50%)",
     margin: "auto",
-    padding: "10px",
-    top: "25%",
-    left: "25%",
-    width: 500,
+    padding: "5px",
+    width: 400,
+    height: 630,
     border: "1px solid #000",
     backgroundColor: "white",
+    gap: 4,
+    spacing: "15px"
 }
 
 const gridStyle = {
-    gap: 1,
+    gap: 2, 
     padding: "10px",
     alignItems: "center"
 }
