@@ -33,7 +33,7 @@ const TopicsPage = ({user}) => {
   const handleClose = () => setOpenModal(false);
 
   useEffect (() => {
-    // axios.get('/topics')
+    // axios.get('api/topics')
     // .then(res=>setTopics(res.data))
     // .catch(err=>console.log(err))
     setTopics(mock);
@@ -42,6 +42,11 @@ const TopicsPage = ({user}) => {
   const searchHandler = (e) => {
     setSearch(e.target.value);
     console.log(search); // open room modal with (name = search) query
+    //     axios.get(`api/rooms/:${search}`)
+    //         .then(result => {
+    //             getRooms(result.data)
+    //         })
+    //         .catch(err => console.log(err))
   }
 
   return (

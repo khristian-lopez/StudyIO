@@ -16,7 +16,7 @@ const RoomForm = () => {
         let url = URL.createObjectURL(e.target.files[0]);
         setImage(url);
     }
-    
+
     const addRoom = e => {
         e.preventDefault()
         let setting;
@@ -32,7 +32,7 @@ const RoomForm = () => {
             thumbnail: image
         }
         console.log(data)
-        // axios.post('/', inputs)
+        // axios.post('api/rooms', inputs)
         //     .then((result) => {
         //         console.log(result.data)
         //     })
@@ -44,51 +44,51 @@ const RoomForm = () => {
     return (
         <div className="RoomForm" >
             <Grid container direction="column" sx={gridStyle}>
-                <Typography 
+                <Typography
                     id="form-title"
                     variant="h6"
                     components="h2"
                 >
                     Create a Room
                 </Typography>
-                <TextField 
-                    label="Room name" 
-                    variant="outlined" 
-                    name="name" 
-                    value={inputs.name} 
+                <TextField
+                    label="Room name"
+                    variant="outlined"
+                    name="name"
+                    value={inputs.name}
                     onChange={handleInputChange}
                     size="small"
                 />
-                <TextField 
-                    label="# of members" 
-                    variant="outlined" 
-                    name="count" 
-                    value={inputs.count} 
+                <TextField
+                    label="# of members"
+                    variant="outlined"
+                    name="count"
+                    value={inputs.count}
                     onChange={handleInputChange}
                     size="small"
                 />
-                <Typography 
+                <Typography
                 id="toggle-button-form"
                 variant="h8"
                 components="h6"
                 >
                     Room Setting
                 </Typography>
-                <ToggleButtonGroup 
-                    exclusive 
-                    onChange={handleInputChange} 
+                <ToggleButtonGroup
+                    exclusive
+                    onChange={handleInputChange}
                     value={inputs.setting}>
-                    <ToggleButton 
-                        label="Public" 
-                        name="setting" 
-                        value="public" 
+                    <ToggleButton
+                        label="Public"
+                        name="setting"
+                        value="public"
                     >
                         Public
                     </ToggleButton>
-                    <ToggleButton 
-                        label="Private" 
-                        name="setting" 
-                        value="private" 
+                    <ToggleButton
+                        label="Private"
+                        name="setting"
+                        value="private"
                     >
                         Private
                     </ToggleButton>
@@ -98,7 +98,7 @@ const RoomForm = () => {
                         id="contained-button-file"
                         type="file"
                         name="image"
-                        accept="image/*" 
+                        accept="image/*"
                         label="Upload"
                         onChange={e => handleImageChange(e)}
                     />
