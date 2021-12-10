@@ -22,7 +22,7 @@ const mock = [
 const TopicsPage = ({user}) => {
   const [topics, setTopics] = useState([]);
   const [search, setSearch] = useState('');
-  const [id, setId] = useState('');
+  const [id, setId] = useState(null);
   const [openModal, setOpenModal] = useState(false);
 
   const handleOpen = (id) => {
@@ -41,12 +41,13 @@ const TopicsPage = ({user}) => {
 
   const searchHandler = (e) => {
     setSearch(e.target.value);
-    console.log(search); // open room modal with (name = search) query
-    //     axios.get(`api/rooms/:${search}`)
-    //         .then(result => {
-    //             getRooms(result.data)
-    //         })
-    //         .catch(err => console.log(err))
+  }
+
+  const submitHandler = (e)=>{
+    e.preventDefault()
+    setId(null);
+    console.log(search)
+    setOpenModal(true)
   }
 
   return (
@@ -59,7 +60,9 @@ const TopicsPage = ({user}) => {
         </Grid>
         <Grid item xs={6}>< Motivational /></Grid>
         <Grid item xs={3} sx={{marginTop: "auto", marginBottom: "20px"}}>
-          <TextField label="Find a Room" onChange={e=>searchHandler(e)}/>
+          <form onSubmit={e=>submitHandler(e)}>
+            <TextField label="Find a Room" onChange={e=>searchHandler(e)}/>
+          </form>
         </Grid>
       </Grid>
       <Box sx={{ flexGrow: 1 }}>
@@ -79,6 +82,7 @@ const TopicsPage = ({user}) => {
                 openModal={openModal}
                 handleClose={handleClose}
                 id={id}
+                search={search}
               />
         </Grid>
       </Box>
