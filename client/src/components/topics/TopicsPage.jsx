@@ -22,12 +22,12 @@ const mock = [
 const TopicsPage = ({user}) => {
   const [topics, setTopics] = useState([]);
   const [search, setSearch] = useState('');
-  const [id, setId] = useState(null);
+  const [currentTopicId, setCurrentTopicId] = useState(null);
   const [openModal, setOpenModal] = useState(false);
 
   const handleOpen = (id) => {
     console.log('this is the id: ', id)
-    setId(id);
+    setCurrentTopicId(id);
     setOpenModal(true)
   }
   const handleClose = () => setOpenModal(false);
@@ -46,7 +46,7 @@ const TopicsPage = ({user}) => {
 
   const submitHandler = (e)=>{
     e.preventDefault()
-    setId(null);
+    setCurrentTopicId(null);
     console.log(search)
     setOpenModal(true)
   }
@@ -82,7 +82,7 @@ const TopicsPage = ({user}) => {
           <TopicsModal
                 openModal={openModal}
                 handleClose={handleClose}
-                id={id}
+                topicId={currentTopicId}
                 search={search}
               />
         </Grid>
