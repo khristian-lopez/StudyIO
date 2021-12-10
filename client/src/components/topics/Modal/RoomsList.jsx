@@ -18,7 +18,7 @@ const RoomsList = ({id}) => {
     //             getRooms(result.data)
     //         })
     //         .catch(err => console.log(err))
-    // })
+    // }, [])
 
     if (rooms.length) {
         return (

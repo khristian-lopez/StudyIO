@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Button, Grid, TextField, ToggleButton, ToggleButtonGroup, styled} from '@mui/material';
 import {Avatar, Typography} from '@mui/material';
 import axios from 'axios';
@@ -18,6 +18,7 @@ const RoomForm = () => {
         let url = URL.createObjectURL(e.target.files[0]);
         setImage(url);
     }
+
     const validate = () => {
         setNameError(false);
         setCountError(false);
@@ -78,7 +79,7 @@ const RoomForm = () => {
                     onChange={handleInputChange}
                     required
                     error={nameError}
-                    helperText={nameError && "Cannot leave blank!"}
+                    helperText={nameError && "Must have a name!"}
                 />
                 <TextField sx={inputStyle}
                     label="# of members" 
@@ -142,14 +143,13 @@ const RoomForm = () => {
                 </label>
                 { image ? <div>
                     <Avatar src={image} style={imageStyle} alt=''/>
-                </div> : <div style={{ marginBottom: "50px", marginTop: "50px"}}></div> }
-                    
+                </div> : <div style={{ marginBottom: "50px", marginTop: "50px"}}></div> }   
                 <Button
                     type="submit"
                     variant="contained"
                     color="secondary"
                     size="large"
-                    style={{ marginTop: "30px" }}
+                    style={{ marginTop: "60px" }}
                     onClick={(e) => {
                         addRoom(e)
                     }}

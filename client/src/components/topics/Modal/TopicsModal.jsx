@@ -2,10 +2,11 @@ import React, {useState} from 'react';
 import {Box, Button, Grid, Modal, Typography} from '@mui/material';
 import RoomsList from './RoomsList.jsx';
 import RoomForm from './RoomForm.jsx';
-import axios from 'axios';
+// import axios from 'axios';
 
 const TopicsModal = ({openModal, id, handleClose}) => {
     const [form, showForm] = useState(false);
+    // const [rooms, setRooms] = useState([]);
 
     const closeForm = () => {
         showForm(false)
@@ -17,10 +18,10 @@ const TopicsModal = ({openModal, id, handleClose}) => {
         showForm(true)
     }
 
-    // const getRooms = () => {
+    // const getTopicRooms = () => {
     //     axios.get(`/rooms/${id}`)
     //         .then(result => {
-    //             setId(result.data)
+    //             setRooms(result.data)
     //         })
     //         .catch(err => console.log(err))
     // }
