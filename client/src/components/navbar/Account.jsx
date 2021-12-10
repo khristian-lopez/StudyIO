@@ -1,24 +1,13 @@
-import React from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Routes, Route, Link } from "react-router-dom";
+import axios from 'axios';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import IconButton from '@mui/material/IconButton';
 import Drawer from '@mui/material/Drawer';
 import Room from './Room.jsx';
 
-
 // add crown next rooms where you are an admin
 // needs room ids
-let roomsMockData = [
-  { room: "Biology 1A", roomId: 2 },
-  { room: "Chemistry 2", roomId: 5 },
-  { room: "OChem 12C", roomId: 3 },
-];
-
-let archivedRoomsMockData = [
-  { room: "Intro Bio 1A", roomId: 21 },
-  { room: "Alchemy 2", roomId: 1 },
-  { room: "Addition 101", roomId: 4 },
-];
 
 let drawerSx = {
   minWidth: '350px',
@@ -44,9 +33,44 @@ let signOutSx = {
 
 let Account = (props) => {
   // drawer hooks
-  const [drawerStatus, setDrawerStatus] = React.useState(false);
+  const [drawerStatus, setDrawerStatus] = useState(false);
   const toggleDrawer = (open) => (event) => {
     setDrawerStatus(open);
+  };
+
+  const [yourRooms, setYourRooms] = useState([]);
+  const [archivedRooms, setArchivedRooms] = useState([]);
+
+  useEffect(() => {
+    axios.get('/api/navbar/activeRooms').then(results => {
+      setYourRooms(results.data);
+    });
+    axios.get('/api/navbar/archivedRooms').then(results => {
+      setArchivedRooms(results.data);
+    });
+  }, [])
+
+  const handleArchive = (room) => {
+    axios.put('/api/navbar/archive', { roomId: room.roomId }).then(results => {
+      console.log(results.data)
+    })
+    // remove from your rooms and add to archived rooms
+    setArchivedRooms([...archivedRooms, room])
+    setYourRooms(yourRooms.filter(singleRoom => singleRoom.roomId !== room.roomId))
+  };
+
+  const handleReactivate = (room) => {
+    axios.put('/api/navbar/archive', { roomId: room.roomId }).then(results => {
+      console.log(results.data)
+    })
+    // remove from archived rooms and add to your rooms
+    setYourRooms([...yourRooms, room])
+    setArchivedRooms(archivedRooms.filter(singleRoom => singleRoom.roomId !== room.roomId))
+  };
+
+  const handleSignOut = (e) => {
+    // may need to pass down sign out function from app level or use context
+    console.log('signed out')
   };
 
   return (
@@ -65,13 +89,13 @@ let Account = (props) => {
         <div className="account-drawer" style={drawerSx}>
           <h2>Your rooms</h2>
           <div className="rooms-list" style={roomListSx}>
-            {roomsMockData.map((room, i) => <Room room={room} active={true} key={i} />)}
+            {yourRooms.map((room, i) => <Room room={room} active={true} key={i} archive={handleArchive} />)}
           </div>
           <h2>Archived rooms</h2>
           <div className="rooms-list" style={roomListSx}>
-            {archivedRoomsMockData.map((room, i) => <Room room={room} active={false} key={i} />)}
+            {archivedRooms.map((room, i) => <Room room={room} active={false} key={i} reactivate={handleReactivate} />)}
           </div>
-          <button style={signOutSx}>Sign out</button>
+          <button style={signOutSx} onClick={handleSignOut}>Sign out</button>
         </div>
       </Drawer>
     </div>
