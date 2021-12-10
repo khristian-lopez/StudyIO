@@ -59,11 +59,11 @@ let Chatroom = (props) => {
     <div id='chatRoom'>
       <Navbar user={props.user} />
 
-      {/* <form id='testing' onSubmit={handleSubmit}>
+      <form id='testing' onSubmit={handleSubmit}>
         <input type='text' placeholder='Room' onChange={(e) => { setRoom(e.target.value) }} value={room} />
         <input type='text' placeholder='Name' onChange={(e) => { setUserName(e.target.value) }} value={userName} />
         <input type='submit' />
-      </form> */}
+      </form>
 
       <div id='chatApp'>
         <div id='chatLeftBar'>
