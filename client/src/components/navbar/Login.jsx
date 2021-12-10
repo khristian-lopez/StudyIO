@@ -6,7 +6,7 @@ const clientId =
 
 function Login(props) {
   const onSuccess = (res) => {
-    console.log('Login Success: currentUser:', res.profileObj);
+    // console.log('Login Success: currentUser:', res.profileObj);
     alert(
       `Logged in successful. Welcome ${res.profileObj.name}!`
     );

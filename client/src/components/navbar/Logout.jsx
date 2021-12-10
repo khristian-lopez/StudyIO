@@ -5,6 +5,7 @@ const clientId =
   '321257595853-ompbh8dj5e9dg3rgo147ub5hkffsf3pt.apps.googleusercontent.com';
 
 function Logout(props) {
+  console.log('props logout', props.logout)
   const onSuccess = () => {
     console.log('Logout made successfully');
     alert('Logout made successfully ✌');
