@@ -23,21 +23,19 @@ let buttonSx = {
   cursor: 'pointer',
 }
 
-
 let Room = (props) => {
 
   let buttonMessage = 'Archive';
   let handleDrawerButton = (e) => {
-    console.log('actives')
+    props.archive(props.room)
   }
 
   if (!props.active) {
     buttonMessage = 'Reactivate'
     handleDrawerButton = (e) => {
-      console.log('archived')
+      props.reactivate(props.room)
     }
   }
-
   return (
     <div style={roomsRowSx}>
       <span style={roomSx}>{props.room.room}</span>
