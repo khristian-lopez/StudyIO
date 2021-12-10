@@ -1,6 +1,6 @@
 const express = require('express');
 const axios = require('axios');
-const url = // query our database;
+// const url = // query our database;
 // expected result: an array of rooms that match topic id or name in the database:
 // {id: Number, name: String, thumbnail: String }
 
