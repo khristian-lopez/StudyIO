@@ -37,7 +37,8 @@ const TopicsPage = ({user}) => {
     // .then(res=>setTopics(res.data))
     // .catch(err=>console.log(err))
     setTopics(mock);
-  })
+    console.log('Topics have been updated');
+  }, [])
 
   const searchHandler = (e) => {
     setSearch(e.target.value);
