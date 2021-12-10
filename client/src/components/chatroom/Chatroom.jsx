@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import io from 'socket.io-client';
+
 import Navbar from '../navbar/Navbar.jsx';
+import RoomName from './RoomName.jsx';
+import EventsList from './EventsList.jsx';
+
+import "./Chatroom.scss";
 
 let socket;
 const connection_port = 'localhost:3000/'
@@ -21,6 +26,10 @@ let Chatroom = (props) => {
       console.log('Updating List');
       setMessageList(prevList => [...prevList, data]);
     })
+
+    return () => {
+      socket.close();
+    }
   }, [])
 
   const connectToRoom = () => {
@@ -48,35 +57,37 @@ let Chatroom = (props) => {
 
   return (
     <div id='chatRoom'>
+      <Navbar user={props.user} />
 
-      <form id='testing' onSubmit={handleSubmit}>
+      {/* <form id='testing' onSubmit={handleSubmit}>
         <input type='text' placeholder='Room' onChange={(e) => { setRoom(e.target.value) }} value={room} />
         <input type='text' placeholder='Name' onChange={(e) => { setUserName(e.target.value) }} value={userName} />
         <input type='submit' />
-      </form>
-
-      <div id='chatLeftBar'>
-        Room Title
-        Events
-        Goals
-        Motivational Quotes and Memes
-      </div>
+      </form> */}
 
       <div id='chatApp'>
-        <div>
-          <div id='messages'>
-            {messageList.map((value, key) => { return <p>{value.author} {value.body}</p> })}
-          </div>
-
-          Members
+        <div id='chatLeftBar'>
+          <RoomName/>
+          <button>Join Video Chat</button>
+          <EventsList/>
+          <div>Goals</div>
+          <div>Motivational Quotes and Memes</div>
         </div>
-        <div id='messageInput'>
-          <input type='text' placeholder='Message...' value={message} onChange={(e) => { setMessage(e.target.value) }} />
-          <button onClick={handleSendMessage}>Send</button>
+
+        <div id='chatRight'>
+          <div id='upperChatRight'>
+            <div id='messages'>
+              {messageList.map((value, key) => { return <p>{value.author} {value.body}</p> })}
+            </div>
+
+            <div id='userColum'>Members</div>
+          </div>
+          <div id='messageInput'>
+            <input type='text' placeholder='Message...' value={message} onChange={(e) => { setMessage(e.target.value) }} />
+            <button onClick={handleSendMessage}>Send</button>
+          </div>
         </div>
       </div>
-
-      <Navbar user={props.user} />
     </div>
   )
 }
