@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Button, Grid, TextField, ToggleButton, ToggleButtonGroup, styled} from '@mui/material';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import {Avatar, Typography} from '@mui/material';
+import AddIcon from '@mui/icons-material/Add';
 import axios from 'axios';
 
 const RoomForm = () => {
@@ -67,7 +67,7 @@ const RoomForm = () => {
                 <Typography
                     id="form-title"
                     variant="h5"
-                    components="h3"
+                    components="h4"
                 >
                     Create a Room
                 </Typography>
@@ -97,6 +97,7 @@ const RoomForm = () => {
                 id="toggle-button-form"
                 variant="h8"
                 components="h5"
+                style={{ marginBottom: "6px" }}
                 >
                     Room Setting
                 </Typography>
@@ -137,6 +138,7 @@ const RoomForm = () => {
                         color="secondary"
                         size="medium"
                         component="span"
+                        style={buttonStyle}
                     >
                         Add Thumbnail
                     </Button>
@@ -153,12 +155,13 @@ const RoomForm = () => {
                     variant="contained"
                     color="secondary"
                     size="large"
-                    style={{ marginTop: "50px" }}
+                    style={buttonStyle}
                     onClick={(e) => {
                         addRoom(e)
                     }}
                 >
                     Create Room
+                    <AddIcon sx={{ marginLeft: "3px" }} />
                 </Button>
             </Grid>
         </div>
@@ -184,12 +187,17 @@ const gridStyle = {
 const imageStyle = {
     width: "95px",
     height: "95px",
-    margin: "5px",
+    marginTop: "10px",
     borderRadius: "50%"
 }
 
 const inputStyle = {
     width: "270px",
-    margin: "5px",
-    padding: "5px"
+    margin: "3px",
+    padding: "3px"
+}
+
+const buttonStyle = {
+    marginTop: "30px",
+    width: "200px"
 }

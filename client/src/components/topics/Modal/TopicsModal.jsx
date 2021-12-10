@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {Box, Button, Grid, Modal, Typography} from '@mui/material';
+import AddIcon from '@mui/icons-material/Add';
 import RoomsList from './RoomsList.jsx';
 import RoomForm from './RoomForm.jsx';
 // import axios from 'axios';
@@ -74,6 +75,7 @@ const TopicsModal = ({openModal, id, search, handleClose}) => {
                                     onClick={e => openForm(e)} 
                                 >
                                     Create Room
+                                    <AddIcon sx={{ marginLeft: "3px" }}/>
                                 </Button>
                             </Grid>
                         </Box>
