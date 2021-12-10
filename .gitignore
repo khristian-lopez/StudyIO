@@ -104,5 +104,3 @@ typings/
 
 # webpack bundle
 client/dist/bundle.js
-
-package-lock.json
