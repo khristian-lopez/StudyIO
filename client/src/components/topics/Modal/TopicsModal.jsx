@@ -4,7 +4,7 @@ import RoomsList from './RoomsList.jsx';
 import RoomForm from './RoomForm.jsx';
 // import axios from 'axios';
 
-const TopicsModal = ({openModal, id, handleClose}) => {
+const TopicsModal = ({openModal, id, search, handleClose}) => {
     const [form, showForm] = useState(false);
     // const [rooms, setRooms] = useState([]);
 
@@ -52,17 +52,17 @@ const TopicsModal = ({openModal, id, handleClose}) => {
                     >
                         <Box container sx={boxStyle} >
                             <Grid container direction="column" sx={gridStyle} >
-                                <Typography 
+                                <Typography
                                     id="modal-title"
                                     variant="h6"
                                     component="h2"
                                 >
-                                    Room {id}
+                                    Room {id ? id : search}
                                 </Typography>
                                 <Grid sx={innerGrid}>
-                                <RoomsList id={id}/>
+                                <RoomsList id={id} name={search}/>
                                 </Grid>
-                                <Typography 
+                                <Typography
                                     id="modal-description"
                                     sx={{ mt: 10 }}
                                 >

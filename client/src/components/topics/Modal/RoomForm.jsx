@@ -63,13 +63,14 @@ const RoomForm = () => {
     return (
         <div className="RoomForm">
             <Grid container direction="column" sx={gridStyle}>
-                <Typography 
+                <Typography
                     id="form-title"
                     variant="h5"
                     components="h3"
                 >
                     Create a Room
                 </Typography>
+
                 <TextField sx={inputStyle}
                     label="Room name" 
                     variant="standard" 
@@ -92,7 +93,7 @@ const RoomForm = () => {
                     error={countError}
                     helperText={countError && "Must be a number!"}
                 />
-                <Typography 
+                <Typography
                 id="toggle-button-form"
                 variant="h8"
                 components="h5"
@@ -127,7 +128,7 @@ const RoomForm = () => {
                         id="contained-button-file"
                         type="file"
                         name="image"
-                        accept="image/*" 
+                        accept="image/*"
                         label="Upload"
                         onChange={e => handleImageChange(e)}
                     />
