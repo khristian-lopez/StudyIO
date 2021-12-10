@@ -63,13 +63,13 @@ const TopicsModal = ({openModal, id, handleClose}) => {
                                 </Grid>
                                 <Typography 
                                     id="modal-description"
-                                    sx={{ mt: 2 }}
+                                    sx={{ mt: 10 }}
                                 >
                                     Create new study room
                                 </Typography>
                                 <Button
                                     variant="outlined"
-                                    size="small"
+                                    size="large"
                                     onClick={e => openForm(e)} 
                                 >
                                     Create Room
@@ -90,14 +90,17 @@ const boxStyle = {
     left: "50%",
     transform: "translate( -50%, -50%)",
     margin: "auto",
-    padding: "10px",
+    padding: "5px",
     width: 400,
+    height: 630,
     border: "1px solid #000",
     backgroundColor: "white",
+    gap: 4,
+    spacing: "15px"
 }
 
 const gridStyle = {
-    gap: 1, 
+    gap: 2, 
     padding: "10px",
     alignItems: "center"
 }

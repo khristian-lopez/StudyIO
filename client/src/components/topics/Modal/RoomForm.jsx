@@ -18,44 +18,45 @@ const RoomForm = () => {
         let url = URL.createObjectURL(e.target.files[0]);
         setImage(url);
     }
-    
-    const addRoom = e => {
-        e.preventDefault();
-
-        let setting;
-        if (inputs.setting === "public") {
-            setting = false;
-        } else {
-            setting = true;
-        }
-        
+    const validate = () => {
         setNameError(false);
         setCountError(false);
+        let isValid = true;
         if (inputs.name === "") {
             setNameError(true)
+            isValid = false;
         }
-        if (inputs.count === "" || inputs.count.match(/^[0-9]*$/) === null ) {
+        if (inputs.count === "" || inputs.count.match(/^[0-9]*$/) === null) {
             setCountError(true)
+            isValid = false;
         }
-        
-        let count = Number(inputs.count)
-        const data = {
-            name: inputs.name,
-            max_users: count,
-            is_private: setting,
-            thumbnail: image
-        }
-        if (nameError === false && countError === false) {
+        return isValid;
+    }
+    const addRoom = e => {
+        e.preventDefault();
+        if (validate()) {
+            let setting;
+            if (inputs.setting === "public") {
+                setting = false;
+            } else {
+                setting = true;
+            }
+            let count = Number(inputs.count)
+            const data = {
+                name: inputs.name,
+                max_users: count,
+                is_private: setting,
+                thumbnail: image
+            }
             console.log(data)
+            // axios.post('/', data)
+            //     .then((result) => {
+            //         console.log(result.data)
+            //     })
+            //     .catch(err => {
+            //         console.log(err.response)
+            //     })
         }
-        
-        // axios.post('/', inputs)
-        //     .then((result) => {
-        //         console.log(result.data)
-        //     })
-        //     .catch(err => {
-        //         console.log(err.response)
-        //     })
     }
     // TODO: once user creates room, redirect them to newly created room ** onClick={e => addRoom(e)}
     return (
@@ -88,12 +89,12 @@ const RoomForm = () => {
                     onChange={handleInputChange}
                     required
                     error={countError}
-                    helperText={countError && "Cannot leave blank!"}
+                    helperText={countError && "Must be a number!"}
                 />
                 <Typography 
                 id="toggle-button-form"
                 variant="h8"
-                components="h6"
+                components="h5"
                 >
                     Room Setting
                 </Typography>
@@ -102,13 +103,12 @@ const RoomForm = () => {
                     exclusive 
                     onChange={handleInputChange} 
                     value={inputs.setting}
-                    
                 >
                     <ToggleButton 
                         label="Public" 
                         name="setting" 
                         value="public" 
-                        color="info"
+                        color="primary"
                     >
                         Public
                     </ToggleButton>
@@ -116,7 +116,7 @@ const RoomForm = () => {
                         label="Private" 
                         name="setting" 
                         value="private"
-                        color="info" 
+                        color="primary" 
                     >
                         Private
                     </ToggleButton>
@@ -132,6 +132,7 @@ const RoomForm = () => {
                     />
                     <Button
                         variant="contained"
+                        color="secondary"
                         size="small"
                         component="span"
                     >
@@ -141,12 +142,14 @@ const RoomForm = () => {
                 </label>
                 { image ? <div>
                     <Avatar src={image} style={imageStyle} alt=''/>
-                </div> : <div></div> }
-                    <br></br>
+                </div> : <div style={{ marginBottom: "50px", marginTop: "50px"}}></div> }
+                    
                 <Button
                     type="submit"
-                    variant="outlined"
-                    size="small"
+                    variant="contained"
+                    color="secondary"
+                    size="large"
+                    style={{ marginTop: "30px" }}
                     onClick={(e) => {
                         addRoom(e)
                     }}
@@ -165,21 +168,24 @@ const Input = styled('input')({
 })
 
 const gridStyle = {
-    xs: 12,
-    gap: 2,
-    margin: "10px",
-    padding: "10px",
+    position: "absolute",
+    justifyContent: "flex-end",
+    margin: "7px",
+    padding: "7px",
     width: 400,
-    alignItems: "center"
+    alignItems: "center",
+    gap: 2,
 }
 
 const imageStyle = {
-    width: "120px",
-    height: "120px",
+    width: "95px",
+    height: "95px",
     margin: "5px",
     borderRadius: "50%"
 }
 
 const inputStyle = {
-    width: "250px"
+    width: "270px",
+    margin: "5px",
+    padding: "5px"
 }
