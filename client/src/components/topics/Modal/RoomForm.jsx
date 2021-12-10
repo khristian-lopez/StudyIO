@@ -150,7 +150,7 @@ const RoomForm = () => {
                     variant="contained"
                     color="secondary"
                     size="large"
-                    style={{ marginTop: "60px" }}
+                    style={{ marginTop: "55px" }}
                     onClick={(e) => {
                         addRoom(e)
                     }}
