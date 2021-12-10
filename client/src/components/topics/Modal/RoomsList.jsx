@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {Button, Grid, Stack} from '@mui/material';
+import {Avatar, Button, Stack} from '@mui/material';
 import Chatroom from '../../chatroom/Chatroom.jsx';
 import axios from 'axios';
 
@@ -34,7 +34,7 @@ const RoomsList = ({id, name}) => {
                 {rooms.map(room => (
                     <Stack key={room.id} sx={style} direction="row" spacing={5}>
                         <div>Room {room.id} {room.name}</div>
-                        {room.thumbnail ? <img src={room.thumbnail} style={imageStyle}/> : <div></div>}
+                        {room.thumbnail ? <Avatar src={room.thumbnail} style={imageStyle}/> : <div></div>}
                         <div>
                             <Button
                                 size="small"
