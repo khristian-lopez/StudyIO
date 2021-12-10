@@ -4,12 +4,14 @@ const cors = require('cors');
 const socket = require('socket.io');
 
 const app = express();
+const morgan = require('morgan');
 const port = 3000;
 const router = require('./router/routes.js');
 
 app.use(express.static(path.join(__dirname, '../client/dist')))
 app.use('/topics', express.static(path.join(__dirname, '../client/dist')))
 app.use('/chatroom', express.static(path.join(__dirname, '../client/dist')))
+app.use(morgan('dev'));
 app.use(express.json());
 app.use(cors());
 
