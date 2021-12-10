@@ -27,7 +27,7 @@ let testRoomDB = {
 const router = express.Router();
 
 //Search by name for specific room
-router.get('/name/:name', (req, res) => {
+router.get('/room/:name', (req, res) => {
   axios.get(url)
     .then((data) => {
       res.send(data.data).status(200);
