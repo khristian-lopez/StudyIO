@@ -106,7 +106,7 @@ let LoginModal = (props) => {
             </div>
             <button style={loginButtonSx}>Log in</button>
           </form>
-          <Login />
+          <Login user={props.user} setUser={props.setUser}/>
         </div>
       </Modal>
     </div>

@@ -5,6 +5,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import IconButton from '@mui/material/IconButton';
 import Drawer from '@mui/material/Drawer';
 import Room from './Room.jsx';
+import Logout from './Logout.jsx';
 
 // add crown next rooms where you are an admin
 // needs room ids
@@ -97,6 +98,7 @@ let Account = (props) => {
           </div>
           <button style={signOutSx} onClick={handleSignOut}>Sign out</button>
         </div>
+        <Logout style={signOutSx} user={props.user} setUser={props.setUser}/>
       </Drawer>
     </div>
   )
