@@ -6,8 +6,8 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Navbar from '../navbar/Navbar.jsx';
 
-import TopicCard from './componets/topicCard.jsx';
-import Motivational from'./componets/motivation.jsx';
+import TopicCard from './components/topicCard.jsx';
+import Motivational from'./components/motivation.jsx';
 import TopicsModal from './Modal/TopicsModal.jsx';
 
 const mock = [
@@ -71,7 +71,6 @@ const TopicsPage = (props) => {
           </Grid>
           <TopicsModal
                 openModal={openModal}
-                // handleOpen={(e) => handleOpen(e.target.name)}
                 handleClose={handleClose}
                 id={id}
               />

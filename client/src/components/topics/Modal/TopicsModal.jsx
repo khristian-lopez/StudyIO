@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import {Box, Button, Grid, Modal, Typography} from '@mui/material';
-import TopicCard from '../componets/topicCard.jsx';
 import RoomsList from './RoomsList.jsx';
 import RoomForm from './RoomForm.jsx';
 import axios from 'axios';
@@ -18,8 +17,8 @@ const TopicsModal = ({openModal, id, handleClose}) => {
         showForm(true)
     }
 
-    // const getRoomId = () => {
-    //     axios.get('/rooms')
+    // const getRooms = () => {
+    //     axios.get(`/rooms/${id}`)
     //         .then(result => {
     //             setId(result.data)
     //         })
@@ -57,7 +56,7 @@ const TopicsModal = ({openModal, id, handleClose}) => {
                                     variant="h6"
                                     component="h2"
                                 >
-                                    Rooms {id}
+                                    Room {id}
                                 </Typography>
                                 <Grid sx={innerGrid}>
                                 <RoomsList id={id}/>
@@ -87,11 +86,12 @@ export default TopicsModal;
 
 const boxStyle = {
     position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate( -50%, -50%)",
     margin: "auto",
     padding: "10px",
-    top: "25%",
-    left: "25%",
-    width: 500,
+    width: 400,
     border: "1px solid #000",
     backgroundColor: "white",
 }
