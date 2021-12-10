@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {Avatar, Button, Stack} from '@mui/material';
+import { Navigate, useNavigate } from 'react-router-dom';
 import Chatroom from '../../chatroom/Chatroom.jsx';
 import axios from 'axios';
 
@@ -27,7 +28,13 @@ const RoomsList = ({id, name}) => {
     //         .catch(err => console.log(err))
     //    }
     // }, [])
-
+    // TODO: nagivate user to specific room `${id}` after button click
+    const navigate = useNavigate();
+    const handleRoomClick = () => {
+        // based on structure => `/chatroom/room/id`
+        navigate('/chatroom')
+    };
+    
     if (rooms.length) {
         return (
             <div className="RoomsList" >
@@ -40,6 +47,7 @@ const RoomsList = ({id, name}) => {
                                 size="small"
                                 variant="outlined"
                                 key={room.id}
+                                onClick={handleRoomClick}
                             >
                                 Join
                             </Button>
