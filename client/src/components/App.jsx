@@ -9,13 +9,14 @@ import Upload from './firebase/Upload.jsx';
 
 let App = () => {
   const [user, setUser] = useState(null);
+  console.log('user', user)
 
   return (
     <>
       <Routes>
-        <Route path="/" element={<Home user={user}/>} />
-        <Route path="/topics" element={<TopicsPage user={user}/>} />
-        <Route path="/chatroom" element={<Chatroom user={user}/>} />
+        <Route path="/" element={<Home user={user} setUser={setUser}/>} />
+        <Route path="/topics" element={<TopicsPage user={user} setUser={setUser}/>} />
+        <Route path="/chatroom" element={<Chatroom user={user} setUser={setUser}/>} />
         <Route path="/file-share" element={<Upload />} />
       </Routes>
     </>
