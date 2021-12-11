@@ -4,7 +4,7 @@ import {Avatar, Typography} from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import axios from 'axios';
 
-const RoomForm = () => {
+const RoomForm = ({id}) => {
     const [inputs, setInputs] = useState({ name: "", count: "", setting: "" });
     const [nameError, setNameError] = useState(false);
     const [countError, setCountError] = useState(false);
@@ -43,8 +43,10 @@ const RoomForm = () => {
             } else {
                 setting = true;
             }
+            let id = Number(id)
             let count = Number(inputs.count)
             const data = {
+                topic_id: id,
                 name: inputs.name,
                 max_users: count,
                 is_private: setting,

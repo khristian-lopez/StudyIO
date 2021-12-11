@@ -37,7 +37,7 @@ const TopicsModal = ({openModal, id, search, handleClose}) => {
                     aria-describedby="modal-form-description"
                 >
                     <Box sx={boxStyle} >
-                        <RoomForm />
+                        <RoomForm id={id} />
                     </Box>
                 </Modal>
             </div>
