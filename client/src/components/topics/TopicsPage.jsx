@@ -15,24 +15,6 @@ const TopicsPage = ({ user, setUser }) => {
   const [search, setSearch] = useState('');
   const [currentTopicId, setCurrentTopicId] = useState(null);
   const [openModal, setOpenModal] = useState(false);
-  const [rendered, setRendered] = useState([]);
-  const [rooms, setRooms] = useState([]);
-
-  useEffect(() => {
-    axios.get(`/api/rooms/`)
-      .then(result => {
-         setRooms(result.data)
-       })
-       .catch(err => console.log(err))
-   }, [])
-
-  const filterRooms = (value) => {
-    const check = value.toUpperCase();
-    const filteredArr = rooms.filter((room) => (
-      room.name.toUpperCase().includes(check)));
-      console.log(filteredArr)
-    setRendered(filteredArr);
-  }
 
   const searchHandler = (e) => {
     setSearch(e.target.value);
@@ -40,9 +22,8 @@ const TopicsPage = ({ user, setUser }) => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    filterRooms(search);
-    setCurrentTopicId(null);
-    setOpenModal(true);
+    setCurrentTopicId(null)
+    setOpenModal(true)
   }
 
   const handleOpen = (id) => {
@@ -93,7 +74,6 @@ const TopicsPage = ({ user, setUser }) => {
               openModal={openModal}
               handleClose={handleClose}
               topicId={currentTopicId}
-              rendered={rendered}
               user={user}
               search={search}
             />

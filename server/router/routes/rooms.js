@@ -40,11 +40,14 @@ router.get('/', (req, res) => {
 
 //Search by name for specific room
 router.get('/name/:name', (req, res) => {
-  axios.get(url)
-    .then((data) => {
-      res.send(data.data).status(200);
-    })
-    .catch((err) => res.send(err).status(500));
+  // axios.get(url)
+  //   .then((data) => {
+  //     res.send(data.data).status(200);
+  //   })
+  //   .catch((err) => res.send(err).status(500));
+  const check = req.params.name.toUpperCase();
+  const filteredArr = Object.values(testRoomDB).filter((room) => (room.name.toUpperCase().includes(check)));
+  res.status(200).send(filteredArr);
 });
 
 //Get array of rooms by Topic ID
