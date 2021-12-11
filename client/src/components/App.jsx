@@ -11,6 +11,12 @@ let App = () => {
   const [user, setUser] = useState(null);
   console.log('user', user)
 
+  //TEST FUNCTION REMOVE AT SOME POINT
+  useEffect(() => {
+    setUser(Math.floor(Math.random() * 1000000000))
+  }, [])
+
+
   return (
     <>
       <Routes>
