@@ -8,13 +8,13 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
 export default function Motivational() {
-  const [quote, setQuote] = useState({});
+  const [quote, setQuote] = useState({a: 'A paranoid developer', q: 'Something in case the API fails'});
 
-  useEffect (() => {
-      axios.get('api/quote')
-      .then(res=>setQuote(res.data[0]))
-     .catch(err=>console.log(err))
-  },[])
+  useEffect(() => {
+    axios.get('api/quote')
+      .then(res => setQuote(res.data[0]))
+      .catch(err => console.log(err))
+  }, [])
 
   return (
     <Card sx={{ minWidth: 275 }}>

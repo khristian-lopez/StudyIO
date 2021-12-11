@@ -57,12 +57,12 @@ const TopicsModal = ({openModal, id, search, handleClose}) => {
                                     variant="h6"
                                     component="h2"
                                 >
-                                    Room {id ? id : search}
+                                   {id ? id : search} Rooms
                                 </Typography>
                                 <Grid sx={innerGrid}>
                                 <RoomsList id={id} name={search}/>
                                 </Grid>
-                                <Typography
+                                {id ? <><Typography
                                     id="modal-description"
                                     sx={{ mt: 10 }}
                                 >
@@ -71,10 +71,10 @@ const TopicsModal = ({openModal, id, search, handleClose}) => {
                                 <Button
                                     variant="outlined"
                                     size="large"
-                                    onClick={e => openForm(e)} 
+                                    onClick={e => openForm(e)}
                                 >
                                     Create Room
-                                </Button>
+                                </Button></> : <div />}
                             </Grid>
                         </Box>
                     </Modal>
@@ -101,7 +101,7 @@ const boxStyle = {
 }
 
 const gridStyle = {
-    gap: 2, 
+    gap: 2,
     padding: "10px",
     alignItems: "center"
 }

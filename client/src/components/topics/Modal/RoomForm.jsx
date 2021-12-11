@@ -72,22 +72,22 @@ const RoomForm = () => {
                 </Typography>
 
                 <TextField sx={inputStyle}
-                    label="Room name" 
-                    variant="standard" 
-                    name="name" 
+                    label="Room name"
+                    variant="standard"
+                    name="name"
                     size="small"
-                    value={inputs.name} 
+                    value={inputs.name}
                     onChange={handleInputChange}
                     required
                     error={nameError}
                     helperText={nameError && "Must have a name!"}
                 />
                 <TextField sx={inputStyle}
-                    label="# of members" 
-                    variant="standard" 
-                    name="count" 
+                    label="# of members"
+                    variant="standard"
+                    name="count"
                     size="small"
-                    value={inputs.count} 
+                    value={inputs.count}
                     onChange={handleInputChange}
                     required
                     error={countError}
@@ -102,23 +102,23 @@ const RoomForm = () => {
                 </Typography>
                 <ToggleButtonGroup
                     size="small"
-                    exclusive 
-                    onChange={handleInputChange} 
+                    exclusive
+                    onChange={handleInputChange}
                     value={inputs.setting}
                 >
-                    <ToggleButton 
-                        label="Public" 
-                        name="setting" 
-                        value="public" 
+                    <ToggleButton
+                        label="Public"
+                        name="setting"
+                        value="public"
                         color="primary"
                     >
                         Public
                     </ToggleButton>
-                    <ToggleButton 
-                        label="Private" 
-                        name="setting" 
+                    <ToggleButton
+                        label="Private"
+                        name="setting"
                         value="private"
-                        color="primary" 
+                        color="primary"
                     >
                         Private
                     </ToggleButton>
@@ -144,7 +144,7 @@ const RoomForm = () => {
                 </label>
                 { image ? <div>
                     <Avatar src={image} style={imageStyle} alt=''/>
-                </div> : <div style={{ marginBottom: "50px", marginTop: "50px"}}></div> }   
+                </div> : <div style={{ marginBottom: "50px", marginTop: "50px"}}></div> }
                 <Button
                     type="submit"
                     variant="contained"
