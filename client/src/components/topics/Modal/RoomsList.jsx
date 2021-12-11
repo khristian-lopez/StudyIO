@@ -2,6 +2,10 @@ import React, {useState, useEffect} from 'react';
 import {Avatar, Button, Stack} from '@mui/material';
 import axios from 'axios';
 
+import {Box, Grid, List, ListItem, ListItemText, ListItemAvatar, ListItemIcon} from '@mui/material'
+
+
+
 const RoomsList = ({ topicId, name }) => {
     // future: set random thumbnails for room if user do not upload one **
     // const roomData = [
@@ -49,24 +53,50 @@ const RoomsList = ({ topicId, name }) => {
     
     if (rooms.length) {
         return (
-            <div className="RoomsList" >
-                {rooms.map(room => (
-                    <Stack key={room.id} sx={style} direction="row" spacing={5}>
-                        <div>Room {room.id} {room.name}</div>
-                        {room.thumbnail ? <Avatar src={room.thumbnail} style={imageStyle} /> : <div></div>}
-                        <div>
-                            <Button
-                                size="small"
-                                variant="outlined"
-                                key={room.id}
-                                onClick={()=>{window.location.href = window.location.origin + `/chatroom?room=${room.id}`}}
-                            >
-                                Join
-                            </Button>
-                        </div>
-                    </Stack>
-                ))}
-            </div>
+            // <div className="RoomsList" >
+            //     {rooms.map(room => (
+            //         <Stack key={room.id} sx={style} direction="row" spacing={5}>
+            //             <div>Room {room.id} {room.name}</div>
+            //             {room.thumbnail ? <Avatar src={room.thumbnail} style={imageStyle} /> : <div></div>}
+            //             <div>
+            //                 <Button
+            //                     size="small"
+            //                     variant="outlined"
+            //                     key={room.id}
+            //                     onClick={()=>{window.location.href = window.location.origin + `/chatroom?room=${room.id}`}}
+            //                 >
+            //                     Join
+            //                 </Button>
+            //             </div>
+            //         </Stack>
+            //     ))}
+            // </div>
+            <Box>
+                <Grid item >
+                    <List>
+                        {rooms.map(room => (
+                            <ListItem sx={style} key={room.id} >
+                                <ListItemAvatar >
+                                    {room.thumbnail ? <Avatar src={room.thumbnail} style={imageStyle} />
+                                    : <Avatar style={imageStyle} alt='https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png'/>}
+                                </ListItemAvatar >
+                                <ListItemText>
+                                    Room {room.id} {room.name}
+                                </ListItemText>
+                                <Button
+                                    sx={{ marginLeft: "10px" }}
+                                    size="small"
+                                    variant="outlined"
+                                    key={room.id}
+                                    onClick={()=>{window.location.href = window.location.origin + `/chatroom?room=${room.id}`}}
+                                >
+                                    Join
+                                </Button>
+                            </ListItem>
+                        ))}
+                    </List>
+                </Grid>
+            </Box>
         )
     } else {
         return (
@@ -80,7 +110,6 @@ const RoomsList = ({ topicId, name }) => {
 export default RoomsList;
 
 const style = {
-    padding: "5px",
     alignItems: "center",
     justifyContent: "space-between"
 }

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Grid, TextField, ToggleButton, ToggleButtonGroup, styled } from '@mui/material';
 import { Avatar, Typography } from '@mui/material';
+import AddIcon from '@mui/icons-material/Add';
 import axios from 'axios';
 
 const RoomForm = ({ user, topicId }) => {
@@ -100,13 +101,12 @@ const RoomForm = ({ user, topicId }) => {
                 <Typography
                 id="toggle-button-form"
                 variant="h8"
-                components="h5"
-                style={{ marginBottom: "6px" }}
+                components="h6"
                 >
                     Room Setting
                 </Typography>
                 <ToggleButtonGroup
-                    size="small"
+                    size="medium"
                     exclusive
                     onChange={handleInputChange}
                     value={inputs.setting}
@@ -197,8 +197,8 @@ const imageStyle = {
 
 const inputStyle = {
     width: "270px",
-    margin: "3px",
-    padding: "3px"
+    margin: "2px",
+    padding: "2px"
 }
 
 const buttonStyle = {

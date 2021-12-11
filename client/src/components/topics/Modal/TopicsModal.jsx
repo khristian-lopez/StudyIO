@@ -54,7 +54,7 @@ const TopicsModal = ({openModal, topicId, search, handleClose, user}) => {
                             <Grid container direction="column" sx={gridStyle} >
                                 <Typography
                                     id="modal-title"
-                                    variant="h6"
+                                    variant="h5"
                                     component="h2"
                                 >
                                     Room {topicId ? topicId : search}
@@ -64,12 +64,14 @@ const TopicsModal = ({openModal, topicId, search, handleClose, user}) => {
                                 </Grid>
                                 {topicId ? <><Typography
                                     id="modal-description"
+                                    variant="h6"
+                                    component="h2"
                                     sx={{ mt: 10 }}
                                 >
-                                    Create new study room
+                                    Create a new study room?
                                 </Typography>
-                                <Button
-                                    variant="outlined"
+                                <Button sx={{ width: "200px" }}
+                                    variant="contained"
                                     size="large"
                                     onClick={e => openForm(e)}
                                 >
@@ -97,13 +99,12 @@ const boxStyle = {
     height: 630,
     border: "1px solid #000",
     backgroundColor: "white",
-    gap: 4,
-    spacing: "15px"
+    gap: "20px",
+    spacing: 20
 }
 
 const gridStyle = {
-    gap: 2,
-    padding: "10px",
+    gap: "20px",
     alignItems: "center"
 }
 
