@@ -40,7 +40,7 @@ router.get('/', (req, res) => {
 
 //Search by name for specific room
 router.get('/name/:name', (req, res) => {
-  axios.get(url)
+  axios.get(url + '/search') // request body param search_value = ${name}
     .then((data) => { res.send(data.data).status(200); })
     .catch((err) => res.send(err).status(500));
 });
