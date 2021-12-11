@@ -2,15 +2,15 @@
 ![placeholder](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbxuprf521ecjvxLfq-2o92kPAj_5vgtR-Bw&usqp=CAU)
 # Contributers
 
--[Phi Truong](names should link to their github or portfolio page)
--[Teresa Nguyen](names should link to their github or portfolio page)
--[Edwin Baranov](names should link to their github or portfolio page)
--[Khristian Lopez](names should link to their github or portfolio page)
--[Erik Dan Tran](names should link to their github or portfolio page)
--[Weixuan Jin](names should link to their github or portfolio page)
--[Brian Lowther](names should link to their github or portfolio page)
--[Taite Jernigan](names should link to their github or portfolio page)
--[Matthew Nguyen](names should link to their github or portfolio page)
+- [Phi Truong](names should link to their github or portfolio page)
+- [Teresa Nguyen](names should link to their github or portfolio page)
+- [Edwin Baranov](names should link to their github or portfolio page)
+- [Khristian Lopez](names should link to their github or portfolio page)
+- [Erik Dan Tran](names should link to their github or portfolio page)
+- [Weixuan Jin](names should link to their github or portfolio page)
+- [Brian Lowther](names should link to their github or portfolio page)
+- [Taite Jernigan](names should link to their github or portfolio page)
+- [Matthew Nguyen](names should link to their github or portfolio page)
 
 # Introduction
 
