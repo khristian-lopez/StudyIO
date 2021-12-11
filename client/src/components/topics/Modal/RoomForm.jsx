@@ -1,17 +1,17 @@
-import React, {useEffect, useState} from 'react';
-import {Button, Grid, TextField, ToggleButton, ToggleButtonGroup, styled} from '@mui/material';
-import {Avatar, Typography} from '@mui/material';
+import React, { useEffect, useState } from 'react';
+import { Button, Grid, TextField, ToggleButton, ToggleButtonGroup, styled } from '@mui/material';
+import { Avatar, Typography } from '@mui/material';
 import axios from 'axios';
 
-const RoomForm = () => {
+const RoomForm = ({ user, topicId }) => {
     const [inputs, setInputs] = useState({ name: "", count: "", setting: "" });
     const [nameError, setNameError] = useState(false);
     const [countError, setCountError] = useState(false);
     const [image, setImage] = useState("");
 
     const handleInputChange = e => {
-        const {name, value} = e.target;
-        setInputs(inputs => ({...inputs, [name]: value}));
+        const { name, value } = e.target;
+        setInputs(inputs => ({ ...inputs, [name]: value }));
     }
 
     const handleImageChange = e => {
@@ -42,12 +42,15 @@ const RoomForm = () => {
             } else {
                 setting = true;
             }
-            let count = Number(inputs.count)
+            let count = Number(inputs.count);
+            let tId = Number(topicId);
             const data = {
                 name: inputs.name,
+                topic_id: tId,
+                thumbnail: image,
                 max_users: count,
                 is_private: setting,
-                thumbnail: image
+                admin_id: user
             }
             console.log(data)
             // axios.post('/', data)
@@ -94,9 +97,9 @@ const RoomForm = () => {
                     helperText={countError && "Must be a number!"}
                 />
                 <Typography
-                id="toggle-button-form"
-                variant="h8"
-                components="h5"
+                    id="toggle-button-form"
+                    variant="h8"
+                    components="h5"
                 >
                     Room Setting
                 </Typography>
@@ -140,11 +143,11 @@ const RoomForm = () => {
                     >
                         Add Thumbnail
                     </Button>
-                        <br></br>
+                    <br></br>
                 </label>
-                { image ? <div>
-                    <Avatar src={image} style={imageStyle} alt=''/>
-                </div> : <div style={{ marginBottom: "50px", marginTop: "50px"}}></div> }
+                {image ? <div>
+                    <Avatar src={image} style={imageStyle} alt='' />
+                </div> : <div style={{ marginBottom: "50px", marginTop: "50px" }}></div>}
                 <Button
                     type="submit"
                     variant="contained"
