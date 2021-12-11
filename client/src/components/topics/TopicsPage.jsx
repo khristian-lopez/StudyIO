@@ -6,8 +6,8 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 
 import Navbar from '../navbar/Navbar.jsx';
-import TopicCard from './componets/topicCard.jsx';
-import Motivational from'./componets/motivation.jsx';
+import TopicCard from './components/topicCard.jsx';
+import Motivational from'./components/motivation.jsx';
 import TopicsModal from './Modal/TopicsModal.jsx';
 
 const mock = [
@@ -19,39 +19,42 @@ const mock = [
   {name: 'Cooking', url: 'https://cdn.vox-cdn.com/thumbor/6nuGrh340E58tg1mJUoaW5CyKEA=/0x0:5500x3671/1200x800/filters:focal(2310x1396:3190x2276)/cdn.vox-cdn.com/uploads/chorus_image/image/66563372/GettyImages_849177432.0.jpg', id: 5}
 ]
 
-const TopicsPage = ({user}) => {
+const TopicsPage = ({user , setUser}) => {
   const [topics, setTopics] = useState([]);
   const [search, setSearch] = useState('');
-  const [id, setId] = useState('');
+  const [id, setId] = useState(null);
   const [openModal, setOpenModal] = useState(false);
 
   const handleOpen = (id) => {
-    console.log('this is the id: ', id)
     setId(id);
-    setOpenModal(true)
+    setOpenModal(true);
   }
-  const handleClose = () => setOpenModal(false);
+  const handleClose = () => {
+    setOpenModal(false);
+    setSearch('');
+  }
 
   useEffect (() => {
     // axios.get('api/topics')
     // .then(res=>setTopics(res.data))
     // .catch(err=>console.log(err))
     setTopics(mock);
-  })
+    console.log('Topics have been updated');
+  }, [])
 
   const searchHandler = (e) => {
     setSearch(e.target.value);
-    console.log(search); // open room modal with (name = search) query
-    //     axios.get(`api/rooms/:${search}`)
-    //         .then(result => {
-    //             getRooms(result.data)
-    //         })
-    //         .catch(err => console.log(err))
+  }
+
+  const submitHandler = (e)=>{
+    e.preventDefault();
+    setId(null);
+    setOpenModal(true);
   }
 
   return (
     <Container>
-    <Navbar user={user}/>
+    <Navbar user={user} setUser={setUser}/>
     <Grid container spacing={1}>
       <Grid container item spacing={3}>
         <Grid item xs={3} sx={{marginTop: "auto", marginBottom: "20px"}}>
@@ -59,7 +62,9 @@ const TopicsPage = ({user}) => {
         </Grid>
         <Grid item xs={6}>< Motivational /></Grid>
         <Grid item xs={3} sx={{marginTop: "auto", marginBottom: "20px"}}>
-          <TextField label="Find a Room" onChange={e=>searchHandler(e)}/>
+          <form onSubmit={e=>submitHandler(e)}>
+            <TextField label="Find a Room" onChange={e=>searchHandler(e)}/>
+          </form>
         </Grid>
       </Grid>
       <Box sx={{ flexGrow: 1 }}>
@@ -79,6 +84,7 @@ const TopicsPage = ({user}) => {
                 openModal={openModal}
                 handleClose={handleClose}
                 id={id}
+                search={search}
               />
         </Grid>
       </Box>

@@ -16,7 +16,7 @@ app.use(morgan('dev'));
 app.use(express.json());
 app.use(cors());
 
-app.use('/api/', router);
+app.use('/api', router);
 
 const server = app.listen(port, () => {
   console.log(`listening on port ${port}`)

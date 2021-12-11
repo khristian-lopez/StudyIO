@@ -11,7 +11,7 @@ import "./Chatroom.scss";
 let socket;
 const connection_port = 'localhost:3000/'
 
-let Chatroom = (props) => {
+let Chatroom = ({user, setUser}) => {
 
   //Before Login
   const [room, setRoom] = useState('Javascript');
@@ -58,7 +58,7 @@ let Chatroom = (props) => {
 
   return (
     <div id='chatRoom'>
-      <Navbar user={props.user} />
+      <Navbar user={user} setUser={setUser}/>
 
       <form id='testing' onSubmit={handleSubmit}>
         <input type='text' placeholder='Room' onChange={(e) => { setRoom(e.target.value) }} value={room} />

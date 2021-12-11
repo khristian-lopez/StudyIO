@@ -14,7 +14,7 @@ const Home = (props) => {
 
     <div className="homepage" id="homepage">
       {/* <Topbar menuOpen={menuOpen} setMenuOpen={setMenuOpen}/> */}
-      <NavBar user={props.user}/>
+      <NavBar user={props.user} setUser={props.setUser}/>
       {/* <Menu menuOpen={menuOpen} setMenuOpen={setMenuOpen}/> */}
       <div className="container">
         <div className="left">

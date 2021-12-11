@@ -5,6 +5,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import IconButton from '@mui/material/IconButton';
 import Drawer from '@mui/material/Drawer';
 import Room from './Room.jsx';
+import Logout from './Logout.jsx';
 
 // add crown next rooms where you are an admin
 // needs room ids
@@ -18,6 +19,7 @@ let drawerSx = {
 
 let roomListSx = {
   marginLeft: '16px',
+  marginBottom: '24px',
 }
 
 let signOutSx = {
@@ -51,7 +53,7 @@ let Account = (props) => {
   }, [])
 
   const handleArchive = (room) => {
-    axios.put('/api/navbar/archive', { roomId: room.roomId }).then(results => {
+    axios.put('/api/navbar/archive', { room_id: room.roomId }).then(results => {
       console.log(results.data)
     })
     // remove from your rooms and add to archived rooms
@@ -60,17 +62,12 @@ let Account = (props) => {
   };
 
   const handleReactivate = (room) => {
-    axios.put('/api/navbar/archive', { roomId: room.roomId }).then(results => {
+    axios.put('/api/navbar/archive', { room_id: room.roomId }).then(results => {
       console.log(results.data)
     })
     // remove from archived rooms and add to your rooms
     setYourRooms([...yourRooms, room])
     setArchivedRooms(archivedRooms.filter(singleRoom => singleRoom.roomId !== room.roomId))
-  };
-
-  const handleSignOut = (e) => {
-    // may need to pass down sign out function from app level or use context
-    console.log('signed out')
   };
 
   return (
@@ -95,8 +92,9 @@ let Account = (props) => {
           <div className="rooms-list" style={roomListSx}>
             {archivedRooms.map((room, i) => <Room room={room} active={false} key={i} reactivate={handleReactivate} />)}
           </div>
-          <button style={signOutSx} onClick={handleSignOut}>Sign out</button>
+          <Logout style={signOutSx} user={props.user} setUser={props.setUser} />
         </div>
+
       </Drawer>
     </div>
   )

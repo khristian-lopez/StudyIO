@@ -39,7 +39,7 @@ let Navbar = (props) => {
         StudyIO
       </IconButton>
 
-      {props.user === null ? <Account user={props.user} /> : <LoginModal />}
+      {props.user !== null ? <Account user={props.user} setUser={props.setUser}/> : <LoginModal user={props.user} setUser={props.setUser}/>}
 
     </div>
   )
