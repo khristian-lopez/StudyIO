@@ -17,7 +17,7 @@ const RoomsList = ({ topicId, name }) => {
 
     useEffect(() => {
         if (topicId) {
-            axios.get(`/api/rooms/topic/${topicId}`)
+            axios.get(`/api/rooms/topic/${topicId}/rooms`)
                 .then(result => {
                     setRooms(result.data)
                 })
