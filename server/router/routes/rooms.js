@@ -42,10 +42,8 @@ router.get('/topic/:topicId', (req, res) => {
   //     res.send(data.data).status(200);
   //   })
   //   .catch((err) => res.send(err).status(500));
-  console.log('Hello World');
 
   let result = Object.values(testRoomDB).filter(element => element.topic_id === Number(req.params.topicId));
-  console.log('Result: ' + result);
   res.status(200).send(result);
 });
 

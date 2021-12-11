@@ -1,18 +1,17 @@
-import React, {useEffect, useState} from 'react';
-import {Button, Grid, TextField, ToggleButton, ToggleButtonGroup, styled} from '@mui/material';
-import {Avatar, Typography} from '@mui/material';
-import AddIcon from '@mui/icons-material/Add';
+import React, { useEffect, useState } from 'react';
+import { Button, Grid, TextField, ToggleButton, ToggleButtonGroup, styled } from '@mui/material';
+import { Avatar, Typography } from '@mui/material';
 import axios from 'axios';
 
-const RoomForm = ({id}) => {
+const RoomForm = ({ user, topicId }) => {
     const [inputs, setInputs] = useState({ name: "", count: "", setting: "" });
     const [nameError, setNameError] = useState(false);
     const [countError, setCountError] = useState(false);
     const [image, setImage] = useState("");
 
     const handleInputChange = e => {
-        const {name, value} = e.target;
-        setInputs(inputs => ({...inputs, [name]: value}));
+        const { name, value } = e.target;
+        setInputs(inputs => ({ ...inputs, [name]: value }));
     }
 
     const handleImageChange = e => {
@@ -44,14 +43,16 @@ const RoomForm = ({id}) => {
             } else {
                 setting = true;
             }
-            let id = Number(id)
-            let count = Number(inputs.count)
+            let count = Number(inputs.count);
+            let tId = Number(topicId);
             const data = {
                 topic_id: id,
                 name: inputs.name,
+                topic_id: tId,
+                thumbnail: image,
                 max_users: count,
                 is_private: setting,
-                thumbnail: image
+                admin_id: user
             }
             console.log(data)
             // axios.post(`api/rooms/${id}/create`, data)
@@ -75,22 +76,22 @@ const RoomForm = ({id}) => {
                     Create a Room
                 </Typography>
                 <TextField sx={inputStyle}
-                    label="Room name" 
-                    variant="standard" 
-                    name="name" 
+                    label="Room name"
+                    variant="standard"
+                    name="name"
                     size="small"
-                    value={inputs.name} 
+                    value={inputs.name}
                     onChange={handleInputChange}
                     required
                     error={nameError}
                     helperText={nameError && "Must have a name!"}
                 />
                 <TextField sx={inputStyle}
-                    label="# of members" 
-                    variant="standard" 
-                    name="count" 
+                    label="# of members"
+                    variant="standard"
+                    name="count"
                     size="small"
-                    value={inputs.count} 
+                    value={inputs.count}
                     onChange={handleInputChange}
                     required
                     error={countError}
@@ -106,23 +107,23 @@ const RoomForm = ({id}) => {
                 </Typography>
                 <ToggleButtonGroup
                     size="small"
-                    exclusive 
-                    onChange={handleInputChange} 
+                    exclusive
+                    onChange={handleInputChange}
                     value={inputs.setting}
                 >
-                    <ToggleButton 
-                        label="Public" 
-                        name="setting" 
-                        value="public" 
+                    <ToggleButton
+                        label="Public"
+                        name="setting"
+                        value="public"
                         color="primary"
                     >
                         Public
                     </ToggleButton>
-                    <ToggleButton 
-                        label="Private" 
-                        name="setting" 
+                    <ToggleButton
+                        label="Private"
+                        name="setting"
                         value="private"
-                        color="primary" 
+                        color="primary"
                     >
                         Private
                     </ToggleButton>
@@ -145,7 +146,7 @@ const RoomForm = ({id}) => {
                     >
                         Add Thumbnail
                     </Button>
-                        <br></br>
+                    <br></br>
                 </label>
                 { image ? <div>
                     <Avatar src={image} style={imageStyle}/>
