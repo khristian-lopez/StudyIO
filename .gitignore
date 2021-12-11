@@ -104,3 +104,6 @@ typings/
 
 # webpack bundle
 client/dist/bundle.js
+
+# server configuration
+server/config.js
