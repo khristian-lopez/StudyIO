@@ -19,40 +19,40 @@ Study.io is an application used to connect users who share similar learning obje
 # Technologies
 
 #### Front-End
-Node.js
-Express
-React
-React Router (for a multiple page app)
-Firebase Authentication (user login)
-Firebase File Storage (if we have time)
-MUI (a React component library)
-Normalize.css (css normalizer)
-Webpack
-Babel
-Cors
-Axios
-Eslint (customize settings)
+- Node.js
+- Express
+- React
+- React Router (for a multiple page app)
+- Firebase Authentication (user login)
+- Firebase File Storage (if we have time)
+= MUI (a React component library)
+- Normalize.css (css normalizer)
+- Webpack
+- Babel
+- Cors
+- Axios
+- Eslint (customize settings)
 
 **Testing Libraries:**
-React testing library
-Jest
-Msw (mocking / catching requests)
+- React testing library
+- Jest
+- Msw (mocking / catching requests)
 
 #### Back-End
-Node.js
-Express
-PostgreSQL
-Cors
-pg
+- Node.js
+- Express
+- PostgreSQL
+- Cors
+- pg
 
 **Testing Libraries:**
-Jest
-Supertest
-Deployment
-AWS EC2 instances
-Docker or AMI (AWS)
-AWS Load Balancers
-AWS Auto Scaling Groups
+- Jest
+- Supertest
+- Deployment
+- AWS EC2 instances
+- Docker or AMI (AWS)
+- AWS Load Balancers
+- AWS Auto Scaling Groups
 
 # Technical Challenges and research that you anticipated
 
