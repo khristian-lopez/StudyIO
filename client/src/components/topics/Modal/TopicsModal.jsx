@@ -66,11 +66,11 @@ const TopicsModal = ({openModal, topicId, search, handleClose, user}) => {
                                     id="modal-description"
                                     variant="h6"
                                     component="h2"
-                                    sx={{ mt: 10 }}
+                                    sx={{ mt: 10, position: "absolute", bottom: 120 }}
                                 >
                                     Create a new study room?
                                 </Typography>
-                                <Button sx={{ width: "200px" }}
+                                <Button sx={{ width: "200px", position: "absolute", bottom: 65 }}
                                     variant="contained"
                                     size="large"
                                     onClick={e => openForm(e)}
