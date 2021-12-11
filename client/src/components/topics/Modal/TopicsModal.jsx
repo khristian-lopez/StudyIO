@@ -17,14 +17,6 @@ const TopicsModal = ({openModal, topicId, handleClose, user, search}) => {
         showForm(true)
     }
 
-    // const getTopicRooms = () => {
-    //     axios.get(`/rooms/${id}`)
-    //         .then(result => {
-    //             setRooms(result.data)
-    //         })
-    //         .catch(err => console.log(err))
-    // }
-
     if (form) {
         return (
             <div>
