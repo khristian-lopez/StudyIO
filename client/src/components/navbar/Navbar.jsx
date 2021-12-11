@@ -21,7 +21,7 @@ let navSx = {
 }
 
 
-let Navbar = (props) => {
+let Navbar = ({ user }) => {
   const navigate = useNavigate();
   const handleHomeClick = (e) => {
     navigate('/')
@@ -39,7 +39,7 @@ let Navbar = (props) => {
         StudyIO
       </IconButton>
 
-      {props.user === null ? <Account user={props.user} /> : <LoginModal />}
+      {user === null ? <Account user={user} /> : <LoginModal />}
 
     </div>
   )

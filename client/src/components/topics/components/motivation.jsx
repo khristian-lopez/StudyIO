@@ -11,7 +11,7 @@ export default function Motivational() {
   const [quote, setQuote] = useState({});
 
   useEffect(() => {
-    axios.get('api/quote')
+    axios.get('/api/quote')
       .then(res => setQuote(res.data[0]))
       .catch(err => console.log(err))
   }, [])

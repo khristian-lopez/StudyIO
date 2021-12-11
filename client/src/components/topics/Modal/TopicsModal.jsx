@@ -6,7 +6,6 @@ import RoomForm from './RoomForm.jsx';
 
 const TopicsModal = ({openModal, topicId, search, handleClose}) => {
     const [form, showForm] = useState(false);
-    // const [rooms, setRooms] = useState([]);
 
     const closeForm = () => {
         showForm(false)

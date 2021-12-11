@@ -11,11 +11,10 @@ import "./Chatroom.scss";
 let socket;
 const connection_port = 'localhost:3000/'
 
-let Chatroom = (props) => {
+let Chatroom = ({ user }) => {
 
   //Before Login
-  const [room, setRoom] = useState('Javascript');
-  const [userName, setUserName] = useState('');
+  const [room, setRoom] = useState(null);
 
   //After Login
   const [message, setMessage] = useState('');
@@ -28,25 +27,26 @@ let Chatroom = (props) => {
       setMessageList(prevList => [...prevList, data]);
     })
 
+    const roomId = new URLSearchParams(window.location.search).get('room');
+    setRoom(roomId);
+
     return () => {
       socket.close();
     }
   }, [])
 
-  const connectToRoom = () => {
-    socket.emit('join_room', room)
-  }
+  useEffect(() => {
+    if (!room) { return }
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    connectToRoom();
-  }
+    console.log('Changing to room: ' + room);
+    socket.emit('join_room', room)
+  }, [room])
 
   const handleSendMessage = (e) => {
     let messageObject = {
       room: room,
       message: {
-        author: userName,
+        author: user,
         body: message
       }
     };
@@ -58,19 +58,13 @@ let Chatroom = (props) => {
 
   return (
     <div id='chatRoom'>
-      <Navbar user={props.user} />
-
-      <form id='testing' onSubmit={handleSubmit}>
-        <input type='text' placeholder='Room' onChange={(e) => { setRoom(e.target.value) }} value={room} />
-        <input type='text' placeholder='Name' onChange={(e) => { setUserName(e.target.value) }} value={userName} />
-        <input type='submit' />
-      </form>
+      <Navbar user={user} />
 
       <div id='chatApp'>
         <div id='chatLeftBar'>
-          <RoomName/>
+          <RoomName />
           <button>Join Video Chat</button>
-          <EventsList/>
+          <EventsList />
           <div>Goals</div>
           <div>Motivational Quotes and Memes</div>
         </div>
@@ -83,7 +77,7 @@ let Chatroom = (props) => {
 
             <div id='userColum'>
               <div>Members</div>
-              <StudyDocs room={room}/>
+              <StudyDocs room={room} />
             </div>
           </div>
           <div id='messageInput'>

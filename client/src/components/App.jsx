@@ -10,6 +10,12 @@ import Upload from './firebase/Upload.jsx';
 let App = () => {
   const [user, setUser] = useState(null);
 
+  //TEST FUNCTION REMOVE AT SOME POINT
+  useEffect(() => {
+    setUser('User Id: ' + Math.random() * 10000)
+  }, [])
+
+
   return (
     <>
       <Routes>
