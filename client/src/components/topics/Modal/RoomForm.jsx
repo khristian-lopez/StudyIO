@@ -34,6 +34,7 @@ const RoomForm = ({id}) => {
         }
         return isValid;
     }
+    
     const addRoom = e => {
         e.preventDefault();
         if (validate()) {
