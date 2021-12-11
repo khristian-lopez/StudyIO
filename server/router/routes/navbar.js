@@ -19,7 +19,7 @@ let archivedRoomsMockData = [
 
 router.get('/activeRooms', (req, res) => {
   // needs user id as a param to query for active rooms of that user
-  res.status(200).send(roomsMockData) // here for dev purposes, to remove once back end set up
+  res.status(200).send(roomsMockData) // to remove once back end set up
 
   // axios.get(APIurl).then((results) => {
   //     res.status(200).send(results.data);
@@ -29,7 +29,7 @@ router.get('/activeRooms', (req, res) => {
 
 router.get('/archivedRooms', (req, res) => {
   // needs user id as a param to query for archived rooms of that user
-  res.status(200).send(archivedRoomsMockData) // here for dev purposes, to remove once back end set up
+  res.status(200).send(archivedRoomsMockData) // to remove once back end set up
 
   // axios.get(APIurl).then((results) => {
   //     res.status(200).send(results.data);

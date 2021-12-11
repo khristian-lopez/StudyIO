@@ -3,7 +3,7 @@ const axios = require('axios');
 
 const router = express.Router();
 
-const APIurl = ''
+const APIurl = '';
 
 const docsMockData = [
   { id: 1, name: 'Exam 1 Study Guide', url: 'https://bit.ly/3oKHoH6' },

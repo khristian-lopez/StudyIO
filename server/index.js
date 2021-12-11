@@ -11,7 +11,7 @@ const router = require('./router/routes.js');
 app.use(express.static(path.join(__dirname, '../client/dist')))
 app.use('/topics', express.static(path.join(__dirname, '../client/dist')))
 app.use('/chatroom', express.static(path.join(__dirname, '../client/dist')))
-app.use('/file-share', express.static(path.join(__dirname, '../client/dist')))
+
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(cors());
