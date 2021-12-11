@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import Container from '@mui/material/Container';
 import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import SearchIcon from '@mui/icons-material/Search';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
+import axios from 'axios';
 
 import Navbar from '../navbar/Navbar.jsx';
 import TopicCard from './components/topicCard.jsx';
@@ -46,53 +48,98 @@ const TopicsPage = ({ user, setUser }) => {
   const searchHandler = (e) => {
     setSearch(e.target.value);
   }
-
+  
   const submitHandler = (e) => {
     e.preventDefault();
     setCurrentTopicId(null);
     setOpenModal(true);
+    
+    console.log('search: ', search)
   }
 
   return (
-    <Container>
-      <Navbar user={user} setUser={setUser} />
-      <Grid container spacing={1}>
-        <Grid container item spacing={3}>
-          <Grid item xs={3} sx={{ marginTop: "auto", marginBottom: "20px" }}>
-            <h1>Choose a Topic</h1>
-          </Grid>
-          <Grid item xs={6}>< Motivational /></Grid>
-          <Grid item xs={3} sx={{ marginTop: "auto", marginBottom: "20px" }}>
-            <form onSubmit={e => submitHandler(e)}>
-              <TextField label="Find a Room" onChange={e => searchHandler(e)} />
-            </form>
-          </Grid>
-        </Grid>
-        <Box sx={{ flexGrow: 1 }}>
-          <Grid container spacing={1}>
-            <Grid container item spacing={3}>
-              {topics.map((topic) => (
-                <Grid item xs={4} key={topic.id} onClick={(e) => handleOpen(e.target.name)}>
-                  <TopicCard
-                    topic={topic.name}
-                    pic={topic.url}
-                    name={topic.id}
+    <div>
+      <Container>
+        <Grid sx={{ marginTop: "auto", marginBottom: "20px" }}>
+        <Navbar user={user} setUser={setUser} />
+        <Box container sx={{ display: "flex", flexDirection: "row", justifyContent: "space-between", overflowX: "visible" }}>
+            <h1 style={{alignSelf: "flex-start"}}>Choose a Topic</h1>
+            <Motivational />
+            <Box sx={{ display: 'flex', alignItems: 'flex-end', mr: 5, mb: "auto" }}>
+                <SearchIcon sx={{ mr: 1, my: 0.5 }}/>
+                <form onSubmit={e => submitHandler(e)}>
+                  <TextField
+                    variant="standard"
+                    label="Find a Room" 
+                    size="medium"
+                    onChange={e => searchHandler(e)}
                   />
-                </Grid>
-              ))}
-            </Grid>
-            <TopicsModal
-              openModal={openModal}
-              handleClose={handleClose}
-              topicId={currentTopicId}
-              search={search}
-              user={user}
-            />
-          </Grid>
+                </form>
+            </Box>
         </Box>
-      </Grid>
-    </Container>
+        </Grid>
+        <Grid container item spacing={3}>
+             {topics.map((topic) => (
+              <Grid item xs={4} key={topic.id} onClick={(e) => handleOpen(e.target.name)}>
+                <TopicCard
+                  topic={topic.name}
+                  pic={topic.url}
+                  name={topic.id}
+                />
+              </Grid>
+            ))}
+        </Grid>
+        <TopicsModal
+          openModal={openModal}
+          handleClose={handleClose}
+          topicId={currentTopicId}
+          search={search}
+          user={user}
+        />
+      </Container>
+    </div>
   )
 }
 
 export default TopicsPage;
+
+// return (
+  // <Container>
+  //   <Navbar user={user} setUser={setUser} />
+  //   <Grid container spacing={1}>
+  //     <Grid container item spacing={3}>
+  //       <Grid item xs={3} sx={{ marginTop: "auto", marginBottom: "20px" }}>
+  //         <h1>Choose a Topic</h1>
+  //       </Grid>
+  //       <Grid item xs={6}>< Motivational /></Grid>
+  //       <Grid item xs={3} sx={{ marginTop: "auto", marginBottom: "20px" }}>
+  //         <form onSubmit={e => submitHandler(e)}>
+  //           <TextField label="Find a Room" onChange={e => searchHandler(e)} />
+  //         </form>
+  //       </Grid>
+  //     </Grid>
+  //     <Box sx={{ flexGrow: 1 }}>
+  //       <Grid container spacing={1}>
+  //         <Grid container item spacing={3}>
+  //           {topics.map((topic) => (
+  //             <Grid item xs={4} key={topic.id} onClick={(e) => handleOpen(e.target.name)}>
+  //               <TopicCard
+  //                 topic={topic.name}
+  //                 pic={topic.url}
+  //                 name={topic.id}
+  //               />
+  //             </Grid>
+  //           ))}
+  //         </Grid>
+  //         <TopicsModal
+  //           openModal={openModal}
+  //           handleClose={handleClose}
+  //           topicId={currentTopicId}
+  //           search={search}
+  //           user={user}
+  //         />
+  //       </Grid>
+  //     </Box>
+  //   </Grid>
+  // </Container>
+// )

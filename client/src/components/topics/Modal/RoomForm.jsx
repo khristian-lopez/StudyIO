@@ -203,5 +203,6 @@ const inputStyle = {
 
 const buttonStyle = {
     marginTop: "30px",
-    width: "200px"
+    width: "200px",
+    
 }
