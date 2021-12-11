@@ -38,8 +38,8 @@ const TopicsPage = ({ user, setUser }) => {
 
   useEffect(() => {
     axios.get('/api/topics')
-    .then(res=>setTopics(res.data))
-    .catch(err=>console.log(err))
+      .then(res => setTopics(res.data))
+      .catch(err => console.log(err))
   }, [])
 
   return (
