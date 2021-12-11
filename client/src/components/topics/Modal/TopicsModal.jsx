@@ -4,7 +4,7 @@ import RoomsList from './RoomsList.jsx';
 import RoomForm from './RoomForm.jsx';
 // import axios from 'axios';
 
-const TopicsModal = ({openModal, topicId, search, handleClose}) => {
+const TopicsModal = ({openModal, topicId, search, handleClose, user}) => {
     const [form, showForm] = useState(false);
 
     const closeForm = () => {
@@ -35,7 +35,7 @@ const TopicsModal = ({openModal, topicId, search, handleClose}) => {
                     aria-describedby="modal-form-description"
                 >
                     <Box sx={boxStyle} >
-                        <RoomForm />
+                        <RoomForm user={user} topicId={topicId}/>
                     </Box>
                 </Modal>
             </div>
@@ -61,7 +61,7 @@ const TopicsModal = ({openModal, topicId, search, handleClose}) => {
                                 <Grid sx={innerGrid}>
                                 <RoomsList topicId={topicId} name={search}/>
                                 </Grid>
-                                <Typography
+                                {topicId ? <><Typography
                                     id="modal-description"
                                     sx={{ mt: 10 }}
                                 >
@@ -73,7 +73,7 @@ const TopicsModal = ({openModal, topicId, search, handleClose}) => {
                                     onClick={e => openForm(e)}
                                 >
                                     Create Room
-                                </Button>
+                                </Button></> : <div />}
                             </Grid>
                         </Box>
                     </Modal>

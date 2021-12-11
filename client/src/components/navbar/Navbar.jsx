@@ -21,7 +21,7 @@ let navSx = {
 }
 
 
-let Navbar = ({ user }) => {
+let Navbar = ({ user, setUser }) => {
   const navigate = useNavigate();
   const handleHomeClick = (e) => {
     navigate('/')
@@ -39,7 +39,7 @@ let Navbar = ({ user }) => {
         StudyIO
       </IconButton>
 
-      {user === null ? <Account user={user} /> : <LoginModal />}
+      {user !== null ? <Account user={user} setUser={setUser} /> : <LoginModal user={user} setUser={setUser} />}
 
     </div>
   )

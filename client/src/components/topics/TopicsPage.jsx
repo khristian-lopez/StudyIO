@@ -19,18 +19,21 @@ const mock = [
   { name: 'Cooking', url: 'https://cdn.vox-cdn.com/thumbor/6nuGrh340E58tg1mJUoaW5CyKEA=/0x0:5500x3671/1200x800/filters:focal(2310x1396:3190x2276)/cdn.vox-cdn.com/uploads/chorus_image/image/66563372/GettyImages_849177432.0.jpg', id: 5 }
 ]
 
-const TopicsPage = ({ user }) => {
+const TopicsPage = ({ user, setUser }) => {
   const [topics, setTopics] = useState([]);
   const [search, setSearch] = useState('');
   const [currentTopicId, setCurrentTopicId] = useState(null);
   const [openModal, setOpenModal] = useState(false);
 
   const handleOpen = (id) => {
-    console.log('this is the id: ', id)
     setCurrentTopicId(id);
-    setOpenModal(true)
+    setOpenModal(true);
   }
-  const handleClose = () => setOpenModal(false);
+
+  const handleClose = () => {
+    setOpenModal(false);
+    setSearch('');
+  }
 
   useEffect(() => {
     // axios.get('api/topics')
@@ -45,15 +48,14 @@ const TopicsPage = ({ user }) => {
   }
 
   const submitHandler = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     setCurrentTopicId(null);
-    console.log(search)
-    setOpenModal(true)
+    setOpenModal(true);
   }
 
   return (
     <Container>
-      <Navbar user={user} />
+      <Navbar user={user} setUser={setUser} />
       <Grid container spacing={1}>
         <Grid container item spacing={3}>
           <Grid item xs={3} sx={{ marginTop: "auto", marginBottom: "20px" }}>
@@ -84,6 +86,7 @@ const TopicsPage = ({ user }) => {
               handleClose={handleClose}
               topicId={currentTopicId}
               search={search}
+              user={user}
             />
           </Grid>
         </Box>
