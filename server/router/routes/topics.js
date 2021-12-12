@@ -6,6 +6,7 @@ const url = require('../../config.js').api_url // query our database;
 const router = express.Router();
 
 router.get('/', (req, res) => {
+  console.log(url + '/topics')
   axios.get(url + '/topics')
     .then((data) => { res.send(data.data).status(200); })
     .catch((err) => res.send(err).status(500));
