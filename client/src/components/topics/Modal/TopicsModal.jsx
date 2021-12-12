@@ -66,11 +66,11 @@ const TopicsModal = ({openModal, topicId, search, handleClose, user}) => {
                                     id="modal-description"
                                     variant="h6"
                                     component="h2"
-                                    sx={{ mt: 10, position: "absolute", bottom: 120 }}
+                                    sx={{ mt: 10 }}
                                 >
                                     Create a new study room?
                                 </Typography>
-                                <Button sx={{ width: "200px", position: "absolute", bottom: 65 }}
+                                <Button sx={{ width: "200px" }}
                                     variant="contained"
                                     size="large"
                                     onClick={e => openForm(e)}
@@ -112,4 +112,6 @@ const innerGrid = {
     border: "1px solid #000",
     margin: "auto",
     padding: "10px",
+    height: "350px",
+    overflowY: "scroll"
 }

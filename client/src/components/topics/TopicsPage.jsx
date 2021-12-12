@@ -73,7 +73,7 @@ const TopicsPage = ({ user, setUser }) => {
           {topics.map((topic) => (
             <Grid
               sx={{ margin: "5px", padding: "5px" }}
-              item xs={3}
+              item xs={2}
               key={topic.id}
               onClick={(e) => handleOpen(e.target.name)}
             >
