@@ -27,7 +27,7 @@ const TopicsPage = ({ user, setUser }) => {
   }
 
   const handleOpen = (id) => {
-    setCurrentTopicId(id);
+    setCurrentTopicId(Number(id));
     setOpenModal(true);
   }
 
@@ -74,6 +74,7 @@ const TopicsPage = ({ user, setUser }) => {
               openModal={openModal}
               handleClose={handleClose}
               topicId={currentTopicId}
+              topics={topics}
               user={user}
               search={search}
             />
@@ -85,3 +86,17 @@ const TopicsPage = ({ user, setUser }) => {
 }
 
 export default TopicsPage;
+
+// Potential Topics and paired Images
+// math:"https://source.unsplash.com/h3kuhYUCE9A"
+// science:"https://source.unsplash.com/yS3XM9qx3hQ"
+// cooking:"https://source.unsplash.com/uQs1802D0CQ"
+// language:"https://source.unsplash.com/wyBUWYgdO1s"
+// history:"https://source.unsplash.com/Fo5dTm6ID1Y"
+// self-improvement:"https://source.unsplash.com/8R-mXppeakM"
+// music:"https://source.unsplash.com/MEL-jJnm7RQ"
+// economics:"https://source.unsplash.com/JKUTrJ4vK00"
+// programming:"https://source.unsplash.com/cYyqhdbJ9TI"
+// exercise:"https://source.unsplash.com/IZOAOjvwhaM"
+// art:"https://source.unsplash.com/A2OL6S9zB7o"
+// literature:"https://source.unsplash.com/HH4WBGNyltc"

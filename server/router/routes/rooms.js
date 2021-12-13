@@ -40,13 +40,13 @@ router.get('/', (req, res) => {
 
 //Search by name for specific room
 router.get('/name/:name', (req, res) => {
-  axios.get(url + '/search') // request body param search_value = ${name}
+  axios.get(url + '/rooms/search', {search_value: req.params.name}) // request body param search_value=${req.params.name}
     .then((data) => { res.send(data.data).status(200); })
     .catch((err) => res.send(err).status(500));
 });
 
 //Get array of rooms by Topic ID
-router.get('/topic/:topicId/rooms', (req, res) => {
+router.get('/topic/:topicId', (req, res) => {
   axios.get(url + `/topic/${req.params.topicId}/rooms`)
     .then((data) => { res.send(data.data).status(200); })
     .catch((err) => res.send(err).status(500));
