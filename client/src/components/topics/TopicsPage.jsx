@@ -27,13 +27,13 @@ const TopicsPage = ({ user, setUser }) => {
   }
 
   const handleOpen = (id) => {
-    setCurrentTopicId(id);
+    setCurrentTopicId(Number(id));
     setOpenModal(true);
   }
 
   const handleClose = () => {
-    setOpenModal(false);
     setSearch('');
+    setOpenModal(false);
   }
 
   useEffect(() => {
@@ -74,6 +74,7 @@ const TopicsPage = ({ user, setUser }) => {
               openModal={openModal}
               handleClose={handleClose}
               topicId={currentTopicId}
+              topics={topics}
               user={user}
               search={search}
             />

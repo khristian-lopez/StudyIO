@@ -4,7 +4,7 @@ import RoomsList from './RoomsList.jsx';
 import RoomForm from './RoomForm.jsx';
 // import axios from 'axios';
 
-const TopicsModal = ({openModal, topicId, handleClose, user, search}) => {
+const TopicsModal = ({openModal, topicId, topics, handleClose, user, search}) => {
     const [form, showForm] = useState(false);
 
     const closeForm = () => {
@@ -16,14 +16,6 @@ const TopicsModal = ({openModal, topicId, handleClose, user, search}) => {
         e.preventDefault()
         showForm(true)
     }
-
-    // const getTopicRooms = () => {
-    //     axios.get(`/rooms/${id}`)
-    //         .then(result => {
-    //             setRooms(result.data)
-    //         })
-    //         .catch(err => console.log(err))
-    // }
 
     if (form) {
         return (
@@ -56,7 +48,7 @@ const TopicsModal = ({openModal, topicId, handleClose, user, search}) => {
                                     variant="h6"
                                     component="h2"
                                 >
-                                    Room {topicId ? topicId : search}
+                                   {topicId ? topics[topicId-1].name : search} Rooms
                                 </Typography>
                                 <Grid sx={innerGrid}>
                                 <RoomsList topicId={topicId} search={search}/>
