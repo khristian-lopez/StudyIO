@@ -20,15 +20,27 @@ let testRoomDB = {
   12: { id: 12, name: 'Weight Lifting', topic_id: 3, thumbnail: '', max_users: 10, is_private: false, admin_id: 0 },
   13: { id: 13, name: 'Calculus', topic_id: 4, thumbnail: '', max_users: 10, is_private: false, admin_id: 0 },
   14: { id: 14, name: 'Algebra', topic_id: 4, thumbnail: '', max_users: 10, is_private: false, admin_id: 0 },
-  15: { id: 15, name: 'Pasta', topic_id: 5, thumbnail: '', max_users: 10, is_private: false, admin_id: 0 }
+  15: { id: 15, name: 'Pasta', topic_id: 5, thumbnail: '', max_users: 10, is_private: false, admin_id: 0 },
+  16: { id: 16, name: 'math', thumbnail: "https://www.suicideinfo.ca/wp-content/uploads/2016/07/Small-Talk-Logo.png", max_users: 10, is_private: false, admin_id: 0 },
+  17: { id: 17, name: 'science', thumbnail: "https://www.pinclipart.com/picdir/middle/167-1677865_facebook-button-image-facebook-small-icon-png-clipart.png", max_users: 10, is_private: false, admin_id: 0 },
+  18: { id: 18, name: 'english', thumbnail: "https://www.vhv.rs/dpng/d/497-4977652_facebook-icon-small-twitter-icon-small-logo-twitter.png", max_users: 10, is_private: false, admin_id: 0 }
 };
-
 
 const router = express.Router();
 
+//Get all rooms
+router.get('/', (req, res) => {
+  // axios.get(url)
+  //   .then((data) => {
+  //     res.send(data.data).status(200);
+  //   })
+  //   .catch((err) => res.send(err).status(500));
+  res.status(200).send(Object.values(testRoomDB));
+});
+
 //Search by name for specific room
 router.get('/name/:name', (req, res) => {
-  axios.get(url)
+  axios.get(url + '/search') // request body param search_value = ${name}
     .then((data) => { res.send(data.data).status(200); })
     .catch((err) => res.send(err).status(500));
 });
@@ -41,7 +53,7 @@ router.get('/topic/:topicId/rooms', (req, res) => {
 });
 
 //Post new room to DB ({name: string, topic_id: number, thumbnail: string, max_users: number, is_private: bool, admin_id: number})
-router.post('/', (req, res) => {
+router.post('/', (req, res) => { // POST /rooms/:topic_id/create
   axios.post(url, req.body)
     .then((data) => {
       res.send(data.data).status(201);

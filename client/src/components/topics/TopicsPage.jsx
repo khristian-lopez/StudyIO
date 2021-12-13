@@ -16,6 +16,16 @@ const TopicsPage = ({ user, setUser }) => {
   const [currentTopicId, setCurrentTopicId] = useState(null);
   const [openModal, setOpenModal] = useState(false);
 
+  const searchHandler = (e) => {
+    setSearch(e.target.value);
+  }
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    setCurrentTopicId(null)
+    setOpenModal(true)
+  }
+
   const handleOpen = (id) => {
     setCurrentTopicId(id);
     setOpenModal(true);
@@ -31,16 +41,6 @@ const TopicsPage = ({ user, setUser }) => {
       .then(res => setTopics(res.data))
       .catch(err => console.log(err))
   }, [])
-
-  const searchHandler = (e) => {
-    setSearch(e.target.value);
-  }
-
-  const submitHandler = (e) => {
-    e.preventDefault();
-    setCurrentTopicId(null);
-    setOpenModal(true);
-  }
 
   return (
     <Container>
@@ -74,8 +74,8 @@ const TopicsPage = ({ user, setUser }) => {
               openModal={openModal}
               handleClose={handleClose}
               topicId={currentTopicId}
-              search={search}
               user={user}
+              search={search}
             />
           </Grid>
         </Box>
