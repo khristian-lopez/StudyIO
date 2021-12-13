@@ -69,11 +69,14 @@ const TopicsPage = ({ user, setUser }) => {
             </Box>
           </Box>
         </Grid>
-        <Box container item style={boxStyle}>
+        <Box container style={boxStyle}>
+        {/* <Box container item style={boxStyle}> */}
           {topics.map((topic) => (
-            <Grid
-              sx={{ margin: "5px", padding: "5px" }}
-              item xs={2}
+            <Box item
+              sx={{ margin: "5px", padding: "5px", width: "300px" }}
+              // item xs={2}
+              md={3} xl={4}
+              // xs={12} sm={6} md={3}
               key={topic.id}
               onClick={(e) => handleOpen(e.target.name)}
             >
@@ -82,9 +85,12 @@ const TopicsPage = ({ user, setUser }) => {
                 pic={topic.url}
                 name={topic.id}
               />
-            </Grid>
+              {/* <div style={{ border: "1px solid #000", width: "100px", padding: "5px", margin: "5px" }}>Card 
+              </div> */}
+            </Box>
           ))}
         </Box>
+        {/* </Box> */}
         <TopicsModal
           openModal={openModal}
           handleClose={handleClose}

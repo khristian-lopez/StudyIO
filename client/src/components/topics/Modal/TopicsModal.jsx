@@ -59,7 +59,7 @@ const TopicsModal = ({openModal, topicId, search, handleClose, user}) => {
                                 >
                                     Room {topicId ? topicId : search}
                                 </Typography>
-                                <Grid sx={innerGrid}>
+                                <Grid>
                                 <RoomsList topicId={topicId} name={search}/>
                                 </Grid>
                                 {topicId ? <><Typography
@@ -100,7 +100,7 @@ const boxStyle = {
     border: "1px solid #000",
     backgroundColor: "white",
     gap: "20px",
-    spacing: 20
+    spacing: 20,
 }
 
 const gridStyle = {
@@ -112,6 +112,7 @@ const innerGrid = {
     border: "1px solid #000",
     margin: "auto",
     padding: "10px",
-    height: "350px",
-    overflowY: "scroll"
+    height: "325px",
+    width: "200px",
+    overflowX: "unset"
 }
