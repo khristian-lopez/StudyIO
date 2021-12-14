@@ -5,7 +5,8 @@ import Peer from 'simple-peer';
 const Videochat = (props) => {
 
   const socketRef = useRef();
-  const remoteVideo = useRef();
+
+  const videoRefs = useRef({});
 
   const [peerList, setPeerList] = useState({});
   const peerListRef = useRef();
@@ -30,6 +31,7 @@ const Videochat = (props) => {
               newObject[user] = createdPeer
               return newObject
             });
+
             createdPeer.on('signal', data => {
               console.log('Sending Initial Connection Request to: ' + user)
               socketRef.current.emit('send_connection_to', { targetID: user, fromID: socketRef.current.id, fromSignal: data })
@@ -53,7 +55,13 @@ const Videochat = (props) => {
 
           createdPeer.on('stream', stream => {
             console.log('Adding Stream');
-            remoteVideo.current.srcObject = stream;
+
+            console.log('Video Refs:');
+            console.log(videoRefs.current);
+
+            console.log('id: ' + fromID)
+
+            videoRefs.current[fromID].srcObject = stream;
           })
 
           createdPeer.signal(fromSignal);
@@ -65,13 +73,19 @@ const Videochat = (props) => {
           console.log(targetID);
           console.log(peerListRef.current)
           peerListRef.current[targetID].signal(targetSignal);
+
+          peerListRef.current[targetID].on('stream', stream => {
+            console.log('Adding Confermation Stream');
+
+            videoRefs.current[targetID].srcObject = stream;
+          })
         })
       })
   }, []);
 
   return (
     <div>
-      <video playsInline muted ref={remoteVideo} autoPlay style={{ width: '300px', background: 'black' }} />
+      {Object.keys(peerList).map(peerKey => <video playsInline muted ref={ref => {videoRefs.current[peerKey] = ref}} autoPlay style={{ width: '300px', background: 'black' }} />)}
     </div>
   );
 }
