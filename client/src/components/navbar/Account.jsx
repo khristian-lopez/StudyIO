@@ -98,7 +98,14 @@ let Account = (props) => {
           </div>
           <button style={signOutSx} onClick={handleSignOut}>Sign out</button>
         </div>
-        <Logout style={signOutSx} user={props.user} setUser={props.setUser}/>
+        <Logout
+          style={signOutSx}
+          userId={props.userId}
+          setUserId={props.setUserId}
+          userName={props.userName}
+          setUserName={props.setUserName}
+          login={props.login}
+          setLogin={props.setLogin}/>
       </Drawer>
     </div>
   )

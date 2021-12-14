@@ -8,21 +8,55 @@ import Upload from './firebase/Upload.jsx';
 
 
 let App = () => {
-  const [user, setUser] = useState(null);
-  console.log('user', user)
+  const [userId, setUserId] = React.useState(
+    localStorage.getItem('userId')
+  );
+  const [userName, setUserName] = React.useState(
+    localStorage.getItem('userName')
+  )
+  const [login, setLogin] = React.useState(
+    localStorage.getItem('login') === 'true'
+  )
+  console.log('userName', userName)
+  console.log('userId', userId)
+  console.log('login', login)
+
+  React.useEffect(() => {
+    localStorage.setItem('login', login);
+    localStorage.setItem('userId', userId);
+    localStorage.setItem('userName', userName);
+  }, [login]);
 
   //TEST FUNCTION REMOVE AT SOME POINT
-  useEffect(() => {
-    setUser(Math.floor(Math.random() * 1000000000))
-  }, [])
+  // useEffect(() => {
+  //   setUser(Math.floor(Math.random() * 1000000000))
+  // }, [])
 
 
   return (
     <>
       <Routes>
-        <Route path="/" element={<Home user={user} setUser={setUser}/>} />
-        <Route path="/topics" element={<TopicsPage user={user} setUser={setUser}/>} />
-        <Route path="/chatroom" element={<Chatroom user={user} setUser={setUser}/>} />
+        <Route path="/" element={<Home
+          userId={userId}
+          setUserId={setUserId}
+          userName={userName}
+          setUserName={setUserName}
+          login={login}
+          setLogin={setLogin} />} />
+        <Route path="/topics" element={<TopicsPage
+          userId={userId}
+          setUserId={setUserId}
+          userName={userName}
+          setUserName={setUserName}
+          login={login}
+          setLogin={setLogin}/>} />
+        <Route path="/chatroom" element={<Chatroom
+          userId={userId}
+          setUserId={setUserId}
+          userName={userName}
+          setUserName={setUserName}
+          login={login}
+          setLogin={setLogin}/>} />
         <Route path="/file-share" element={<Upload />} />
       </Routes>
     </>

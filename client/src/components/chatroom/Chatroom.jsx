@@ -11,7 +11,7 @@ import "./Chatroom.scss";
 let socket;
 const connection_port = 'localhost:3000/'
 
-let Chatroom = ({user, setUser}) => {
+let Chatroom = (props) => {
 
   //Before Login
   const [room, setRoom] = useState(null);
@@ -58,7 +58,13 @@ let Chatroom = ({user, setUser}) => {
 
   return (
     <div id='chatRoom'>
-      <Navbar user={user} setUser={setUser}/>
+      <Navbar
+        userId={props.userId}
+        setUserId={props.setUserId}
+        userName={props.userName}
+        setUserName={props.setUserName}
+        login={props.login}
+        setLogin={props.setLogin}/>
 
       <div id='chatApp'>
         <div id='chatLeftBar'>
