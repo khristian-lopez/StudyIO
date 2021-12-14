@@ -55,7 +55,7 @@ const RoomForm = ({ user, topicId }) => {
                 is_private: setting,
                 admin_id: user
             }
-            
+            // TODO: retrieve id from sign up to be passed in as admin_id
             axios.post(`/api/rooms/${topicId}/create`, data)
                 .then((result) => {
                     console.log(result.data)
@@ -65,6 +65,8 @@ const RoomForm = ({ user, topicId }) => {
                 })
         }
     }
+
+    const joinRoom = (id) => window.location.href = window.location.origin + `/chatroom?room=${id}`;
 
     return (
         <div className="RoomForm">
@@ -207,5 +209,4 @@ const inputStyle = {
 const buttonStyle = {
     marginTop: "30px",
     width: "200px",
-    
 }
