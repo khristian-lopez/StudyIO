@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Container from '@mui/material/Container';
 import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
 import SearchIcon from '@mui/icons-material/Search';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
@@ -66,7 +65,7 @@ const TopicsPage = (props) => {
               <Motivational />
             </Grid>
             <Box sx={searchStyle}>
-              <SearchIcon sx={{ mr: 1, my: 0.5 }} />
+              <SearchIcon sx={{ my: 0.5 }} />
               <form onSubmit={e => submitHandler(e)}>
                 <TextField
                   variant="standard"
@@ -83,7 +82,7 @@ const TopicsPage = (props) => {
           {topics.map((topic) => (
             <Box item
               sx={{ margin: "5px", padding: "5px", width: "300px" }}
-              md={3} xl={4}
+              md={3} lg={4}
               key={topic.id}
               onClick={(e) => handleOpen(e.target.name)}
             >
@@ -122,7 +121,7 @@ const rowOneStyle = {
 const searchStyle = {
   display: 'flex', 
   alignItems: 'flex-end', 
-  mr: 5, 
+  marginRight: "3px", 
   mb: "auto"
 }
 
