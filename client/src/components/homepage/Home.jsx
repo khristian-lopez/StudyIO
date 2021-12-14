@@ -39,9 +39,6 @@ const Home = (props) => {
               <nav>
                 <Link to="/chatroom">Chat Room</Link>
               </nav>
-              <nav>
-                <Link to="/file-share">Firebase Demo</Link>
-              </nav>
           </div>
         </div>
         <div className="right">

@@ -5,6 +5,7 @@ import TopicsPage from './topics/TopicsPage.jsx';
 import Chatroom from './chatroom/Chatroom.jsx';
 import Navbar from './navbar/Navbar.jsx';
 import Upload from './firebase/Upload.jsx';
+import RoomInfoDrawer from './chatroom/RoomInfoDrawer.jsx';
 
 
 let App = () => {
