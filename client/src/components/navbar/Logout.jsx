@@ -7,7 +7,7 @@ const clientId =
 
 function Logout(props) {
   const onSuccess = () => {
-    console.log('Logout made successfully');
+    // console.log('Logout made successfully');
     props.setUserName('');
     props.setUserId('');
     props.setLogin(false);
