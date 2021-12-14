@@ -3,16 +3,14 @@ import {Avatar, Button, CircularProgress} from '@mui/material';
 import {Box, Grid, List, ListItem, ListItemText, ListItemAvatar} from '@mui/material';
 import axios from 'axios';
 
-
-
-const RoomsList = ({ topicId, name }) => {
+const RoomsList = ({ topicId, search }) => {
     const [rooms, setRooms] = useState([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         if (topicId) {
             const timer = setTimeout(() => {
-                axios.get(`/api/rooms/topic/${topicId}/rooms`)
+                axios.get(`/api/rooms/topic/${topicId}`)
                     .then(result => {
                         setRooms(result.data)
                         setLoading(false)
@@ -21,7 +19,7 @@ const RoomsList = ({ topicId, name }) => {
             }, 300)
             return () => clearTimeout(timer)
         } else {
-            axios.get(`/api/rooms/name/:${name}`)
+            axios.get(`/api/rooms/name/${search}`)
                 .then(result => {
                     setRooms(result.data)
                 })

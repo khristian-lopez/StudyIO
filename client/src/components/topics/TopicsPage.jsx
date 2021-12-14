@@ -12,20 +12,30 @@ import TopicCard from './components/topicCard.jsx';
 import Motivational from './components/motivation.jsx';
 import TopicsModal from './Modal/TopicsModal.jsx';
 
-const TopicsPage = ({ user, setUser }) => {
+const TopicsPage = (props) => {
   const [topics, setTopics] = useState([]);
   const [search, setSearch] = useState('');
   const [currentTopicId, setCurrentTopicId] = useState(null);
   const [openModal, setOpenModal] = useState(false);
 
+  const searchHandler = (e) => {
+    setSearch(e.target.value);
+  }
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    setCurrentTopicId(null)
+    setOpenModal(true)
+  }
+
   const handleOpen = (id) => {
-    setCurrentTopicId(id);
+    setCurrentTopicId(Number(id));
     setOpenModal(true);
   }
 
   const handleClose = () => {
-    setOpenModal(false);
     setSearch('');
+    setOpenModal(false);
   }
 
   useEffect(() => {
@@ -34,28 +44,26 @@ const TopicsPage = ({ user, setUser }) => {
       .catch(err => console.log(err))
   }, [])
 
-  const searchHandler = (e) => {
-    setSearch(e.target.value);
-  }
-
-  const submitHandler = (e) => {
-    e.preventDefault();
-    setCurrentTopicId(null);
-    setOpenModal(true);
-  }
   return (
     <div>
       <Container maxWidth="1270px">
         <Grid sx={{ marginTop: "auto", marginBottom: "20px" }}>
-          <Navbar user={user} setUser={setUser} />
-          <Box container sx={{ display: "flex", flexDirection: "row", justifyContent: "space-evenly", overflowX: "visible", margin: "3px", padding: "3px" }}>
+          <Navbar 
+            userId={props.userId}
+            setUserId={props.setUserId}
+            userName={props.userName}
+            setUserName={props.setUserName}
+            login={props.login}
+            setLogin={props.setLogin}
+          />
+          <Box container sx={rowOneStyle}>
             <Grid item xs={2} sx={{ marginBottom: "50" }}>
               <h1 >Choose a Topic</h1>
             </Grid>
             <Grid item xs={6} sx={{ overflowX: "visible" }} >
               <Motivational />
             </Grid>
-            <Box sx={{ display: 'flex', alignItems: 'flex-end', mr: 5, mb: "auto" }}>
+            <Box sx={searchStyle}>
               <SearchIcon sx={{ mr: 1, my: 0.5 }} />
               <form onSubmit={e => submitHandler(e)}>
                 <TextField
@@ -89,8 +97,9 @@ const TopicsPage = ({ user, setUser }) => {
           openModal={openModal}
           handleClose={handleClose}
           topicId={currentTopicId}
+          topics={topics}
+          user={props.userId}
           search={search}
-          user={user}
         />
       </Container>
     </div>
@@ -98,6 +107,22 @@ const TopicsPage = ({ user, setUser }) => {
 }
 
 export default TopicsPage;
+
+const rowOneStyle = {
+  display: "flex", 
+  flexDirection: "row", 
+  justifyContent: "space-evenly", 
+  overflowX: "visible", 
+  margin: "3px", 
+  padding: "3px"
+}
+
+const searchStyle = {
+  display: 'flex', 
+  alignItems: 'flex-end', 
+  mr: 5, 
+  mb: "auto"
+}
 
 const boxStyle = {
   display: "flex", 

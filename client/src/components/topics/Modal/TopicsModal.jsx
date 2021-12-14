@@ -5,7 +5,7 @@ import RoomsList from './RoomsList.jsx';
 import RoomForm from './RoomForm.jsx';
 // import axios from 'axios';
 
-const TopicsModal = ({openModal, topicId, search, handleClose, user}) => {
+const TopicsModal = ({openModal, topicId, topics, handleClose, user, search}) => {
     const [form, showForm] = useState(false);
 
     const closeForm = () => {
@@ -36,43 +36,43 @@ const TopicsModal = ({openModal, topicId, search, handleClose, user}) => {
     } else {
         return (
             <div>
-                    <Modal
-                        open={openModal}
-                        onClose={handleClose}
-                        aria-labelledby="modal-title"
-                        aria-describedby="modal-description"
-                    >
-                        <Box container sx={boxStyle} >
-                            <Grid container direction="column" sx={gridStyle} >
-                                <Typography
-                                    id="modal-title"
-                                    variant="h5"
-                                    component="h2"
-                                >
-                                    Room {topicId ? topicId : search}
-                                </Typography>
-                                <Grid>
-                                <RoomsList topicId={topicId} name={search}/>
-                                </Grid>
-                                {topicId ? <><Typography
-                                    id="modal-description"
-                                    variant="h6"
-                                    component="h2"
-                                    sx={{ mt: 10 }}
-                                >
-                                    Create a new study room?
-                                </Typography>
-                                <Button sx={{ width: "200px" }}
-                                    variant="contained"
-                                    size="large"
-                                    onClick={e => openForm(e)}
-                                >
-                                    Create Room
-                                    <AddIcon sx={{ marginLeft: "3px" }}/>
-                                </Button></> : <div />}
+                <Modal
+                    open={openModal}
+                    onClose={handleClose}
+                    aria-labelledby="modal-title"
+                    aria-describedby="modal-description"
+                >
+                    <Box container sx={boxStyle} >
+                        <Grid container direction="column" sx={gridStyle} >
+                            <Typography
+                                id="modal-title"
+                                variant="h5"
+                                component="h2"
+                            >
+                                {topicId ? topics[topicId - 1].name : search} rooms
+                            </Typography>
+                            <Grid>
+                            <RoomsList topicId={topicId} search={search}/>
                             </Grid>
-                        </Box>
-                    </Modal>
+                            {topicId ? <><Typography
+                                id="modal-description"
+                                variant="h6"
+                                component="h2"
+                                sx={{ mt: 10 }}
+                            >
+                                Create a new study room?
+                            </Typography>
+                            <Button sx={{ width: "200px" }}
+                                variant="contained"
+                                size="large"
+                                onClick={e => openForm(e)}
+                            >
+                                Create Room
+                                <AddIcon sx={{ marginLeft: "3px" }}/>
+                            </Button></> : <div />}
+                        </Grid>
+                    </Box>
+                </Modal>
             </div>
         )
     }
