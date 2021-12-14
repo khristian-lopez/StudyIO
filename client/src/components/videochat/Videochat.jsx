@@ -85,7 +85,7 @@ const Videochat = (props) => {
 
   return (
     <div>
-      {Object.keys(peerList).map(peerKey => <video playsInline muted ref={ref => {videoRefs.current[peerKey] = ref}} autoPlay style={{ width: '300px', background: 'black' }} />)}
+      {Object.keys(peerList).map(peerKey => <video playsInline ref={ref => {videoRefs.current[peerKey] = ref}} autoPlay style={{ width: '300px', background: 'black' }} />)}
     </div>
   );
 }
