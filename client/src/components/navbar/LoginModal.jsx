@@ -106,6 +106,7 @@ let LoginModal = (props) => {
             </div>
             <button style={loginButtonSx}>Log in</button>
           </form>
+          <br />
           <Login
             userId={props.userId}
             setUserId={props.setUserId}
