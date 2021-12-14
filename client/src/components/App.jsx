@@ -5,13 +5,13 @@ import TopicsPage from './topics/TopicsPage.jsx';
 import Chatroom from './chatroom/Chatroom.jsx';
 import Navbar from './navbar/Navbar.jsx';
 import Upload from './firebase/Upload.jsx';
+import Videochat from './videochat/Videochat.jsx';
 
 
 let App = () => {
   const [user, setUser] = useState(null);
   console.log('user', user)
 
-  //TEST FUNCTION REMOVE AT SOME POINT
   useEffect(() => {
     setUser(Math.floor(Math.random() * 1000000000))
   }, [])
@@ -24,6 +24,7 @@ let App = () => {
         <Route path="/topics" element={<TopicsPage user={user} setUser={setUser}/>} />
         <Route path="/chatroom" element={<Chatroom user={user} setUser={setUser}/>} />
         <Route path="/file-share" element={<Upload />} />
+        <Route path="/videochat" element={<Videochat/>} />
       </Routes>
     </>
   )

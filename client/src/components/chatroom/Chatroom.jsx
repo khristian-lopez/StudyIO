@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import io from 'socket.io-client';
 
 import Navbar from '../navbar/Navbar.jsx';
@@ -8,21 +8,19 @@ import StudyDocs from './userFiles/StudyDocs.jsx';
 
 import "./Chatroom.scss";
 
-let socket;
 const connection_port = 'localhost:3000/'
 
-let Chatroom = ({user, setUser}) => {
+const Chatroom = ({user, setUser}) => {
 
-  //Before Login
   const [room, setRoom] = useState(null);
-
-  //After Login
   const [message, setMessage] = useState('');
   const [messageList, setMessageList] = useState([]);
 
+  const socket = useRef(null);
+
   useEffect(() => {
-    socket = io(connection_port)
-    socket.on('message_update', (data) => {
+    socket.current = io(connection_port)
+    socket.current.on('message_update', (data) => {
       console.log('Updating List');
       setMessageList(prevList => [...prevList, data]);
     })
@@ -31,7 +29,7 @@ let Chatroom = ({user, setUser}) => {
     setRoom(roomId);
 
     return () => {
-      socket.close();
+      socket.current.close();
     }
   }, [])
 
@@ -39,7 +37,7 @@ let Chatroom = ({user, setUser}) => {
     if (!room) { return }
 
     console.log('Changing to room: ' + room);
-    socket.emit('join_room', room)
+    socket.current.emit('join_room', room)
   }, [room])
 
   const handleSendMessage = (e) => {
@@ -51,7 +49,7 @@ let Chatroom = ({user, setUser}) => {
       }
     };
 
-    socket.emit('new_message', messageObject);
+    socket.current.emit('new_message', messageObject);
     setMessageList([...messageList, messageObject.message]);
     setMessage('');
   }

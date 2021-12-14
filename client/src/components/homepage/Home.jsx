@@ -36,6 +36,9 @@ const Home = (props) => {
               <nav>
                 <Link to="/file-share">Firebase Demo</Link>
               </nav>
+              <nav>
+                <Link to='/videochat'>Video Chat</Link>
+              </nav>
           </div>
         </div>
         <div className="right">

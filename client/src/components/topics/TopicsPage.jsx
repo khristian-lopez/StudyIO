@@ -60,6 +60,8 @@ const TopicsPage = ({ user, setUser }) => {
         <Box sx={{ flexGrow: 1 }}>
           <Grid container spacing={1}>
             <Grid container item spacing={3}>
+              {console.log('Before Map')}
+              {console.log(topics)}
               {topics.map((topic) => (
                 <Grid item xs={4} key={topic.id} onClick={(e) => handleOpen(e.target.name)}>
                   <TopicCard
