@@ -22,8 +22,10 @@ const TopicsPage = (props) => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    setCurrentTopicId(null)
-    setOpenModal(true)
+    if(search.length > 0) {
+      setCurrentTopicId(null)
+      setOpenModal(true)
+    }
   }
 
   const handleOpen = (id) => {
@@ -59,7 +61,7 @@ const TopicsPage = (props) => {
           <Grid item xs={6}>< Motivational /></Grid>
           <Grid item xs={3} sx={{ marginTop: "auto", marginBottom: "20px" }}>
             <form onSubmit={e => submitHandler(e)}>
-              <TextField label="Find a Room" onChange={e => searchHandler(e)} />
+              <TextField value={search} label="Find a Room" onChange={e => searchHandler(e)} />
             </form>
           </Grid>
         </Grid>
