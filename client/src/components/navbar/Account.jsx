@@ -14,11 +14,12 @@ let drawerSx = {
   minWidth: '350px',
   paddingLeft: '48px',
   paddingRight: '48px',
-  paddingTop: '28px'
+  paddingTop: '28px',
 }
 
 let roomListSx = {
   marginLeft: '16px',
+  marginBottom: '24px',
 }
 
 let signOutSx = {
@@ -52,7 +53,7 @@ let Account = (props) => {
   }, [])
 
   const handleArchive = (room) => {
-    axios.put('/api/navbar/archive', { roomId: room.roomId }).then(results => {
+    axios.put('/api/navbar/archive', { room_id: room.roomId }).then(results => {
       console.log(results.data)
     })
     // remove from your rooms and add to archived rooms
@@ -61,17 +62,12 @@ let Account = (props) => {
   };
 
   const handleReactivate = (room) => {
-    axios.put('/api/navbar/archive', { roomId: room.roomId }).then(results => {
+    axios.put('/api/navbar/archive', { room_id: room.roomId }).then(results => {
       console.log(results.data)
     })
     // remove from archived rooms and add to your rooms
     setYourRooms([...yourRooms, room])
     setArchivedRooms(archivedRooms.filter(singleRoom => singleRoom.roomId !== room.roomId))
-  };
-
-  const handleSignOut = (e) => {
-    // may need to pass down sign out function from app level or use context
-    console.log('signed out')
   };
 
   return (
@@ -86,7 +82,7 @@ let Account = (props) => {
         <AccountCircleIcon style={{ fontSize: 40 }} />
       </IconButton>
 
-      <Drawer anchor={'right'} open={drawerStatus} onClose={toggleDrawer(false)}>
+      <Drawer anchor={'right'} open={drawerStatus} onClose={toggleDrawer(false)} style={{zIndex: '1202'}}>
         <div className="account-drawer" style={drawerSx}>
           <h2>Your rooms</h2>
           <div className="rooms-list" style={roomListSx}>
@@ -96,7 +92,7 @@ let Account = (props) => {
           <div className="rooms-list" style={roomListSx}>
             {archivedRooms.map((room, i) => <Room room={room} active={false} key={i} reactivate={handleReactivate} />)}
           </div>
-          <button style={signOutSx} onClick={handleSignOut}>Sign out</button>
+          <Logout style={signOutSx} user={props.user} setUser={props.setUser} />
         </div>
         <Logout
           style={signOutSx}

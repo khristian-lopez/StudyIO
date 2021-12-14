@@ -3,33 +3,37 @@ import axios from 'axios';
 import Upload from '../../firebase/Upload.jsx';
 import SingleDoc from './SingleDoc.jsx';
 
-const docsMockData = [
-  { id: 1, name: 'Exam 1 Study Guide', url: 'https://bit.ly/3oKHoH6' },
-  { id: 2, name: 'lecture 4 notes', url: 'https://bit.ly/3ERo1BO' },
-  { id: 3, name: 'cheatsheet', url: 'https://bit.ly/3rSNIhB' }
-]
+const titleSx = {
+  fontSize: '1.17em',
+  // marginBlockStart: '1em',
+  // marginBlockEnd: '1em',
+  fontWeight: 'bold',
+  marginBottom: '16px',
+}
 
 let StudyDocs = (props) => {
   const [docs, setDocs] = useState([]);
 
   useEffect(() => {
-    // axios.get('/api/files/').then(results => {
-    //   setDocs(results.data)
-    // })
-    setDocs(docsMockData)
+    axios.get('/api/files/').then(results => {
+      setDocs(results.data)
+    })
   }, [])
 
-
+  const handleUpload = (file) => {
+    // needs api call here
+    setDocs([...docs, file])
+  }
 
   return (
     <>
-      <div>Study Materials</div>
+      <div style={titleSx}>Study Materials</div>
 
       <div>
-        {docs ? docs.map((doc, i) => <SingleDoc key={i} name={doc.name} url={doc.url}/>) : null}
+        {docs ? docs.map((doc, i) => <SingleDoc key={i} name={doc.name} url={doc.url} />) : null}
       </div>
 
-      <Upload room={props.room} />
+      <Upload room={props.room} update={handleUpload}/>
     </>
   )
 }

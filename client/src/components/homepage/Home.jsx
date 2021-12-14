@@ -40,9 +40,6 @@ const Home = (props) => {
                 <Link to="/chatroom">Chat Room</Link>
               </nav>
               <nav>
-                <Link to="/file-share">Firebase Demo</Link>
-              </nav>
-              <nav>
                 <Link to='/videochat'>Video Chat</Link>
               </nav>
           </div>

@@ -8,16 +8,17 @@ let navSx = {
   color: 'white',
   width: '100%',
   height: '56px',
-  position: 'absolute',
+  position: 'fixed',
   top: 0,
   left: 0,
   right: 0,
   background: '#4285F4',
   // background: '#888b8e',
   display: 'flex',
-  mb: '20px',
+  // mb: '20px',
   justifyContent: 'space-between',
-  alignItems: 'center'
+  alignItems: 'center',
+  zIndex: 1201,
 }
 
 
