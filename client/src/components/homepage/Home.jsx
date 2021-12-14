@@ -39,6 +39,9 @@ const Home = (props) => {
               <nav>
                 <Link to="/chatroom">Chat Room</Link>
               </nav>
+              <nav>
+                <Link to='/videochat'>Video Chat</Link>
+              </nav>
           </div>
         </div>
         <div className="right">

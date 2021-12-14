@@ -8,10 +8,11 @@ const morgan = require('morgan');
 const port = 3000;
 const router = require('./router/routes.js');
 
-app.use(express.static(path.join(__dirname, '../client/dist')))
-app.use('/topics', express.static(path.join(__dirname, '../client/dist')))
-app.use('/rooms', express.static(path.join(__dirname, '../client/dist')))
-app.use('/chatroom', express.static(path.join(__dirname, '../client/dist')))
+app.use(express.static(path.join(__dirname, '../client/dist')));
+app.use('/topics', express.static(path.join(__dirname, '../client/dist')));
+app.use('/chatroom', express.static(path.join(__dirname, '../client/dist')));
+app.use('/videochat', express.static(path.join(__dirname, '../client/dist')));
+//app.use('/rooms', express.static(path.join(__dirname, '../client/dist')))
 
 app.use(morgan('dev'));
 app.use(express.json());
@@ -28,10 +29,21 @@ const io = socket(server);
 io.on('connection', (socket) => {
   console.log('socket id:', socket.id);
 
-  socket.on('join_room', (data) => {
-    socket.join(data);
-    console.log('User joined room:', data)
+  socket.on('join_room', (room) => {
+    let users = io.sockets.adapter.rooms.get(room);
+    socket.emit('connected_users', users ? [...users] : [])
+
+    socket.join(room);
+    console.log('User joined room:', room)
   });
+
+  socket.on('send_connection_to', ({ targetID, fromID, fromSignal }) => {
+    io.to(targetID).emit('new_connection_request', { fromID, fromSignal })
+  });
+
+  socket.on('confirmed_connection_request', ({ targetID, fromID, fromSignal }) => {
+    io.to(targetID).emit('connection_confirmation', { targetID: fromID, targetSignal: fromSignal })
+  })
 
   socket.on('new_message', (data) => {
     console.log('Got new message:')

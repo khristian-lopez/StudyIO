@@ -14,17 +14,6 @@ import "./Chatroom.scss";
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import Divider from '@mui/material/Divider';
-
-const mockMessages = [
-  { author: "Erik", body: 'hello' },
-  { author: 'Steve', body: 'hello' },
-  { author: "Erik", body: 'how are you' },
-  { author: 'Steve', body: 'good' },
-  { author: "Erik", body: 'me too' },
-]
-
-
-let socket;
 const connection_port = 'localhost:3000/'
 
 const rightDrawerWidth = 240;
@@ -94,12 +83,11 @@ let Chatroom = (props) => {
   const [messageList, setMessageList] = useState([]);
   const messageListComponent = useRef();
 
-  // sets room
+  const socket = useRef(null);
+
   useEffect(() => {
-    // const roomId = new URLSearchParams(window.location.search).get('room');
-    // setRoom(roomId);
-    socket = io(connection_port)
-    socket.on('message_update', (data) => {
+    socket.current = io(connection_port)
+    socket.current.on('message_update', (data) => {
       console.log('Updating List');
       setMessageList(prevList => [...prevList, data]);
     })
@@ -111,7 +99,7 @@ let Chatroom = (props) => {
       .catch(err => console.log(err))
 
     return () => {
-      socket.close();
+      socket.current.close();
     }
 
   }, [])
@@ -119,7 +107,7 @@ let Chatroom = (props) => {
   useEffect(() => {
     if (!room) { return }
     console.log('Changing to room: ' + room);
-    socket.emit('join_room', room)
+    socket.current.emit('join_room', room)
   }, [room])
 
   useEffect(() => {
@@ -137,11 +125,11 @@ let Chatroom = (props) => {
       }
     };
 
+    socket.current.emit('new_message', messageObject);
     axios.post('/api/chatroom/messages', messageObject)
       .then(results => console.log(results))
       .catch(err => console.log(err))
 
-    socket.emit('new_message', messageObject);
     setMessageList([...messageList, messageObject.message]);
     setMessage('');
   }
