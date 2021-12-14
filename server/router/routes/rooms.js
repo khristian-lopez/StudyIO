@@ -18,7 +18,6 @@ router.get('/name/:name', (req, res) => {
   console.log(req.params.name)
   axios.post(url + '/rooms/search', {"search_value": req.params.name})
     .then((data) => { res.send(data.data).status(200)
-       console.log(data.data)
     })
     .catch((err) => res.send(err).status(500));
 });
@@ -31,10 +30,11 @@ router.get('/topic/:topicId', (req, res) => {
 });
 
 //Post new room to DB ({name: string, topic_id: number, thumbnail: string, max_users: number, is_private: bool, admin_id: number})
-router.post('/', (req, res) => { // POST /rooms/:topic_id/create
-  axios.post(url + `/topic/${req.params.topicId}/create`, req.body)
+router.post('/create/:topicId', (req, res) => { // POST /rooms/:topic_id/create
+  axios.post(url + `/${req.params.topicId}/rooms/create`, req.body)
     .then((data) => {
-      res.send(data.data).status(201);
+      console.log(data.data)
+      // res.send(data.data).status(201);
     })
     .catch((err) => res.send(err).status(500));
 });
