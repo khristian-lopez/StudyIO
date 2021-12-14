@@ -14,7 +14,7 @@ router.get('/', (req, res) => {
 });
 
 //Search by name for specific room
-router.get('/name/:name', (req, res) => { // request body param search_value = req.params.name
+router.get('/name/:name', (req, res) => {
   console.log(req.params.name)
   axios.post(url + '/rooms/search', {"search_value": req.params.name})
     .then((data) => { res.send(data.data).status(200)
