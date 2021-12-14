@@ -2,11 +2,13 @@ import React from 'react';
 import { GoogleLogin } from 'react-google-login';
 import axios from 'axios';
 import config from '../../../../server/config.js';
+import { useNavigate } from 'react-router-dom';
 
 const clientId =
   '321257595853-ompbh8dj5e9dg3rgo147ub5hkffsf3pt.apps.googleusercontent.com';
 
 function Login(props) {
+  const navigate = useNavigate();
   const onSuccess = (res) => {
     // console.log('currentUser:', res.profileObj);
     axios.post(`${config.api_url}/users/create`, {

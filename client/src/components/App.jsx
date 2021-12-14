@@ -5,6 +5,7 @@ import TopicsPage from './topics/TopicsPage.jsx';
 import Chatroom from './chatroom/Chatroom.jsx';
 import Navbar from './navbar/Navbar.jsx';
 import Upload from './firebase/Upload.jsx';
+import Videochat from './videochat/Videochat.jsx';
 
 
 let App = () => {
@@ -58,6 +59,7 @@ let App = () => {
           login={login}
           setLogin={setLogin}/>} />
         <Route path="/file-share" element={<Upload />} />
+        <Route path="/videochat" element={<Videochat/>} />
       </Routes>
     </>
   )
