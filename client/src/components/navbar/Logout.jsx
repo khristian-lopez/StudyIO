@@ -8,9 +8,9 @@ function Logout(props) {
   const onSuccess = () => {
     console.log('Logout made successfully');
     alert('Logout made successfully ✌');
+    props.setUserName('');
+    props.setUserId('');
     props.setLogin(false);
-    props.setUserName(null);
-    props.setUserId(null);
   };
 
   return (

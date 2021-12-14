@@ -48,7 +48,6 @@ const RoomForm = ({ user, topicId }) => {
             let tId = Number(inputs.id);
             const data = {
                 name: inputs.name,
-                topic_id: tId,
                 thumbnail: image,
                 max_users: count,
                 is_private: setting,

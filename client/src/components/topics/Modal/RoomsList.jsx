@@ -22,6 +22,7 @@ const RoomsList = ({ topicId, search }) => {
             axios.get(`/api/rooms/name/${search}`)
                 .then(result => {
                     setRooms(result.data)
+                    setLoading(false)
                 })
                 .catch(err => console.log(err))
         }
@@ -30,6 +31,7 @@ const RoomsList = ({ topicId, search }) => {
     let handleJoin = (e) => {
         // TODO
     }
+
     return (
         <Box>
             { loading ? 
