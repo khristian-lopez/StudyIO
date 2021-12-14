@@ -54,7 +54,7 @@ const TopicsPage = ({ user, setUser }) => {
   }
 
   return (
-    <Container>
+    <Container style={{marginTop:'56px'}}>
       <Navbar user={user} setUser={setUser} />
       <Grid container spacing={1}>
         <Grid container item spacing={3}>

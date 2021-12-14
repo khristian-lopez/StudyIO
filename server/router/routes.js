@@ -4,6 +4,7 @@ const topics = require('./routes/topics.js');
 const rooms = require('./routes/rooms.js')
 const navbar = require('./routes/navbar.js');
 const files = require('./routes/files.js');
+const chatroom = require('./routes/chatroom.js');
 
 const router = express.Router();
 
@@ -13,5 +14,6 @@ router.use('/topics', topics);
 router.use('/rooms', rooms);
 router.use('/navbar', navbar);
 router.use('/files', files);
+router.use('/chatroom', chatroom);
 
 module.exports = router;

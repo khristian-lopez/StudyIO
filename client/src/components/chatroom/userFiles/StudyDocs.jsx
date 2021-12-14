@@ -3,6 +3,14 @@ import axios from 'axios';
 import Upload from '../../firebase/Upload.jsx';
 import SingleDoc from './SingleDoc.jsx';
 
+const titleSx = {
+  fontSize: '1.17em',
+  // marginBlockStart: '1em',
+  // marginBlockEnd: '1em',
+  fontWeight: 'bold',
+  marginBottom: '16px',
+}
+
 let StudyDocs = (props) => {
   const [docs, setDocs] = useState([]);
 
@@ -13,12 +21,13 @@ let StudyDocs = (props) => {
   }, [])
 
   const handleUpload = (file) => {
+    // needs api call here
     setDocs([...docs, file])
   }
 
   return (
     <>
-      <div>Study Materials</div>
+      <div style={titleSx}>Study Materials</div>
 
       <div>
         {docs ? docs.map((doc, i) => <SingleDoc key={i} name={doc.name} url={doc.url} />) : null}

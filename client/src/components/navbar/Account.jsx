@@ -14,7 +14,7 @@ let drawerSx = {
   minWidth: '350px',
   paddingLeft: '48px',
   paddingRight: '48px',
-  paddingTop: '28px'
+  paddingTop: '28px',
 }
 
 let roomListSx = {
@@ -82,7 +82,7 @@ let Account = (props) => {
         <AccountCircleIcon style={{ fontSize: 40 }} />
       </IconButton>
 
-      <Drawer anchor={'right'} open={drawerStatus} onClose={toggleDrawer(false)}>
+      <Drawer anchor={'right'} open={drawerStatus} onClose={toggleDrawer(false)} style={{zIndex: '1202'}}>
         <div className="account-drawer" style={drawerSx}>
           <h2>Your rooms</h2>
           <div className="rooms-list" style={roomListSx}>

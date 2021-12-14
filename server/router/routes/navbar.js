@@ -4,6 +4,8 @@ const router = express.Router();
 
 const APIurl = ''
 
+// need to replace archived vs active with just rooms with isArchived field and filter from there on client side or here
+
 let roomsMockData = [
   { room: "Biology 1A", roomId: 2 },
   { room: "Chemistry 2", roomId: 5 },
