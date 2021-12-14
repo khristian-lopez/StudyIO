@@ -7,7 +7,7 @@ import { CardActionArea } from '@mui/material';
 
 export default function TopicCard({pic, topic, name}) {
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ maxWidth: 300 }}>
       <CardActionArea>
         <CardMedia
           component="img"
@@ -17,7 +17,7 @@ export default function TopicCard({pic, topic, name}) {
           name={name}
         />
         <CardContent>
-          <Typography gutterBottom variant="h4" component="div">
+          <Typography gutterBottom variant="h5" component="div">
             {topic}
           </Typography>
           {/* <Typography variant="body2" color="text.secondary">

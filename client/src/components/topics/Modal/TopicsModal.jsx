@@ -1,10 +1,11 @@
 import React, {useState} from 'react';
 import {Box, Button, Grid, Modal, Typography} from '@mui/material';
+import AddIcon from '@mui/icons-material/Add';
 import RoomsList from './RoomsList.jsx';
 import RoomForm from './RoomForm.jsx';
 // import axios from 'axios';
 
-const TopicsModal = ({openModal, topicId, search, handleClose, user}) => {
+const TopicsModal = ({openModal, topicId, topics, handleClose, user, search}) => {
     const [form, showForm] = useState(false);
 
     const closeForm = () => {
@@ -16,14 +17,6 @@ const TopicsModal = ({openModal, topicId, search, handleClose, user}) => {
         e.preventDefault()
         showForm(true)
     }
-
-    // const getTopicRooms = () => {
-    //     axios.get(`/rooms/${id}`)
-    //         .then(result => {
-    //             setRooms(result.data)
-    //         })
-    //         .catch(err => console.log(err))
-    // }
 
     if (form) {
         return (
@@ -43,40 +36,43 @@ const TopicsModal = ({openModal, topicId, search, handleClose, user}) => {
     } else {
         return (
             <div>
-                    <Modal
-                        open={openModal}
-                        onClose={handleClose}
-                        aria-labelledby="modal-title"
-                        aria-describedby="modal-description"
-                    >
-                        <Box container sx={boxStyle} >
-                            <Grid container direction="column" sx={gridStyle} >
-                                <Typography
-                                    id="modal-title"
-                                    variant="h6"
-                                    component="h2"
-                                >
-                                    Room {topicId ? topicId : search}
-                                </Typography>
-                                <Grid sx={innerGrid}>
-                                <RoomsList topicId={topicId} name={search}/>
-                                </Grid>
-                                {topicId ? <><Typography
-                                    id="modal-description"
-                                    sx={{ mt: 10 }}
-                                >
-                                    Create new study room
-                                </Typography>
-                                <Button
-                                    variant="outlined"
-                                    size="large"
-                                    onClick={e => openForm(e)}
-                                >
-                                    Create Room
-                                </Button></> : <div />}
+                <Modal
+                    open={openModal}
+                    onClose={handleClose}
+                    aria-labelledby="modal-title"
+                    aria-describedby="modal-description"
+                >
+                    <Box container sx={boxStyle} >
+                        <Grid container direction="column" sx={gridStyle} >
+                            <Typography
+                                id="modal-title"
+                                variant="h5"
+                                component="h2"
+                            >
+                                {topicId ? topics[topicId - 1].name : search} rooms
+                            </Typography>
+                            <Grid>
+                            <RoomsList topicId={topicId} search={search}/>
                             </Grid>
-                        </Box>
-                    </Modal>
+                            {topicId ? <><Typography
+                                id="modal-description"
+                                variant="h6"
+                                component="h2"
+                                sx={{ mt: 10 }}
+                            >
+                                Create a new study room?
+                            </Typography>
+                            <Button sx={{ width: "200px" }}
+                                variant="contained"
+                                size="large"
+                                onClick={e => openForm(e)}
+                            >
+                                Create Room
+                                <AddIcon sx={{ marginLeft: "3px" }}/>
+                            </Button></> : <div />}
+                        </Grid>
+                    </Box>
+                </Modal>
             </div>
         )
     }
@@ -95,18 +91,11 @@ const boxStyle = {
     height: 630,
     border: "1px solid #000",
     backgroundColor: "white",
-    gap: 4,
-    spacing: "15px"
+    gap: "20px",
+    spacing: 20,
 }
 
 const gridStyle = {
-    gap: 2,
-    padding: "10px",
+    gap: "20px",
     alignItems: "center"
-}
-
-const innerGrid = {
-    border: "1px solid #000",
-    margin: "auto",
-    padding: "10px",
 }

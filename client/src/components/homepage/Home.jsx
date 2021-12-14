@@ -14,7 +14,13 @@ const Home = (props) => {
 
     <div className="homepage" id="homepage">
       {/* <Topbar menuOpen={menuOpen} setMenuOpen={setMenuOpen}/> */}
-      <NavBar user={props.user} setUser={props.setUser}/>
+      <NavBar
+        userId={props.userId}
+        setUserId={props.setUserId}
+        userName={props.userName}
+        setUserName={props.setUserName}
+        login={props.login}
+        setLogin={props.setLogin}/>
       {/* <Menu menuOpen={menuOpen} setMenuOpen={setMenuOpen}/> */}
       <div className="container">
         <div className="left">
