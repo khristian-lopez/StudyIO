@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, useRef } from 'react';
 import { Routes, Route, Link, useNavigate } from "react-router-dom";
 import Button from '@mui/material/IconButton';
 import Modal from '@mui/material/Modal';
@@ -67,6 +67,7 @@ const loginButtonSx = {
 
 
 let LoginModal = (props) => {
+  const _isMounted = useRef(true);
   // Modal hooks
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
@@ -74,6 +75,12 @@ let LoginModal = (props) => {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  useEffect(() => {
+    return () => {
+        _isMounted.current = false;
+    }
+  }, []);
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -83,19 +90,21 @@ let LoginModal = (props) => {
       password: password
     })
     .then(function (response) {
-      // console.log(response.data);
-      if (response.data === false) {
-        alert('Login failed. Email or password is incorrect.')
-      } else if (typeof(response.data) === "object"){
-        const firstLastName = response.data.first_name + ' ' + response.data.last_name;
-        props.setUserId(response.data.id);
-        props.setUserName(firstLastName);
-        props.setLogin(true);
-        setEmail('');
-        setPassword('');
-        handleClose();
-      } else {
-        alert('Something went wrong!')
+      if (_isMounted.current) {
+        // console.log(response.data);
+        if (response.data === false) {
+          alert('Login failed. Email or password is incorrect.')
+        } else if (typeof(response.data) === "object"){
+          const firstLastName = response.data.first_name + ' ' + response.data.last_name;
+          props.setUserId(response.data.id);
+          props.setUserName(firstLastName);
+          props.setLogin(true);
+          setEmail('');
+          setPassword('');
+          handleClose();
+        } else {
+          alert('Something went wrong!')
+        }
       }
     })
     .catch(function (error) {
