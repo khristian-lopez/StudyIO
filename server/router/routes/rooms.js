@@ -15,9 +15,11 @@ router.get('/', (req, res) => {
 
 //Search by name for specific room
 router.get('/name/:name', (req, res) => { // request body param search_value = req.params.name
-  console.log(url + `/rooms/search?search_value=${req.params.name}`)
-  axios.get(url + `/rooms/search?search_value=${req.params.name}`)
-    .then((data) => { res.send(data.data).status(200); })
+  console.log(req.params.name)
+  axios.post(url + '/rooms/search', {"search_value": req.params.name})
+    .then((data) => { res.send(data.data).status(200)
+       console.log(data.data)
+    })
     .catch((err) => res.send(err).status(500));
 });
 
