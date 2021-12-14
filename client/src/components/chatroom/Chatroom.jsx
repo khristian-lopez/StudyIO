@@ -44,7 +44,7 @@ const Chatroom = ({userId, setUserId, userName, setUserName, login, setLogin}) =
     let messageObject = {
       room: room,
       message: {
-        author: user,
+        author: userName,
         body: message
       }
     };
