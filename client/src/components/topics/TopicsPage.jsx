@@ -10,7 +10,7 @@ import TopicCard from './components/topicCard.jsx';
 import Motivational from './components/motivation.jsx';
 import TopicsModal from './Modal/TopicsModal.jsx';
 
-const TopicsPage = ({ user, setUser }) => {
+const TopicsPage = (props) => {
   const [topics, setTopics] = useState([]);
   const [search, setSearch] = useState('');
   const [currentTopicId, setCurrentTopicId] = useState(null);
@@ -44,7 +44,13 @@ const TopicsPage = ({ user, setUser }) => {
 
   return (
     <Container>
-      <Navbar user={user} setUser={setUser} />
+      <Navbar
+        userId={props.userId}
+        setUserId={props.setUserId}
+        userName={props.userName}
+        setUserName={props.setUserName}
+        login={props.login}
+        setLogin={props.setLogin} />
       <Grid container spacing={1}>
         <Grid container item spacing={3}>
           <Grid item xs={3} sx={{ marginTop: "auto", marginBottom: "20px" }}>
@@ -75,7 +81,7 @@ const TopicsPage = ({ user, setUser }) => {
               handleClose={handleClose}
               topicId={currentTopicId}
               topics={topics}
-              user={user}
+              user={props.userId}
               search={search}
             />
           </Grid>
