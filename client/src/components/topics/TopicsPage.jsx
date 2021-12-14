@@ -81,7 +81,7 @@ const TopicsPage = (props) => {
               handleClose={handleClose}
               topicId={currentTopicId}
               topics={topics}
-              user={user}
+              user={props.userId}
               search={search}
             />
           </Grid>

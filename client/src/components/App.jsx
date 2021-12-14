@@ -23,13 +23,7 @@ let App = () => {
 
   React.useEffect(() => {
     localStorage.setItem('login', login);
-  }, [login]);
-
-  React.useEffect(() => {
     localStorage.setItem('userId', userId);
-  }, [login]);
-
-  React.useEffect(() => {
     localStorage.setItem('userName', userName);
   }, [login]);
 
