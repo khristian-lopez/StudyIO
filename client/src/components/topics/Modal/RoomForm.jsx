@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Grid, TextField, ToggleButton, ToggleButtonGroup, styled } from '@mui/material';
 import { Avatar, Typography } from '@mui/material';
+import AddIcon from '@mui/icons-material/Add';
 import axios from 'axios';
 
 const RoomForm = ({ user, topicId }) => {
-    const [inputs, setInputs] = useState({ name: "", count: "", setting: "" });
+    const [inputs, setInputs] = useState({ id: topicId, name: "", count: "", setting: "" });
     const [nameError, setNameError] = useState(false);
     const [countError, setCountError] = useState(false);
     const [image, setImage] = useState("");
@@ -33,6 +34,7 @@ const RoomForm = ({ user, topicId }) => {
         }
         return isValid;
     }
+    
     const addRoom = e => {
         e.preventDefault();
         if (validate()) {
@@ -43,37 +45,35 @@ const RoomForm = ({ user, topicId }) => {
                 setting = true;
             }
             let count = Number(inputs.count);
-            let tId = Number(topicId);
+            let tId = Number(inputs.id);
             const data = {
                 name: inputs.name,
-                topic_id: tId,
                 thumbnail: image,
                 max_users: count,
                 is_private: setting,
                 admin_id: user
             }
-            console.log(data)
-            // axios.post('/', data)
-            //     .then((result) => {
-            //         console.log(result.data)
-            //     })
-            //     .catch(err => {
-            //         console.log(err.response)
-            //     })
+            // console.log(data)
+            axios.post(`api/rooms/${topicId}/create`, data)
+                .then((result) => {
+                    console.log(result.data)
+                })
+                .catch(err => {
+                    console.log(err.response)
+                })
         }
     }
-    // TODO: once user creates room, redirect them to newly created room ** onClick={e => addRoom(e)}
+
     return (
         <div className="RoomForm">
             <Grid container direction="column" sx={gridStyle}>
                 <Typography
                     id="form-title"
                     variant="h5"
-                    components="h3"
+                    components="h4"
                 >
                     Create a Room
                 </Typography>
-
                 <TextField sx={inputStyle}
                     label="Room name"
                     variant="standard"
@@ -97,14 +97,14 @@ const RoomForm = ({ user, topicId }) => {
                     helperText={countError && "Must be a number!"}
                 />
                 <Typography
-                    id="toggle-button-form"
-                    variant="h8"
-                    components="h5"
+                id="toggle-button-form"
+                variant="h8"
+                components="h6"
                 >
                     Room Setting
                 </Typography>
                 <ToggleButtonGroup
-                    size="small"
+                    size="medium"
                     exclusive
                     onChange={handleInputChange}
                     value={inputs.setting}
@@ -138,27 +138,35 @@ const RoomForm = ({ user, topicId }) => {
                     <Button
                         variant="contained"
                         color="secondary"
-                        size="small"
+                        size="medium"
                         component="span"
+                        style={buttonStyle}
                     >
                         Add Thumbnail
                     </Button>
                     <br></br>
-                 </label>   {/* future: set random thumbnails for room if user do not upload one */}
-                {image ? <div>
-                    <Avatar src={image} style={imageStyle} alt='' />
-                </div> : <div style={{ marginBottom: "50px", marginTop: "50px" }}></div>}
+                </label>
+                { image ? 
+                    <div>
+                        <Avatar src={image} style={imageStyle} />
+                    </div> 
+                    : 
+                    <div>
+                        <Avatar style={imageStyle} alt='https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png'/>
+                    </div> 
+                }   
                 <Button
                     type="submit"
                     variant="contained"
                     color="secondary"
                     size="large"
-                    style={{ marginTop: "55px" }}
+                    style={buttonStyle}
                     onClick={(e) => {
                         addRoom(e)
                     }}
                 >
                     Create Room
+                    <AddIcon sx={{ marginLeft: "3px" }} />
                 </Button>
             </Grid>
         </div>
@@ -184,12 +192,18 @@ const gridStyle = {
 const imageStyle = {
     width: "95px",
     height: "95px",
-    margin: "5px",
+    marginTop: "10px",
     borderRadius: "50%"
 }
 
 const inputStyle = {
     width: "270px",
-    margin: "5px",
-    padding: "5px"
+    margin: "2px",
+    padding: "2px"
+}
+
+const buttonStyle = {
+    marginTop: "30px",
+    width: "200px",
+    
 }
