@@ -84,7 +84,7 @@ const messagesListSx = {
   flexDirection: 'column',
 }
 
-let Chatroom = ({ user, setUser }) => {
+let Chatroom = (props) => {
 
   //Before Login
   const [room, setRoom] = useState(new URLSearchParams(window.location.search).get('room'));
@@ -148,7 +148,12 @@ let Chatroom = ({ user, setUser }) => {
 
   return (
     <Box sx={{ display: 'flex' }}>
-      <Navbar user={user} setUser={setUser} />
+      <Navbar userId={props.userId}
+      setUserId={props.setUserId}
+      userName={props.userName}
+      setUserName={props.setUserName}
+      login={props.login}
+      setLogin={props.setLogin} />
 
       <Drawer
         anchor={'left'}
