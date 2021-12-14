@@ -31,8 +31,8 @@ router.get('/topic/:topicId', (req, res) => {
 });
 
 //Post new room to DB ({name: string, topic_id: number, thumbnail: string, max_users: number, is_private: bool, admin_id: number})
-router.post('/', (req, res) => { // POST /rooms/:topic_id/create
-  axios.post(url + `/topic/${req.params.topicId}/create`, req.body)
+router.post('/:topicId/create', (req, res) => { // POST /rooms/:topic_id/create
+  axios.post(url + `/${req.params.topicId}/rooms/create`, req.body)
     .then((data) => {
       res.send(data.data).status(201);
     })

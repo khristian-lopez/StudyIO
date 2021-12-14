@@ -37,6 +37,7 @@ const RoomForm = ({ user, topicId }) => {
     
     const addRoom = e => {
         e.preventDefault();
+
         if (validate()) {
             let setting;
             if (inputs.setting === "public") {
@@ -44,8 +45,9 @@ const RoomForm = ({ user, topicId }) => {
             } else {
                 setting = true;
             }
+
             let count = Number(inputs.count);
-            let tId = Number(inputs.id);
+
             const data = {
                 name: inputs.name,
                 thumbnail: image,
@@ -53,8 +55,8 @@ const RoomForm = ({ user, topicId }) => {
                 is_private: setting,
                 admin_id: user
             }
-            // console.log(data)
-            axios.post(`api/rooms/${topicId}/create`, data)
+            
+            axios.post(`/api/rooms/${topicId}/create`, data)
                 .then((result) => {
                     console.log(result.data)
                 })
@@ -97,9 +99,9 @@ const RoomForm = ({ user, topicId }) => {
                     helperText={countError && "Must be a number!"}
                 />
                 <Typography
-                id="toggle-button-form"
-                variant="h8"
-                components="h6"
+                    id="toggle-button-form"
+                    variant="h8"
+                    components="h6"
                 >
                     Room Setting
                 </Typography>
