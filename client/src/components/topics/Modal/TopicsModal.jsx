@@ -18,14 +18,6 @@ const TopicsModal = ({openModal, topicId, search, handleClose, user}) => {
         showForm(true)
     }
 
-    // const getTopicRooms = () => {
-    //     axios.get(`/rooms/${id}`)
-    //         .then(result => {
-    //             setRooms(result.data)
-    //         })
-    //         .catch(err => console.log(err))
-    // }
-
     if (form) {
         return (
             <div>
@@ -106,13 +98,4 @@ const boxStyle = {
 const gridStyle = {
     gap: "20px",
     alignItems: "center"
-}
-
-const innerGrid = {
-    border: "1px solid #000",
-    margin: "auto",
-    padding: "10px",
-    height: "325px",
-    width: "200px",
-    overflowX: "unset"
 }

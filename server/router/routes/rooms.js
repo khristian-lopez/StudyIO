@@ -42,7 +42,7 @@ router.get('/topic/:topicId/rooms', (req, res) => {
 
 //Post new room to DB ({name: string, topic_id: number, thumbnail: string, max_users: number, is_private: bool, admin_id: number})
 router.post('/', (req, res) => {
-  axios.post(url, req.body)
+  axios.post(url + `/topic/${req.params.topicId}/create`, req.body)
     .then((data) => {
       res.send(data.data).status(201);
     })

@@ -5,7 +5,7 @@ import AddIcon from '@mui/icons-material/Add';
 import axios from 'axios';
 
 const RoomForm = ({ user, topicId }) => {
-    const [inputs, setInputs] = useState({ name: "", count: "", setting: "" });
+    const [inputs, setInputs] = useState({ id: topicId, name: "", count: "", setting: "" });
     const [nameError, setNameError] = useState(false);
     const [countError, setCountError] = useState(false);
     const [image, setImage] = useState("");
@@ -45,9 +45,8 @@ const RoomForm = ({ user, topicId }) => {
                 setting = true;
             }
             let count = Number(inputs.count);
-            let tId = Number(topicId);
+            let tId = Number(inputs.id);
             const data = {
-                topic_id: id,
                 name: inputs.name,
                 topic_id: tId,
                 thumbnail: image,
@@ -55,17 +54,17 @@ const RoomForm = ({ user, topicId }) => {
                 is_private: setting,
                 admin_id: user
             }
-            console.log(data)
-            // axios.post(`api/rooms/${id}/create`, data)
-            //     .then((result) => {
-            //         console.log(result.data)
-            //     })
-            //     .catch(err => {
-            //         console.log(err.response)
-            //     })
+            // console.log(data)
+            axios.post(`api/rooms/${topicId}/create`, data)
+                .then((result) => {
+                    console.log(result.data)
+                })
+                .catch(err => {
+                    console.log(err.response)
+                })
         }
     }
-    // TODO: once user creates room, redirect them to newly created room ** onClick={e => addRoom(e)}
+
     return (
         <div className="RoomForm">
             <Grid container direction="column" sx={gridStyle}>
@@ -148,12 +147,15 @@ const RoomForm = ({ user, topicId }) => {
                     </Button>
                     <br></br>
                 </label>
-                { image ? <div>
-                    <Avatar src={image} style={imageStyle}/>
-                </div> : 
-                <div  >
-                    <Avatar style={imageStyle} alt='https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png'/>
-                </div> }   
+                { image ? 
+                    <div>
+                        <Avatar src={image} style={imageStyle} />
+                    </div> 
+                    : 
+                    <div>
+                        <Avatar style={imageStyle} alt='https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png'/>
+                    </div> 
+                }   
                 <Button
                     type="submit"
                     variant="contained"

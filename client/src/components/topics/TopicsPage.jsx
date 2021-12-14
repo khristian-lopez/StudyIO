@@ -70,13 +70,10 @@ const TopicsPage = ({ user, setUser }) => {
           </Box>
         </Grid>
         <Box container style={boxStyle}>
-        {/* <Box container item style={boxStyle}> */}
           {topics.map((topic) => (
             <Box item
               sx={{ margin: "5px", padding: "5px", width: "300px" }}
-              // item xs={2}
               md={3} xl={4}
-              // xs={12} sm={6} md={3}
               key={topic.id}
               onClick={(e) => handleOpen(e.target.name)}
             >
@@ -85,12 +82,9 @@ const TopicsPage = ({ user, setUser }) => {
                 pic={topic.url}
                 name={topic.id}
               />
-              {/* <div style={{ border: "1px solid #000", width: "100px", padding: "5px", margin: "5px" }}>Card 
-              </div> */}
             </Box>
           ))}
         </Box>
-        {/* </Box> */}
         <TopicsModal
           openModal={openModal}
           handleClose={handleClose}
@@ -114,44 +108,3 @@ const boxStyle = {
   margin: "3px",
   padding: "3px"
 }
-
-// return (
-  // <Container>
-  //   <Navbar user={user} setUser={setUser} />
-  //   <Grid container spacing={1}>
-  //     <Grid container item spacing={3}>
-  //       <Grid item xs={3} sx={{ marginTop: "auto", marginBottom: "20px" }}>
-  //         <h1>Choose a Topic</h1>
-  //       </Grid>
-  //       <Grid item xs={6}>< Motivational /></Grid>
-  //       <Grid item xs={3} sx={{ marginTop: "auto", marginBottom: "20px" }}>
-  //         <form onSubmit={e => submitHandler(e)}>
-  //           <TextField label="Find a Room" onChange={e => searchHandler(e)} />
-  //         </form>
-  //       </Grid>
-  //     </Grid>
-  //     <Box sx={{ flexGrow: 1 }}>
-  //       <Grid container spacing={1}>
-  //         <Grid container item spacing={3}>
-  //           {topics.map((topic) => (
-  //             <Grid item xs={4} key={topic.id} onClick={(e) => handleOpen(e.target.name)}>
-  //               <TopicCard
-  //                 topic={topic.name}
-  //                 pic={topic.url}
-  //                 name={topic.id}
-  //               />
-  //             </Grid>
-  //           ))}
-  //         </Grid>
-  //         <TopicsModal
-  //           openModal={openModal}
-  //           handleClose={handleClose}
-  //           topicId={currentTopicId}
-  //           search={search}
-  //           user={user}
-  //         />
-  //       </Grid>
-  //     </Box>
-  //   </Grid>
-  // </Container>
-// )
