@@ -4,6 +4,8 @@ import Button from '@mui/material/IconButton';
 import Modal from '@mui/material/Modal';
 import Login from './Login.jsx';
 import SignupModal from './SignupModal.jsx';
+import axios from 'axios';
+import config from '../../../../server/config.js';
 
 const modalStyle = {
   position: 'absolute',
@@ -76,9 +78,30 @@ let LoginModal = (props) => {
   const handleLogin = (e) => {
     e.preventDefault();
     // (some function thats probably passed down)
-    setEmail('');
-    setPassword('');
-    console.log('handleLogin')
+    axios.post(`${config.api_url}/users/auth`, {
+      email: email,
+      password: password
+    })
+    .then(function (response) {
+      // console.log(response.data);
+      if (response.data === false) {
+        alert('Login failed. Email or password is incorrect.')
+      } else if (typeof(response.data) === "object"){
+        const firstLastName = response.data.first_name + ' ' + response.data.last_name;
+        props.setUserId(response.data.id);
+        props.setUserName(firstLastName);
+        props.setLogin(true);
+        setEmail('');
+        setPassword('');
+        handleClose();
+      } else {
+        alert('Something went wrong!')
+      }
+    })
+    .catch(function (error) {
+      alert('Something went wrong! Please try again in a few minutes.')
+      console.log(error);
+    });
   }
 
   const responseGoogle = (response) => {
@@ -103,7 +126,7 @@ let LoginModal = (props) => {
               <input style={inputSx} placeholder="Enter email" value={email} onChange={e => setEmail(e.target.value)}></input>
             </div>
             <div style={inputContainerSx}>
-              <input style={inputSx} placeholder="Enter password" value={password} onChange={e => setPassword(e.target.value)}></input>
+              <input style={inputSx} placeholder="Enter password" type="password" value={password} onChange={e => setPassword(e.target.value)}></input>
             </div>
             <button style={loginButtonSx}>Log in</button>
           </form>

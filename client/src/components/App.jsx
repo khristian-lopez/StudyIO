@@ -17,9 +17,9 @@ let App = () => {
   const [login, setLogin] = React.useState(
     localStorage.getItem('login') === 'true'
   )
-  // console.log('userName', userName)
-  // console.log('userId', userId)
-  // console.log('login', login)
+  console.log('userName', userName)
+  console.log('userId', userId)
+  console.log('login', login)
 
   React.useEffect(() => {
     localStorage.setItem('login', login);
