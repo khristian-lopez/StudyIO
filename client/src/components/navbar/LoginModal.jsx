@@ -3,6 +3,7 @@ import { Routes, Route, Link, useNavigate } from "react-router-dom";
 import Button from '@mui/material/IconButton';
 import Modal from '@mui/material/Modal';
 import Login from './Login.jsx';
+import SignupModal from './SignupModal.jsx';
 
 const modalStyle = {
   position: 'absolute',
@@ -106,7 +107,16 @@ let LoginModal = (props) => {
             </div>
             <button style={loginButtonSx}>Log in</button>
           </form>
-          <Login user={props.user} setUser={props.setUser}/>
+          <SignupModal />
+          <br />
+          <br />
+          <Login
+            userId={props.userId}
+            setUserId={props.setUserId}
+            userName={props.userName}
+            setUserName={props.setUserName}
+            login={props.login}
+            setLogin={props.setLogin}/>
         </div>
       </Modal>
     </div>

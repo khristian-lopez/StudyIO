@@ -10,7 +10,7 @@ import "./Chatroom.scss";
 
 const connection_port = 'localhost:3000/'
 
-const Chatroom = ({user, setUser}) => {
+const Chatroom = ({userId, setUserId, userName, setUserName, login, setLogin}) => {
 
   const [room, setRoom] = useState(null);
   const [message, setMessage] = useState('');
@@ -56,7 +56,13 @@ const Chatroom = ({user, setUser}) => {
 
   return (
     <div id='chatRoom'>
-      <Navbar user={user} setUser={setUser}/>
+      <Navbar
+        userId={userId}
+        setUserId={setUserId}
+        userName={userName}
+        setUserName={setUserName}
+        login={login}
+        setLogin={setLogin}/>
 
       <div id='chatApp'>
         <div id='chatLeftBar'>

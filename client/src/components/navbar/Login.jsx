@@ -10,7 +10,9 @@ function Login(props) {
     alert(
       `Logged in successful. Welcome ${res.profileObj.name}!`
     );
-    props.setUser(res.profileObj.googleId)
+    props.setUserId(res.profileObj.googleId);
+    props.setUserName(res.profileObj.name);
+    props.setLogin(true);
   };
 
   const onFailure = (res) => {
@@ -24,7 +26,7 @@ function Login(props) {
     <div>
       <GoogleLogin
         clientId={clientId}
-        buttonText="Login"
+        buttonText="Login with Google"
         onSuccess={onSuccess}
         onFailure={onFailure}
         cookiePolicy={'single_host_origin'}
