@@ -144,7 +144,7 @@ const RoomForm = ({ user, topicId }) => {
                         Add Thumbnail
                     </Button>
                     <br></br>
-                </label>
+                 </label>   {/* future: set random thumbnails for room if user do not upload one */}
                 {image ? <div>
                     <Avatar src={image} style={imageStyle} alt='' />
                 </div> : <div style={{ marginBottom: "50px", marginTop: "50px" }}></div>}

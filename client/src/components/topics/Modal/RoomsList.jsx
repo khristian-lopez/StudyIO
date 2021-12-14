@@ -3,19 +3,19 @@ import { Avatar, Button, Stack } from '@mui/material';
 import Chatroom from '../../chatroom/Chatroom.jsx';
 import axios from 'axios';
 
-const RoomsList = ({ topicId, name }) => {
-    // TODO: set random thumbnails for room if user do not upload one **
+const RoomsList = ({ topicId, search }) => {
+
     const [rooms, setRooms] = useState([])
 
     useEffect(() => {
         if (topicId) {
-            axios.get(`/api/rooms/topic/${topicId}/rooms`)
+            axios.get(`/api/rooms/topic/${topicId}`)
                 .then(result => {
                     setRooms(result.data)
                 })
                 .catch(err => console.log(err))
         } else {
-            axios.get(`/api/rooms/name/:${name}`)
+            axios.get(`/api/rooms/name/${search}`)
                 .then(result => {
                     setRooms(result.data)
                 })

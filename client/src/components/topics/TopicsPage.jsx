@@ -16,14 +16,24 @@ const TopicsPage = (props) => {
   const [currentTopicId, setCurrentTopicId] = useState(null);
   const [openModal, setOpenModal] = useState(false);
 
+  const searchHandler = (e) => {
+    setSearch(e.target.value);
+  }
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    setCurrentTopicId(null)
+    setOpenModal(true)
+  }
+
   const handleOpen = (id) => {
-    setCurrentTopicId(id);
+    setCurrentTopicId(Number(id));
     setOpenModal(true);
   }
 
   const handleClose = () => {
-    setOpenModal(false);
     setSearch('');
+    setOpenModal(false);
   }
 
   useEffect(() => {
@@ -31,16 +41,6 @@ const TopicsPage = (props) => {
       .then(res => setTopics(res.data))
       .catch(err => console.log(err))
   }, [])
-
-  const searchHandler = (e) => {
-    setSearch(e.target.value);
-  }
-
-  const submitHandler = (e) => {
-    e.preventDefault();
-    setCurrentTopicId(null);
-    setOpenModal(true);
-  }
 
   return (
     <Container>
@@ -80,8 +80,9 @@ const TopicsPage = (props) => {
               openModal={openModal}
               handleClose={handleClose}
               topicId={currentTopicId}
-              search={search}
+              topics={topics}
               user={user}
+              search={search}
             />
           </Grid>
         </Box>
