@@ -22,8 +22,10 @@ const TopicsPage = ({ user, setUser }) => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    setCurrentTopicId(null)
-    setOpenModal(true)
+    if(search.length > 0) {
+      setCurrentTopicId(null)
+      setOpenModal(true)
+    }
   }
 
   const handleOpen = (id) => {
