@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { GoogleLogout } from 'react-google-login';
 
 const clientId =
@@ -6,7 +7,7 @@ const clientId =
 
 function Logout(props) {
   const onSuccess = () => {
-    console.log('Logout made successfully');
+    // console.log('Logout made successfully');
     props.setUserName('');
     props.setUserId('');
     props.setLogin(false);

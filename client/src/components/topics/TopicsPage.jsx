@@ -50,7 +50,7 @@ const TopicsPage = (props) => {
     <div>
       <Container maxWidth="1270px">
         <Grid sx={{ marginTop: "auto", marginBottom: "20px" }}>
-          <Navbar 
+          <Navbar
             userId={props.userId}
             setUserId={props.setUserId}
             userName={props.userName}
@@ -111,26 +111,26 @@ const TopicsPage = (props) => {
 export default TopicsPage;
 
 const rowOneStyle = {
-  display: "flex", 
-  flexDirection: "row", 
-  justifyContent: "space-evenly", 
-  overflowX: "visible", 
-  margin: "3px", 
+  display: "flex",
+  flexDirection: "row",
+  justifyContent: "space-evenly",
+  overflowX: "visible",
+  margin: "3px",
   padding: "3px"
 }
 
 const searchStyle = {
-  display: 'flex', 
-  alignItems: 'flex-end', 
-  mr: 5, 
+  display: 'flex',
+  alignItems: 'flex-end',
+  mr: 5,
   mb: "auto"
 }
 
 const boxStyle = {
-  display: "flex", 
+  display: "flex",
   flexDirection: "row",
   flexWrap: "wrap",
-  justifyContent: "center", 
+  justifyContent: "center",
   overflowX: "visible",
   margin: "3px",
   padding: "3px"
