@@ -2,10 +2,14 @@ import React, { useState, useEffect, useRef } from 'react';
 import io from 'socket.io-client';
 import Peer from 'simple-peer';
 
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
+import "./Videochat.scss";
+
 const Videochat = (props) => {
 
   const socketRef = useRef();
-
+  const myVideoRef = useRef();
   const videoRefs = useRef({});
 
   const [peerList, setPeerList] = useState({});
@@ -80,12 +84,37 @@ const Videochat = (props) => {
             videoRefs.current[targetID].srcObject = stream;
           })
         })
+
+        //Apply my video stream to my video container
+        myVideoRef.current.srcObject = myStream;
       })
   }, []);
 
+  function columnNumber(count) {
+    console.log('columnNumber', count)
+    if (count === 1) {
+      return '100%';
+    }
+
+    if (count >= 2 && count <= 4) {
+      return '50%';
+    }
+
+    return `${100/3}%`;
+  }
+
+  const videoStyle = {
+    boxSizing: 'border-box',
+    flexBasis: columnNumber(1 + Object.keys(peerList).length),
+    backgroundColor: 'black'
+  }
+
   return (
     <div>
-      {Object.keys(peerList).map(peerKey => <video playsInline ref={ref => {videoRefs.current[peerKey] = ref}} autoPlay style={{ width: '300px', background: 'black' }} />)}
+      <div id='videoContainer'>
+        <video playsInline ref={myVideoRef} muted autoPlay style={videoStyle} />
+        {Object.keys(peerList).map(peerKey => <video playsInline ref={ref => { videoRefs.current[peerKey] = ref }} muted autoPlay style={videoStyle} />)}
+      </div>
     </div>
   );
 }
