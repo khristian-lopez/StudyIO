@@ -17,7 +17,7 @@ export default function Motivational() {
   }, [])
 
   return (
-    <Card >
+    <Card sx={{ backgroundColor: "#FBFAF9"}}>
       <CardContent>
         <Typography sx={{ fontSize: 10 }} color="text.secondary" gutterBottom>
           Quote of the Day
@@ -32,5 +32,3 @@ export default function Motivational() {
     </Card>
   );
 }
-
-// sx={{ minWidth: 180 }}
