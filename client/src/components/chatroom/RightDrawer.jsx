@@ -4,8 +4,6 @@ import StudyDocs from './userFiles/StudyDocs.jsx';
 import Drawer from '@mui/material/Drawer';
 import Divider from '@mui/material/Divider';
 
-// const members = ['Edwin', 'Erik', 'Taite', 'Matt', 'Teresa', 'Brian', 'Rufus', 'Khris', 'Phi']
-
 const rightDrawerSx = {
   marginTop: '56px',
   padding: '12px',
@@ -35,7 +33,7 @@ const RightDrawer = (props) => {
           <span>Members</span>
           <button>Invite</button>
         </div>
-        {members.length !== 0 ? members.map(member => <li>{member.first_name} {member.last_name}</li>) : null}
+        {members.length !== 0 ? members.map((member,i) => <li key={i}>{member.first_name} {member.last_name}</li>) : null}
       </div>
       <Divider />
       <div>

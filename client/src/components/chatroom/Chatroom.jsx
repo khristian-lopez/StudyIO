@@ -76,8 +76,8 @@ const messagesListSx = {
 let Chatroom = (props) => {
 
   //Before Login
-  const [roomId, Id] = useState(new URLSearchParams(window.location.search).get('room'));
-  const [room, setRoom] = useState('');
+  const [roomId, setRoomId] = useState(new URLSearchParams(window.location.search).get('room'));
+  const [room, setRoom] = useState({});
 
   //After Login
   const [message, setMessage] = useState('');
@@ -98,7 +98,10 @@ let Chatroom = (props) => {
       .then(results => setMessageList(results.data))
       .catch(err => console.log(err))
 
-    // axios.get()
+    // Get room info
+    axios.get('/api/chatroom/room', { params: { room_id: roomId } })
+      .then(results => setRoom(results.data))
+      .catch(err => console.log(err))
 
     return () => {
       socket.current.close();
@@ -150,7 +153,7 @@ let Chatroom = (props) => {
         variant="permanent"
         sx={{ maxHeight: '100vh', '& .MuiDrawer-paper': { boxSizing: 'border-box', width: leftDrawerWidth }, }}
       >
-        <LeftDrawer room={roomId} />
+        <LeftDrawer room={roomId} user={props.userId} />
       </Drawer>
 
       <Drawer
@@ -158,7 +161,7 @@ let Chatroom = (props) => {
         variant="permanent"
         sx={{ maxHeight: '100vh', '& .MuiDrawer-paper': { boxSizing: 'border-box', width: rightDrawerWidth }, }}
       >
-        <RightDrawer room={roomId} />
+        <RightDrawer room={roomId} user={props.userId} />
       </Drawer>
 
       <div
@@ -168,12 +171,12 @@ let Chatroom = (props) => {
         {/* Messages block */}
         <div style={messagesBlockSx}>
           <div style={titleDivSx}>
-            <span style={titleSx}>{roomId}</span>
+            {room.name ? <span style={titleSx}>{room.name}</span> : <span></span>}
             <button>Join Video Chat</button>
           </div>
 
           <div style={messagesListSx} ref={messageListComponent}>
-            {messageList.length !== 0 ? messageList.map(message => <SingleMessage message={message} />) : null}
+            {messageList.length !== 0 ? messageList.map((message, i) => <SingleMessage key={i} message={message} />) : null}
           </div>
 
         </div>
