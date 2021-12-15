@@ -13,6 +13,8 @@ import "./Chatroom.scss";
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import Divider from '@mui/material/Divider';
+import Button from '@mui/material/Button';
+import SendIcon from '@mui/icons-material/Send';
 
 const connection_port = 'localhost:3000/'
 
@@ -32,7 +34,7 @@ const centerBlockSx = {
 
 const inputSx = {
   height: '32px',
-  width: '300px',
+  width: '500px',
   borderRadius: '6px',
   paddingLeft: '16px',
   color: '#333',
@@ -184,12 +186,14 @@ let Chatroom = (props) => {
               className="inputBox"
               type='text' placeholder='Message...'
               value={message}
-              onChange={e => setMessage(e.target.value)}>
+              onChange={e => setMessage(e.target.value)}
+            >
             </input>
-            <button>Send</button>
+            <Button>
+              <SendIcon />
+            </Button>
           </form>
         </div>
-
       </div>
     </Box>
   )

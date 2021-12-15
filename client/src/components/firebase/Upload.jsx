@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { getDownloadURL, ref, uploadBytesResumable } from '@firebase/storage';
 import { storage } from './index.js';
+import Button from '@mui/material/Button';
+import FileUploadIcon from '@mui/icons-material/FileUpload';
 
 let Upload = (props) => {
   const [progress, setProgress] = useState(0);
@@ -50,12 +52,19 @@ let Upload = (props) => {
   return (
     <>
       {uploading === false ?
-        <button onClick={handleSwitch}>Upload</button>
+        <Button variant="outlined" onClick={handleSwitch}
+        >
+          Upload
+          <FileUploadIcon sx={{ marginLeft: "3px" }}/>
+        </Button>
         :
         <div>
           <form onSubmit={formHandler}>
             <input type="file" className="input" />
-            <button>Upload</button>
+            <Button variant="outlined"
+            >
+              Upload
+            </Button>
           </form>
           {progress !== 0 ? <h4>Uploaded {progress} %</h4> : null}
         </div>
