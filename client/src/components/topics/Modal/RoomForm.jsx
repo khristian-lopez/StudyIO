@@ -34,7 +34,7 @@ const RoomForm = ({ user, topicId }) => {
         }
         return isValid;
     }
-    
+
     const addRoom = e => {
         e.preventDefault();
 
@@ -150,15 +150,15 @@ const RoomForm = ({ user, topicId }) => {
                     </Button>
                     <br></br>
                 </label>
-                { image ? 
+                { image ?
                     <div>
                         <Avatar src={image} style={imageStyle} />
-                    </div> 
-                    : 
+                    </div>
+                    :
                     <div>
                         <Avatar style={imageStyle} alt='https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png'/>
-                    </div> 
-                }   
+                    </div>
+                }
                 <Button
                     type="submit"
                     variant="contained"
