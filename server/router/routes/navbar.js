@@ -2,7 +2,7 @@ const express = require('express');
 const axios = require('axios');
 const router = express.Router();
 
-const APIurl = ''
+const APIurl = 'http://studyio-api-523737087.us-west-1.elb.amazonaws.com';
 
 // need to replace archived vs active with just rooms with isArchived field and filter from there on client side or here
 
@@ -19,25 +19,31 @@ let archivedRoomsMockData = [
 ];
 
 
-router.get('/activeRooms', (req, res) => {
+router.get('/rooms', (req, res) => {
   // needs user id as a param to query for active rooms of that user
-  res.status(200).send(roomsMockData) // to remove once back end set up
+  // res.status(200).send(roomsMockData) // to remove once back end set up
 
-  // axios.get(APIurl).then((results) => {
-  //     res.status(200).send(results.data);
-  //   })
-  //   .catch((err) => res.send(err).status(404));
+  axios.get(`${APIurl}/user/${req.query.user_id}/rooms`)
+    .then((results) => {
+      let rooms = { active: [], archived: [] }
+      for (room of results.data) {
+        if (room.is_archived) rooms.archived.push(room)
+        else rooms.active.push(room)
+      }
+      res.status(200).send(rooms);
+    })
+    .catch((err) => res.send(err).status(404));
 });
 
-router.get('/archivedRooms', (req, res) => {
-  // needs user id as a param to query for archived rooms of that user
-  res.status(200).send(archivedRoomsMockData) // to remove once back end set up
+// router.get('/archivedRooms', (req, res) => {
+//   // needs user id as a param to query for archived rooms of that user
+//   res.status(200).send(archivedRoomsMockData) // to remove once back end set up
 
-  // axios.get(APIurl).then((results) => {
-  //     res.status(200).send(results.data);
-  //   })
-  //   .catch((err) => res.send(err).status(404));
-});
+//   // axios.get(APIurl).then((results) => {
+//   //     res.status(200).send(results.data);
+//   //   })
+//   //   .catch((err) => res.send(err).status(404));
+// });
 
 router.put('/archive', (req, res) => {
   // needs room id to change that room to archived

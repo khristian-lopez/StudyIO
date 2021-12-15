@@ -11,7 +11,7 @@ const messageSx = {
 let SingleMessage = (props) => {
   return (
     <div style={messageSx}>
-      <div><b>author</b>: </div>
+      <div><b>{props.message.first_name} {props.message.last_name}</b></div>
       <p>{props.message.body}</p>
     </div>
   )
