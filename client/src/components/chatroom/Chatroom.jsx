@@ -76,7 +76,8 @@ const messagesListSx = {
 let Chatroom = (props) => {
 
   //Before Login
-  const [room, setRoom] = useState(new URLSearchParams(window.location.search).get('room'));
+  const [roomId, setRoomId] = useState(new URLSearchParams(window.location.search).get('room'));
+  const [room, setRoom] = useState({});
 
   //After Login
   const [message, setMessage] = useState('');
@@ -92,10 +93,14 @@ let Chatroom = (props) => {
       setMessageList(prevList => [...prevList, data]);
     })
 
-
     // Gets initial messages already in DB
-    axios.get(`/api/chatroom/messages`, { params: { room_id: room } })
+    axios.get(`/api/chatroom/messages`, { params: { room_id: roomId } })
       .then(results => setMessageList(results.data))
+      .catch(err => console.log(err))
+
+    // Get room info
+    axios.get('/api/chatroom/room', { params: { room_id: roomId } })
+      .then(results => setRoom(results.data))
       .catch(err => console.log(err))
 
     return () => {
@@ -105,10 +110,10 @@ let Chatroom = (props) => {
   }, [])
 
   useEffect(() => {
-    if (!room) { return }
-    console.log('Changing to room: ' + room);
-    socket.current.emit('join_room', room)
-  }, [room])
+    if (!roomId) { return }
+    console.log('Changing to room: ' + roomId);
+    socket.current.emit('join_room', roomId)
+  }, [roomId])
 
   useEffect(() => {
     messageListComponent.current.scrollTop = messageListComponent.current.scrollHeight;
@@ -118,7 +123,7 @@ let Chatroom = (props) => {
     e.preventDefault();
     if (message === '') return;
     let messageObject = {
-      room: room,
+      room: roomId,
       message: {
         user_id: 1,
         body: message
@@ -148,7 +153,7 @@ let Chatroom = (props) => {
         variant="permanent"
         sx={{ maxHeight: '100vh', '& .MuiDrawer-paper': { boxSizing: 'border-box', width: leftDrawerWidth }, }}
       >
-        <LeftDrawer room={room} />
+        <LeftDrawer room={roomId} user={props.userId} />
       </Drawer>
 
       <Drawer
@@ -156,7 +161,7 @@ let Chatroom = (props) => {
         variant="permanent"
         sx={{ maxHeight: '100vh', '& .MuiDrawer-paper': { boxSizing: 'border-box', width: rightDrawerWidth }, }}
       >
-        <RightDrawer room={room} />
+        <RightDrawer room={roomId} user={props.userId} />
       </Drawer>
 
       <div
@@ -166,13 +171,12 @@ let Chatroom = (props) => {
         {/* Messages block */}
         <div style={messagesBlockSx}>
           <div style={titleDivSx}>
-            <span style={titleSx}>{new URLSearchParams(window.location.search).get('name')}</span>
+            {room.name ? <span style={titleSx}>{room.name}</span> : <span></span>}
             <button>Join Video Chat</button>
           </div>
 
           <div style={messagesListSx} ref={messageListComponent}>
-            {messageList.length !== 0 ? messageList.map((message, i) =>
-              <SingleMessage message={message} key={i}/>) : null}
+            {messageList.length !== 0 ? messageList.map((message, i) => <SingleMessage key={i} message={message} />) : null}
           </div>
 
         </div>

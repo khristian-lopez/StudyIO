@@ -52,7 +52,7 @@ const TopicsModal = ({openModal, topicId, topics, handleClose, user, search}) =>
                                 {topicId ? topics[topicId - 1].name : search} rooms
                             </Typography>
                             <Grid>
-                            <RoomsList topicId={topicId} search={search}/>
+                            <RoomsList topicId={topicId} search={search} user={user}/>
                             </Grid>
                             {topicId ? <><Typography
                                 id="modal-description"

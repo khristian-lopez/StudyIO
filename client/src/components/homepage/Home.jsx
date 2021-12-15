@@ -37,9 +37,11 @@ const Home = (props) => {
                 </Link>
               </nav>
             </button>
+
               {/* <nav>
                 <Link to="/chatroom">Chat Room</Link>
               </nav>
+
               <nav>
                 <Link to='/videochat'>Video Chat</Link>
               </nav> */}
