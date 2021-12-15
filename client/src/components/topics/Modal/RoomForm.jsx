@@ -37,7 +37,6 @@ const RoomForm = ({ user, topicId }) => {
 
     const addRoom = e => {
         e.preventDefault();
-
         if (validate()) {
             let setting;
             if (inputs.setting === "public") {
