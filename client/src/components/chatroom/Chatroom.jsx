@@ -76,7 +76,8 @@ const messagesListSx = {
 let Chatroom = (props) => {
 
   //Before Login
-  const [room, setRoom] = useState(new URLSearchParams(window.location.search).get('room'));
+  const [roomId, Id] = useState(new URLSearchParams(window.location.search).get('room'));
+  const [room, setRoom] = useState('');
 
   //After Login
   const [message, setMessage] = useState('');
@@ -92,11 +93,12 @@ let Chatroom = (props) => {
       setMessageList(prevList => [...prevList, data]);
     })
 
-
     // Gets initial messages already in DB
-    axios.get(`/api/chatroom/messages`, { params: { room_id: room } })
+    axios.get(`/api/chatroom/messages`, { params: { room_id: roomId } })
       .then(results => setMessageList(results.data))
       .catch(err => console.log(err))
+
+    // axios.get()
 
     return () => {
       socket.current.close();
@@ -105,10 +107,10 @@ let Chatroom = (props) => {
   }, [])
 
   useEffect(() => {
-    if (!room) { return }
-    console.log('Changing to room: ' + room);
-    socket.current.emit('join_room', room)
-  }, [room])
+    if (!roomId) { return }
+    console.log('Changing to room: ' + roomId);
+    socket.current.emit('join_room', roomId)
+  }, [roomId])
 
   useEffect(() => {
     messageListComponent.current.scrollTop = messageListComponent.current.scrollHeight;
@@ -118,7 +120,7 @@ let Chatroom = (props) => {
     e.preventDefault();
     if (message === '') return;
     let messageObject = {
-      room: room,
+      room: roomId,
       message: {
         user_id: 1,
         body: message
@@ -148,7 +150,7 @@ let Chatroom = (props) => {
         variant="permanent"
         sx={{ maxHeight: '100vh', '& .MuiDrawer-paper': { boxSizing: 'border-box', width: leftDrawerWidth }, }}
       >
-        <LeftDrawer room={room} />
+        <LeftDrawer room={roomId} />
       </Drawer>
 
       <Drawer
@@ -156,7 +158,7 @@ let Chatroom = (props) => {
         variant="permanent"
         sx={{ maxHeight: '100vh', '& .MuiDrawer-paper': { boxSizing: 'border-box', width: rightDrawerWidth }, }}
       >
-        <RightDrawer room={room} />
+        <RightDrawer room={roomId} />
       </Drawer>
 
       <div
@@ -166,7 +168,7 @@ let Chatroom = (props) => {
         {/* Messages block */}
         <div style={messagesBlockSx}>
           <div style={titleDivSx}>
-            <span style={titleSx}>{room}</span>
+            <span style={titleSx}>{roomId}</span>
             <button>Join Video Chat</button>
           </div>
 
