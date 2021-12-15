@@ -7,7 +7,9 @@ const titleSx = {
   fontSize: '1.17em',
   // marginBlockStart: '1em',
   // marginBlockEnd: '1em',
+  textAlign: "center",
   fontWeight: 'bold',
+  marginTop: "5px",
   marginBottom: '16px',
 }
 
@@ -26,16 +28,32 @@ let StudyDocs = (props) => {
   }
 
   return (
-    <>
+    <div style={containerStyle}>
       <div style={titleSx}>Study Materials</div>
-
-      <div>
+      <div style={grid}>
         {docs ? docs.map((doc, i) => <SingleDoc key={i} name={doc.name} url={doc.url} />) : null}
       </div>
-
-      <Upload room={props.room} update={handleUpload}/>
-    </>
+      <div style={buttonStyle}>
+        <Upload room={props.room} update={handleUpload} />
+      </div>
+    </div>
   )
 }
 
 export default StudyDocs;
+
+const grid = {
+  border: "1px solid #000",
+  height: "300px",
+  overflowY: "scroll",
+  marginBottom: "3mm"
+}
+
+const containerStyle = {
+  margin: "3px"
+}
+
+const buttonStyle = {
+  display: "flex",
+  justifyContent: "center"
+}
