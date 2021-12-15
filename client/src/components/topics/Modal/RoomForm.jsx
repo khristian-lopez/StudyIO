@@ -64,7 +64,7 @@ const RoomForm = ({ user, topicId }) => {
         }
     }
 
-    const joinRoom = (id) => window.location.href = window.location.origin + `/chatroom?room=${id}&&name=${room.name}`;
+    const joinRoom = (id) => window.location.href = window.location.origin + `/chatroom?room=${id}`;
 
     return (
         <div className="RoomForm">
