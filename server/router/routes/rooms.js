@@ -20,7 +20,6 @@ router.get('/name/:name', (req, res) => {
   console.log(req.params.name)
   axios.post(url + '/rooms/search', {"search_value": req.params.name})
     .then((data) => { res.send(data.data).status(200)
-       console.log(data.data)
     })
     .catch((err) => res.send(err).status(500));
 });
@@ -36,7 +35,8 @@ router.get('/topic/:topicId', (req, res) => {
 router.post('/:topicId/create', (req, res) => { // POST /rooms/:topic_id/create
   axios.post(url + `/${req.params.topicId}/rooms/create`, req.body)
     .then((data) => {
-      res.send(data.data).status(201);
+      console.log(data.data)
+      // res.send(data.data).status(201);
     })
     .catch((err) => res.send(err).status(500));
 });

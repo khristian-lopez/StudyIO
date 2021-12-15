@@ -30,16 +30,16 @@ const RoomsList = ({ topicId, search }) => {
 
     return (
         <Box>
-            { loading ? 
+            { loading ?
             <Box>
                 <Grid container sx={loadStyle}>
-                    <CircularProgress /> 
+                    <CircularProgress />
                 </Grid>
             </Box> :
             <Grid item sx={innerGrid}>
                 <List>
                     {rooms.map((room) => (
-                         !room['is_private'] ? 
+                         !room['is_private'] ?
                         <div key={room.id}>
                         <ListItem sx={style} key={room.id} >
                             <ListItemAvatar >
@@ -54,11 +54,11 @@ const RoomsList = ({ topicId, search }) => {
                                 size="medium"
                                 variant="outlined"
                                 key={room.id}
-                                onClick={()=>{window.location.href = window.location.origin + `/chatroom?room=${room.id}`}}
+                                onClick={()=>{window.location.href = window.location.origin + `/chatroom?room=${room.id}&&name=${room.name}`}}
                             >
                                 Join
                             </Button>
-                        </ListItem> 
+                        </ListItem>
                         </div>  :  <div key={room.id}></div>
                     ))}
                 </List>

@@ -9,14 +9,22 @@ import Videochat from './videochat/Videochat.jsx';
 
 
 let App = () => {
-  const [userId, setUserId] = React.useState(
-    localStorage.getItem('userId')
-  );
-  const [userName, setUserName] = React.useState(
-    localStorage.getItem('userName')
+  const [userId, setUserId] = React.useState(() => {
+      const saved = localStorage.getItem('userId');
+      const initialValue = JSON.parse(saved);
+      return initialValue || "";
+    });
+  const [userName, setUserName] = React.useState(() => {
+      const saved = localStorage.getItem('userName');
+      const initialValue = JSON.parse(saved);
+      return initialValue || "";
+    }
   )
-  const [login, setLogin] = React.useState(
-    localStorage.getItem('login') === 'true'
+  const [login, setLogin] = React.useState(() => {
+      const saved = localStorage.getItem('login') === 'true';
+      const initialValue = JSON.parse(saved);
+      return initialValue || false
+    }
   )
   console.log('userName', userName)
   console.log('userId', userId)
