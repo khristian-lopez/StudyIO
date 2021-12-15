@@ -28,10 +28,6 @@ const RoomsList = ({ topicId, search }) => {
         }
     }, [])
 
-    let handleJoin = (e) => {
-        // TODO
-    }
-
     return (
         <Box>
             { loading ? 
@@ -42,7 +38,9 @@ const RoomsList = ({ topicId, search }) => {
             </Box> :
             <Grid item sx={innerGrid}>
                 <List>
-                    {rooms.map(room => (
+                    {rooms.map((room) => (
+                         !room['is_private'] ? 
+                        <div key={room.id}>
                         <ListItem sx={style} key={room.id} >
                             <ListItemAvatar >
                                 {room.thumbnail ? <Avatar src={room.thumbnail} sx={imageStyle} />
@@ -60,7 +58,8 @@ const RoomsList = ({ topicId, search }) => {
                             >
                                 Join
                             </Button>
-                        </ListItem>
+                        </ListItem> 
+                        </div>  :  <div key={room.id}></div>
                     ))}
                 </List>
             </Grid>
