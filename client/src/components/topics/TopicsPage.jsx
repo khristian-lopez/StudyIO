@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Container from '@mui/material/Container';
 import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
 import SearchIcon from '@mui/icons-material/Search';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
@@ -47,9 +46,8 @@ const TopicsPage = (props) => {
   }, [])
 
   return (
-    <div>
-      <Container maxWidth="1270px">
-        <Grid sx={{ marginTop: "auto", marginBottom: "20px" }}>
+    <div style={containerStyle}>
+        <Grid sx={{ margin: "70px 60px 50px 60px" }}>
           <Navbar
             userId={props.userId}
             setUserId={props.setUserId}
@@ -59,14 +57,14 @@ const TopicsPage = (props) => {
             setLogin={props.setLogin}
           />
           <Box container sx={rowOneStyle}>
-            <Grid item xs={2} sx={{ marginBottom: "50" }}>
-              <h1 >Choose a Topic</h1>
+            <Grid item xs={2.5} >
+              <h1 style={{ textAlign: "center" }}>Choose a Topic</h1>
             </Grid>
-            <Grid item xs={6} sx={{ overflowX: "visible" }} >
+            <Grid item xs={6.5} sx={{ overflowX: "visible" }} >
               <Motivational />
             </Grid>
             <Box sx={searchStyle}>
-              <SearchIcon sx={{ mr: 1, my: 0.5 }} />
+              <SearchIcon sx={{ my: 0.5, mr: 0.5, ml: 3 }} />
               <form onSubmit={e => submitHandler(e)}>
                 <TextField
                   variant="standard"
@@ -79,11 +77,11 @@ const TopicsPage = (props) => {
             </Box>
           </Box>
         </Grid>
-        <Box container style={boxStyle}>
+        <Box style={boxStyle}>
           {topics.map((topic) => (
             <Box item
+              
               sx={{ margin: "5px", padding: "5px", width: "300px" }}
-              md={3} xl={4}
               key={topic.id}
               onClick={(e) => handleOpen(e.target.name)}
             >
@@ -103,30 +101,36 @@ const TopicsPage = (props) => {
           user={props.userId}
           search={search}
         />
-      </Container>
     </div>
   )
 }
 
 export default TopicsPage;
 
+// TODO: create css files
+const containerStyle = {
+  maxWidth: "1550px",
+  margin: "auto"
+}
+
 const rowOneStyle = {
   display: "flex",
   flexDirection: "row",
-  justifyContent: "space-evenly",
+  justifyContent: "space-between",
   overflowX: "visible",
   margin: "3px",
   padding: "3px"
 }
 
 const searchStyle = {
-  display: 'flex',
-  alignItems: 'flex-end',
-  mr: 5,
+  display: 'flex', 
+  alignItems: 'flex-end', 
+  marginRight: "3px", 
   mb: "auto"
 }
 
 const boxStyle = {
+  textAlign: "center",
   display: "flex",
   flexDirection: "row",
   flexWrap: "wrap",
