@@ -46,10 +46,9 @@ const TopicsPage = (props) => {
   }, [])
 
   return (
-    <div>
-      <Container maxWidth="1270px">
-        <Grid sx={{ marginTop: "auto", marginBottom: "20px" }}>
-          <Navbar 
+    <div style={containerStyle}>
+        <Grid sx={{ margin: "70px 60px 50px 60px" }}>
+          <Navbar
             userId={props.userId}
             setUserId={props.setUserId}
             userName={props.userName}
@@ -58,14 +57,14 @@ const TopicsPage = (props) => {
             setLogin={props.setLogin}
           />
           <Box container sx={rowOneStyle}>
-            <Grid item xs={2} sx={{ marginBottom: "50" }}>
-              <h1 >Choose a Topic</h1>
+            <Grid item xs={2.5} >
+              <h1 style={{ textAlign: "center" }}>Choose a Topic</h1>
             </Grid>
-            <Grid item xs={6} sx={{ overflowX: "visible" }} >
+            <Grid item xs={6.5} sx={{ overflowX: "visible" }} >
               <Motivational />
             </Grid>
             <Box sx={searchStyle}>
-              <SearchIcon sx={{ my: 0.5 }} />
+              <SearchIcon sx={{ my: 0.5, mr: 0.5, ml: 3 }} />
               <form onSubmit={e => submitHandler(e)}>
                 <TextField
                   variant="standard"
@@ -78,11 +77,11 @@ const TopicsPage = (props) => {
             </Box>
           </Box>
         </Grid>
-        <Box container style={boxStyle}>
+        <Box style={boxStyle}>
           {topics.map((topic) => (
             <Box item
+              
               sx={{ margin: "5px", padding: "5px", width: "300px" }}
-              md={3} lg={4}
               key={topic.id}
               onClick={(e) => handleOpen(e.target.name)}
             >
@@ -102,19 +101,24 @@ const TopicsPage = (props) => {
           user={props.userId}
           search={search}
         />
-      </Container>
     </div>
   )
 }
 
 export default TopicsPage;
 
+// TODO: create css files
+const containerStyle = {
+  maxWidth: "1550px",
+  margin: "auto"
+}
+
 const rowOneStyle = {
-  display: "flex", 
-  flexDirection: "row", 
-  justifyContent: "space-evenly", 
-  overflowX: "visible", 
-  margin: "3px", 
+  display: "flex",
+  flexDirection: "row",
+  justifyContent: "space-between",
+  overflowX: "visible",
+  margin: "3px",
   padding: "3px"
 }
 
@@ -126,10 +130,11 @@ const searchStyle = {
 }
 
 const boxStyle = {
-  display: "flex", 
+  textAlign: "center",
+  display: "flex",
   flexDirection: "row",
   flexWrap: "wrap",
-  justifyContent: "center", 
+  justifyContent: "center",
   overflowX: "visible",
   margin: "3px",
   padding: "3px"

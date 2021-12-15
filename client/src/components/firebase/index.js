@@ -4,7 +4,6 @@ import { getStorage} from 'firebase/storage';
 const firebaseConfig = {
   apiKey: "AIzaSyBQJTv2jCt67feblL9iF4s-724naADa6rg",
   authDomain: "blue-ocean-f7701.firebaseapp.com",
-  // databaseURL: "gs://blue-ocean-f7701.appspot.com",
   projectId: "blue-ocean-f7701",
   storageBucket: "blue-ocean-f7701.appspot.com",
   messagingSenderId: "9643299705",

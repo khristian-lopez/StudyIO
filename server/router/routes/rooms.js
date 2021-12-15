@@ -1,6 +1,8 @@
 const express = require('express');
 const axios = require('axios');
 const url = require('../../config.js').api_url
+// expected result: an array of rooms that match topic id or name in the database:
+// {id: Number, name: String, thumbnail: String }
 
 const router = express.Router();
 
