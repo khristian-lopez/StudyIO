@@ -28,21 +28,19 @@ const RoomsList = ({ topicId, search }) => {
         }
     }, [])
 
-    let handleJoin = (e) => {
-        // TODO
-    }
-
     return (
         <Box>
-            { loading ? 
+            { loading ?
             <Box>
                 <Grid container sx={loadStyle}>
-                    <CircularProgress /> 
+                    <CircularProgress />
                 </Grid>
             </Box> :
             <Grid item sx={innerGrid}>
                 <List>
-                    {rooms.map(room => (
+                    {rooms.map((room) => (
+                         !room['is_private'] ?
+                        <div key={room.id}>
                         <ListItem sx={style} key={room.id} >
                             <ListItemAvatar >
                                 {room.thumbnail ? <Avatar src={room.thumbnail} sx={imageStyle} />
@@ -56,11 +54,12 @@ const RoomsList = ({ topicId, search }) => {
                                 size="medium"
                                 variant="outlined"
                                 key={room.id}
-                                onClick={()=>{window.location.href = window.location.origin + `/chatroom?room=${room.id}`}}
+                                onClick={()=>{window.location.href = window.location.origin + `/chatroom?room=${room.id}&&name=${room.name}`}}
                             >
                                 Join
                             </Button>
                         </ListItem>
+                        </div>  :  <div key={room.id}></div>
                     ))}
                 </List>
             </Grid>
