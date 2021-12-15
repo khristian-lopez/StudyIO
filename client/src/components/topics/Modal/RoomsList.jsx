@@ -3,7 +3,7 @@ import {Avatar, Button, CircularProgress} from '@mui/material';
 import {Box, Grid, List, ListItem, ListItemText, ListItemAvatar} from '@mui/material';
 import axios from 'axios';
 
-const RoomsList = ({ topicId, search }) => {
+const RoomsList = ({ topicId, search, user }) => {
     const [rooms, setRooms] = useState([]);
     const [loading, setLoading] = useState(true);
 
@@ -38,7 +38,7 @@ const RoomsList = ({ topicId, search }) => {
             </Box> :
             <Grid item sx={innerGrid}>
                 <List>
-                    {rooms.map((room) => (
+                    {rooms.map((room) => ( // might need to add room.members.includes(user) to conditional
                          !room['is_private'] ?
                         <div key={room.id}>
                         <ListItem sx={style} key={room.id} >
