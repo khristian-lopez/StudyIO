@@ -46,7 +46,6 @@ const RoomForm = ({ user, topicId }) => {
             }
 
             let count = Number(inputs.count);
-
             const data = {
                 name: inputs.name,
                 thumbnail: image,
@@ -57,7 +56,7 @@ const RoomForm = ({ user, topicId }) => {
             // TODO: retrieve id from sign up to be passed in as admin_id
             axios.post(`/api/rooms/${topicId}/create`, data)
                 .then((result) => {
-                    console.log(result.data)
+                    joinRoom(result.data.room_id)
                 })
                 .catch(err => {
                     console.log(err.response)
@@ -65,7 +64,7 @@ const RoomForm = ({ user, topicId }) => {
         }
     }
 
-    const joinRoom = (id) => window.location.href = window.location.origin + `/chatroom?room=${id}`;
+    const joinRoom = (id) => window.location.href = window.location.origin + `/chatroom?room=${id}&&name=${room.name}`;
 
     return (
         <div className="RoomForm">
