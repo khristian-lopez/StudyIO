@@ -190,9 +190,9 @@ let Chatroom = (props) => {
               onChange={e => setMessage(e.target.value)}
             >
             </input>
-            <Button>
-              <SendIcon />
-            </Button>
+            <button>Send</button>
+            {/* <Button size="medium" variant="text" startIcon={<SendIcon />}>
+            </Button> */}
           </form>
         </div>
       </div>
