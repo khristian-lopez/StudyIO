@@ -37,7 +37,10 @@ const RightDrawer = (props) => {
           <span>Members</span>
           <Button sx={buttonStyle} size="small" variant="outlined">Invite</Button>
         </div>
-        {members.length !== 0 ? members.map(member => <li>{member.first_name} {member.last_name}</li>) : null}
+        {members.length !== 0 ? members.map(member =>
+          <li key={member.first_name+member.last_name}>
+            {member.first_name} {member.last_name}
+          </li>) : null}
       </div>
       <Divider />
       <div>

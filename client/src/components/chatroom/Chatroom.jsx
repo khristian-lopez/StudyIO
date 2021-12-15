@@ -168,12 +168,13 @@ let Chatroom = (props) => {
         {/* Messages block */}
         <div style={messagesBlockSx}>
           <div style={titleDivSx}>
-            <span style={titleSx}>{room}</span>
+            <span style={titleSx}>{new URLSearchParams(window.location.search).get('name')}</span>
             <button>Join Video Chat</button>
           </div>
 
           <div style={messagesListSx} ref={messageListComponent}>
-            {messageList.length !== 0 ? messageList.map(message => <SingleMessage message={message} />) : null}
+            {messageList.length !== 0 ? messageList.map((message, i) =>
+              <SingleMessage message={message} key={i}/>) : null}
           </div>
 
         </div>
