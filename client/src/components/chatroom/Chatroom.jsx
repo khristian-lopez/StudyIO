@@ -14,7 +14,6 @@ import "./Chatroom.scss";
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import Divider from '@mui/material/Divider';
-const connection_port = 'localhost:3000/'
 
 const rightDrawerWidth = 240;
 const leftDrawerWidth = 350;
@@ -86,7 +85,7 @@ let Chatroom = (props) => {
   const socket = useRef(null);
 
   useEffect(() => {
-    socket.current = io(connection_port)
+    socket.current = io.connect('/');
     socket.current.on('message_update', (data) => {
       console.log('Updating List');
       setMessageList(prevList => [...prevList, data]);
