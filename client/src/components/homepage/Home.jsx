@@ -6,6 +6,7 @@ import Topbar from './topbar/Topbar';
 import Menu from './menu/Menu';
 import "./home.scss"
 import NavBar from '../navbar/Navbar'
+import Slide from './slide/Slide';
 
 
 const Home = (props) => {
@@ -27,7 +28,7 @@ const Home = (props) => {
 
           <div className="wrapper">
             <h2>Our Mission</h2>
-            <h3>Protect universe from Thanos</h3>
+            <h3>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</h3>
 
             <button>
               <nav>
@@ -36,18 +37,19 @@ const Home = (props) => {
                 </Link>
               </nav>
             </button>
-              <nav>
+              {/* <nav>
                 <Link to="/chatroom">Chat Room</Link>
               </nav>
               <nav>
                 <Link to='/videochat'>Video Chat</Link>
-              </nav>
+              </nav> */}
           </div>
         </div>
         <div className="right">
-          <div className="imgContainer">
-            <img src="assets/childCare.jpg" alt=""></img>
-          </div>
+          {/* <div className="imgContainer"> */}
+            <Slide/>
+            {/* <img src="assets/001.jpg" alt=""></img> */}
+          {/* </div> */}
         </div>
 
       </div>
