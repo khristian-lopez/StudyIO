@@ -35,8 +35,7 @@ router.get('/topic/:topicId', (req, res) => {
 router.post('/:topicId/create', (req, res) => { // POST /rooms/:topic_id/create
   axios.post(url + `/${req.params.topicId}/rooms/create`, req.body)
     .then((data) => {
-      console.log(data.data)
-      // res.send(data.data).status(201);
+      res.send(data.data).status(201);
     })
     .catch((err) => res.send(err).status(500));
 });

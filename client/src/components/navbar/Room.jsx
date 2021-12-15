@@ -38,7 +38,7 @@ let Room = (props) => {
   }
   return (
     <div style={roomsRowSx}>
-      <span style={roomSx}>{props.room.room}</span>
+      <span style={roomSx}>{props.room.name}</span>
       <span><button style={buttonSx} onClick={handleDrawerButton}>{buttonMessage}</button></span>
     </div>
   )

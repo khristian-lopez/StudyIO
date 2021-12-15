@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import SingleEventOrGoal from './SingleEventOrGoal.jsx';
+import SingleEvent from './SingleEvent.jsx';
+import SingleGoal from './SingleGoal.jsx';
 
 import Divider from '@mui/material/Divider';
 
@@ -35,20 +36,6 @@ const listSx = {
   marginBottom: '16px',
 }
 
-const mockEvents = [
-  { title: 'Midterm', date: '12/6', time: '8:00 PM' },
-  { title: 'Final', date: '12/17', time: '7:30 AM' },
-  { title: 'Final Project', date: '12/19', time: '9:00 AM' },
-]
-
-const mockGoals = [
-  { title: 'At least 90% on Final' },
-  { title: 'Complete first half of project by 12/6' },
-  { title: 'Drink more water and exercise' },
-]
-
-// query for events and goals here then map into individual components
-
 const LeftDrawer = (props) => {
   const [events, setEvents] = useState([])
   const [goals, setGoals] = useState([])
@@ -80,32 +67,30 @@ const LeftDrawer = (props) => {
     else if (e.target.value === 'goal') setAddGoal(false);
   }
 
-  const [newEvent, setNewEvent] = useState({ title: '', date: '', time: '' });
-  const [newGoal, setNewGoal] = useState({ title: '' });
+  const [newEvent, setNewEvent] = useState({ name: '', event_date: '', event_time: '' });
+  const [newGoal, setNewGoal] = useState({ name: '' });
 
   const handleNewEvent = (e) => {
     e.preventDefault();
     console.log(newEvent)
-    if (newEvent.title === '' || newEvent.date === '' || newEvent.time === '') return;
-    // Need to add to DB still
-    axios.post('/api/chatroom/events',)
+    if (newEvent.name === '' || newEvent.event_date === '' || newEvent.event_time === '') return;
+    axios.post('/api/chatroom/events', { name: newEvent.title, user_id: props.user, room_id: props.room, event_date: newEvent.date, event_time: newEvent.time })
       .then(results => console.log(results))
       .catch(err => console.log(err))
     setEvents([...events, newEvent]);
     setAddEvent(false);
-    setNewEvent({ title: '', date: '', time: '' });
+    setNewEvent({ name: '', event_date: '', event_time: '' });
   }
 
   const handleNewGoal = (e) => {
     e.preventDefault();
-    if (newGoal.title === '') return;
-    // need to add to db still
-    axios.post('/api/chatroom/events',)
+    if (newGoal.name === '') return;
+    axios.post('/api/chatroom/goals', { room_id: props.room, info: { name: newGoal.name, user_id: props.user } })
       .then(results => console.log(results))
       .catch(err => console.log(err))
     setGoals([...goals, newGoal])
     setAddGoal(false);
-    setNewGoal({});
+    setNewGoal({ name: '' });
   }
 
   return (
@@ -121,24 +106,24 @@ const LeftDrawer = (props) => {
         </div>
 
         <div style={listSx}>
-          {events.map((event, i) => <SingleEventOrGoal content={event} key={i} />)}
+          {events.map((event, i) => <SingleEvent content={event} key={i} />)}
           {addingEvent ?
             <div>
               <form onSubmit={handleNewEvent}>
                 <input
                   type='text' placeholder='Event Name'
-                  value={newEvent.title}
-                  onChange={e => setNewEvent({ title: e.target.value, date: newEvent.date, time: newEvent.time })}>
+                  value={newEvent.name}
+                  onChange={e => setNewEvent({ name: e.target.value, event_date: newEvent.event_date, event_time: newEvent.event_time })}>
                 </input>
                 <input
                   type='date' placeholder='Date'
-                  value={newEvent.date}
-                  onChange={e => setNewEvent({ title: newEvent.title, date: e.target.value, time: newEvent.time })}>
+                  value={newEvent.event_date}
+                  onChange={e => setNewEvent({ name: newEvent.name, event_date: e.target.value, event_time: newEvent.event_time })}>
                 </input>
                 <input
                   type='time' placeholder='Time'
-                  value={newEvent.time}
-                  onChange={e => setNewEvent({ title: newEvent.title, date: newEvent.date, time: e.target.value })}>
+                  value={newEvent.event_time}
+                  onChange={e => setNewEvent({ name: newEvent.name, event_date: newEvent.event_date, event_time: e.target.value })}>
                 </input>
                 <button>Create</button>
               </form>
@@ -157,14 +142,14 @@ const LeftDrawer = (props) => {
         </div>
 
         <div style={listSx}>
-          {goals.map((goal, i) => <SingleEventOrGoal content={goal} key={i} />)}
+          {goals.map((goal, i) => <SingleGoal content={goal} key={i} />)}
           {addingGoal ?
             <div>
               <form onSubmit={handleNewGoal}>
                 <input
                   type='text' placeholder='Goal'
-                  value={newGoal.title}
-                  onChange={e => setNewGoal({ title: e.target.value })}>
+                  value={newGoal.name}
+                  onChange={e => setNewGoal({ name: e.target.value })}>
                 </input>
                 <button>Create</button>
               </form>

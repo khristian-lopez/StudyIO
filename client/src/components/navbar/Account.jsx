@@ -44,11 +44,9 @@ let Account = (props) => {
   const [archivedRooms, setArchivedRooms] = useState([]);
 
   useEffect(() => {
-    axios.get('/api/navbar/activeRooms').then(results => {
-      setYourRooms(results.data);
-    });
-    axios.get('/api/navbar/archivedRooms').then(results => {
-      setArchivedRooms(results.data);
+    axios.get('/api/navbar/rooms', { params: { user_id: props.userId } }).then(results => {
+      setYourRooms(results.data.active);
+      setArchivedRooms(results.data.archived);
     });
   }, [])
 
@@ -82,7 +80,7 @@ let Account = (props) => {
         <AccountCircleIcon style={{ fontSize: 40 }} />
       </IconButton>
 
-      <Drawer anchor={'right'} open={drawerStatus} onClose={toggleDrawer(false)} style={{zIndex: '1202'}}>
+      <Drawer anchor={'right'} open={drawerStatus} onClose={toggleDrawer(false)} style={{ zIndex: '1202' }}>
         <div className="account-drawer" style={drawerSx}>
           <h2>Your rooms</h2>
           <div className="rooms-list" style={roomListSx}>
@@ -92,16 +90,15 @@ let Account = (props) => {
           <div className="rooms-list" style={roomListSx}>
             {archivedRooms.map((room, i) => <Room room={room} active={false} key={i} reactivate={handleReactivate} />)}
           </div>
-          <Logout style={signOutSx} user={props.user} setUser={props.setUser} />
+          <Logout
+            style={signOutSx}
+            userId={props.userId}
+            setUserId={props.setUserId}
+            userName={props.userName}
+            setUserName={props.setUserName}
+            login={props.login}
+            setLogin={props.setLogin} />
         </div>
-        <Logout
-          style={signOutSx}
-          userId={props.userId}
-          setUserId={props.setUserId}
-          userName={props.userName}
-          setUserName={props.setUserName}
-          login={props.login}
-          setLogin={props.setLogin}/>
       </Drawer>
     </div>
   )

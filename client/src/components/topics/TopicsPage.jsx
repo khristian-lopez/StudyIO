@@ -80,7 +80,7 @@ const TopicsPage = (props) => {
         <Box style={boxStyle}>
           {topics.map((topic) => (
             <Box item
-              
+
               sx={{ margin: "5px", padding: "5px", width: "300px" }}
               key={topic.id}
               onClick={(e) => handleOpen(e.target.name)}
@@ -123,9 +123,9 @@ const rowOneStyle = {
 }
 
 const searchStyle = {
-  display: 'flex', 
-  alignItems: 'flex-end', 
-  marginRight: "3px", 
+  display: 'flex',
+  alignItems: 'flex-end',
+  marginRight: "3px",
   mb: "auto"
 }
 
