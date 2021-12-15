@@ -8,12 +8,12 @@ import RightDrawer from './RightDrawer.jsx';
 import SingleMessage from './SingleMessage.jsx';
 import StudyDocs from './userFiles/StudyDocs.jsx';
 
-
 import "./Chatroom.scss";
 
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import Divider from '@mui/material/Divider';
+
 const connection_port = 'localhost:3000/'
 
 const rightDrawerWidth = 240;
@@ -86,7 +86,7 @@ let Chatroom = (props) => {
   const socket = useRef(null);
 
   useEffect(() => {
-    socket.current = io(connection_port)
+    socket.current = io.connect('/')
     socket.current.on('message_update', (data) => {
       console.log('Updating List');
       setMessageList(prevList => [...prevList, data]);
