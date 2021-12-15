@@ -5,6 +5,15 @@ const router = express.Router();
 
 const APIurl = 'http://studyio-api-523737087.us-west-1.elb.amazonaws.com';
 
+// Room Info
+router.get('/room', (req, res) => {
+  axios.get(`${APIurl}/room/${req.query.room_id}`)
+    .then(results => {
+      res.status(200).send(results.data)
+    })
+    .catch((err) => res.status(404).send(err));
+})
+
 // Messages
 router.get('/messages', (req, res) => {
   axios.get(`${APIurl}/rooms/${req.query.room_id}/messages`)
@@ -32,9 +41,9 @@ router.get('/events', (req, res) => {
 });
 
 router.post('/events', (req, res) => {
-  axios.get(`${APIurl}/rooms/${roomId}/events`)
+  axios.post(`${APIurl}/rooms/create_event`, req.body)
     .then((results) => {
-      res.status(201).send(results.data);
+      res.status(201).send('Successfully added event');
     })
     .catch((err) => res.status(404).send(err));
 });
@@ -49,19 +58,18 @@ router.get('/goals', (req, res) => {
 });
 
 router.post('/goals', (req, res) => {
-  axios.get(`${APIurl}/rooms/${roomId}/goals`)
-    .then((data) => {
-      res.status(201).send(data.data);
+  console.log(req.body)
+  axios.post(`${APIurl}/rooms/${req.body.room_id}/goals`, req.body.info)
+    .then((results) => {
+      res.status(201).send('Successfully added event');
     })
     .catch((err) => res.status(404).send(err));
 });
 
 // Members
 router.get('/members', (req, res) => {
-  console.log(req.query.room_id)
   axios.get(`${APIurl}/rooms/${req.query.room_id}/users`)
     .then((results) => {
-      console.log(results.data)
       res.status(200).send(results.data);
     })
     .catch((err) => res.status(404).send(err));

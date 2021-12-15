@@ -5,8 +5,6 @@ import Drawer from '@mui/material/Drawer';
 import Divider from '@mui/material/Divider';
 import Button from '@mui/material/Button';
 
-//const members = ['Edwin', 'Erik', 'Taite', 'Matt', 'Teresa', 'Brian', 'Rufus', 'Khris', 'Phi']
-
 const rightDrawerSx = {
   marginTop: '56px',
   padding: '12px',
