@@ -11,6 +11,7 @@ let roomsRowSx = {
 
 let roomSx = {
   float: 'left',
+  cursor: 'pointer',
 }
 
 let buttonSx = {
