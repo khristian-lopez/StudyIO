@@ -80,7 +80,7 @@ const RightDrawer = (props) => {
       </div>
       <Divider />
       <div>
-        <StudyDocs room={props.room} user={props.userId}/>
+        <StudyDocs room={props.roomData.id} user={props.userId}/>
       </div>
     </div>
   )
