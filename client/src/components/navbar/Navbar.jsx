@@ -26,7 +26,7 @@ let navSx = {
 let Navbar = (props) => {
   const navigate = useNavigate();
   const handleHomeClick = (e) => {
-    navigate('/')
+    navigate('/topics')
   }
 
   return (

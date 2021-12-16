@@ -6,11 +6,13 @@ const clientId =
   '321257595853-ompbh8dj5e9dg3rgo147ub5hkffsf3pt.apps.googleusercontent.com';
 
 function Logout(props) {
+  const navigate = useNavigate();
   const onSuccess = () => {
     // console.log('Logout made successfully');
     props.setUserName('');
     props.setUserId('');
     props.setLogin(false);
+    navigate('/topics');
   };
 
   return (
