@@ -8,12 +8,13 @@ import EditEvent from './form/EditEvent.jsx';
 import Divider from '@mui/material/Divider';
 import {List, ListItem, ListItemText, Button} from '@mui/material';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
+import EditIcon from '@mui/icons-material/Edit';
 
 const leftDrawerSx = {
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
-  marginTop: '56px',
+  marginTop: '70px',
   padding: '12px'
 }
 
@@ -30,12 +31,13 @@ const titleSx = {
   // marginBlockEnd: '1em',
   fontWeight: 'bold',
   marginBottom: '16px',
+  marginRight: "10px"
 }
 
 const listSx = {
   display: 'flex',
   flexDirection: 'column',
-  fontSize: '14px',
+  fontSize: '15px',
   marginBottom: '16px'
 }
 
@@ -157,30 +159,7 @@ const LeftDrawer = (props) => {
             <button value='event' onClick={handlePlusClick}>+</button> :
             <button value='event' onClick={handleCancelClick}>x</button>}
         </div>
-        <div style={listSx}>
-          {events.map((event, i) => (
-              <ListItem key={i} sx={{ alignItems: "baseline" }}>
-                <SingleEvent content={event} key={i} />
-                <Button
-                  onClick={() => {
-                    editEvents(event)
-                  }}
-                >
-                  Edit
-                </Button>
-                <Button
-                  onClick={() => {
-                    deleteEvents(event.id)
-                  }}
-                >
-                  Delete
-                </Button>
-              </ListItem>    
-          ))}
-          { editCurrentEvent ? (
-            <EditEvent editCurrentEvent={editCurrentEvent} setEditEvent={setEditEvent} currentEvent={currentEvent} updateEvent={updateEvent}/>
-          ) : null }
-          {addingEvent ?
+        {addingEvent ?
             <div>
               <form onSubmit={handleNewEvent}>
                 <input
@@ -201,6 +180,29 @@ const LeftDrawer = (props) => {
                 <button>Create</button>
               </form>
             </div> : null}
+        <div style={listSx}>
+          {events.map((event, i) => (
+              <ListItem key={i} sx={{ alignItems: "baseline" }}>
+                <SingleEvent content={event} key={i}/>
+                <Button size="small">
+                  <EditIcon size="small" 
+                    onClick={() => {
+                      editEvents(event)
+                    }}
+                  />
+                </Button>
+                <Button size="small">
+                  <RemoveCircleIcon size="small"
+                    onClick={() => {
+                      deleteEvents(event.id)
+                    }}
+                />
+                </Button>
+              </ListItem>    
+          ))}
+          { editCurrentEvent ? (
+          <EditEvent editCurrentEvent={editCurrentEvent} setEditEvent={setEditEvent} currentEvent={currentEvent} updateEvent={updateEvent}/>
+        ) : null }
         </div>
       </div>
 
@@ -211,18 +213,29 @@ const LeftDrawer = (props) => {
             <button value='goal' onClick={handlePlusClick}>+</button> :
             <button value='goal' onClick={handleCancelClick}>x</button>}
         </div>
+        {addingGoal ?
+            <div>
+              <form onSubmit={handleNewGoal}>
+                <input
+                  type='text' placeholder='Goal'
+                  value={newGoal.name}
+                  onChange={e => setNewGoal({ name: e.target.value })}>
+                </input>
+                <button>Create</button>
+              </form>
+            </div> : null}
         <div style={listSx}>
           {goals.map((goal, i) => (
           <ListItem key={i} sx={{ alignItems: "baseline" }}>
             <SingleGoal content={goal} key={i} />
-            <Button
+            <Button size="small"
              onClick={() => {
                editGoals(goal)
              }} 
             >
               Edit
             </Button>
-            <Button
+            <Button size="small"
               onClick={() => {
                 deleteGoal(goal.id)
               }}
@@ -235,17 +248,6 @@ const LeftDrawer = (props) => {
             <EditGoal editCurrentGoal={editCurrentGoal} setEditGoal={setEditGoal} currentGoal={currentGoal} updateGoal={updateGoal} /> 
           ) : null }
           <br></br>
-          {addingGoal ?
-            <div>
-              <form onSubmit={handleNewGoal}>
-                <input
-                  type='text' placeholder='Goal'
-                  value={newGoal.name}
-                  onChange={e => setNewGoal({ name: e.target.value })}>
-                </input>
-                <button>Create</button>
-              </form>
-            </div> : null}
         </div>
       </div>
       <div>
