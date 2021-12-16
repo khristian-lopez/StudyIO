@@ -42,28 +42,38 @@ const listSx = {
 }
 
 const LeftDrawer = (props) => {
-  const [events, setEvents] = useState([])
-  const [goals, setGoals] = useState([])
-  useEffect(() => {
-    axios.get('/api/chatroom/events', { params: { room_id: props.room } })
-      .then(results => setEvents(results.data))
-      .catch(err => console.log(err));
-
-    axios.get('/api/chatroom/goals', { params: { room_id: props.room } })
-      .then(results => setGoals(results.data))
-      .catch(err => console.log(err));
-
-  }, [])
-
+  const [events, setEvents] = useState([]);
   const [addingEvent, setAddEvent] = useState(false);
   const [editCurrentEvent, setEditEvent] = useState(false);
+  const [newEvent, setNewEvent] = useState({ id: '', name: '', event_date: '', event_time: '' });
+  const [currentEvent, setCurrentEvent] = useState({ id: '', name: '', event_date: '', event_time: '' });
 
+  const [goals, setGoals] = useState([]);
   const [addingGoal, setAddGoal] = useState(false);
   const [editCurrentGoal, setEditGoal] = useState(false);
+  const [newGoal, setNewGoal] = useState({ id: '', name: '' });
+  const [currentGoal, setCurrentGoal] = useState({ id: '', name: '' });
+
+  useEffect(() => {
+    axios.get('/api/chatroom/events', { params: { room_id: props.room } })
+      .then(results => {
+        setEvents(results.data)
+      })
+      .catch(err => {
+        console.log(err)
+      });
+
+    axios.get('/api/chatroom/goals', { params: { room_id: props.room } })
+      .then(results => {
+        setGoals(results.data)
+      })
+      .catch(err => {
+        console.log(err)
+      });
+  }, [newEvent, newGoal])
 
   const handlePlusClick = (e) => {
     e.preventDefault();
-    console.log(e.target.value)
     if (e.target.value === 'event') { setAddEvent(true); }
     else if (e.target.value === 'goal') { setAddGoal(true); }
   }
@@ -74,82 +84,83 @@ const LeftDrawer = (props) => {
     else if (e.target.value === 'goal') setAddGoal(false);
   }
 
-  const [newEvent, setNewEvent] = useState({ name: '', event_date: '', event_time: '' });
-  const [currentEvent, setCurrentEvent] = useState({ name: '', event_date: '', event_time: '' });
-
-  const [newGoal, setNewGoal] = useState({ name: '' });
-  const [currentGoal, setCurrentGoal] = useState({ name: '' });
-
   const handleNewEvent = (e) => {
     e.preventDefault();
-    console.log(newEvent)
+  
+    let user = Number(props.user)
+    let date = new Date(newEvent.event_date)
+    
     if (newEvent.name === '' || newEvent.event_date === '' || newEvent.event_time === '') return;
-    axios.post('/api/chatroom/events', { name: newEvent.title, user_id: props.user, room_id: props.room, event_date: newEvent.date, event_time: newEvent.time })
-      .then(results => console.log(results))
+    axios.post('/api/chatroom/events', { name: newEvent.name, user_id: user, room_id: props.room, event_date: date, event_time: newEvent.event_time })
+      .then(results => {
+        setNewEvent({ id: results.data.event_id, name: newEvent.name, event_date: newEvent.event_date, event_time: newEvent.event_time})
+      })
+      .then(() => {
+        setEvents([...events, newEvent]);
+        setAddEvent(false);
+        setNewEvent({ id: '', name: '', event_date: '', event_time: '' });
+      })
       .catch(err => console.log(err))
-    setEvents([...events, newEvent]);
-    setAddEvent(false);
-    setNewEvent({ name: '', event_date: '', event_time: '' });
   }
 
   const handleNewGoal = (e) => {
     e.preventDefault();
     if (newGoal.name === '') return;
     axios.post('/api/chatroom/goals', { room_id: props.room, info: { name: newGoal.name, user_id: props.user } })
-      .then(results => console.log(results))
+      .then(results => {
+        setNewGoal({id: results.data.goal_id, name: newGoal.name})
+      })
+      .then(() => {
+        setGoals([...goals, newGoal])
+        setAddGoal(false);
+        setNewGoal({ id: '', name: '' });
+      })
       .catch(err => console.log(err))
-    setGoals([...goals, newGoal])
-    setAddGoal(false);
-    setNewGoal({ name: '' });
   }
 
   // TODO: update & delete events
   const editEvents = (updatedEvent) => {
     setEditEvent(true);
-    setCurrentEvent({ id: updatedEvent.id, name: updatedEvent.name, event_date: updatedEvent.event_date, event_time: updatedEvent.event_time})
-    // axios.put(`/api/chatroom/events/${id}`)
-    //   .then(() => {
-    //     setEvents([...events])
-    //   })
-    //   .catch(err => console.log(err))
+    let newEventDate = updatedEvent.event_date.slice(0, 10)
+    setCurrentEvent({ id: updatedEvent.id, name: updatedEvent.name, event_date: newEventDate, event_time: updatedEvent.event_time})
   }
 
   const updateEvent = (id, updatedEvent) => {
     setEditEvent(false)
     setEvents(events.map(event => (event.id === id ? updatedEvent : event)))
   }
-  // const deleteEvents = (id) => {
-  //   axios.delete(`/api/chatroom/events/${id}`)
-  //     .then(() => {
-  //       setEvents([...events])
-  //     })
-  //     .catch(err => console.log(err))
-  // }
 
-  // TODO: update & delete goals
+  const deleteEvents = (id, i) => {
+    let newEvents = events;
+    newEvents.splice(i, 1);
+    axios.delete(`/api/chatroom/events/${id}/delete`)
+      .then(() => {
+        setEvents([...events])
+      })
+      .catch(err => console.log(err))
+  }
+
+  // TODO: delete goals
   const editGoals = (updatedGoal) => {
     setEditGoal(true);
     setCurrentGoal({ id: updatedGoal.id, name: updatedGoal.name })
-    // axios.put(`/api/chatroom/goals/${id}`)
-    //   .then(() => {
-    //     setGoals([...goals])
-    //   })
-    //   .catch(err => console.log(err))
   }
+
   const updateGoal = (id, updatedGoal) => {
     setEditGoal(false)
     setGoals(goals.map(goal => (goal.id === id ? updatedGoal : goal)))
   }
 
-  const deleteGoal = (id) => {
-    axios.delete(`/api/chatroom/goals/${id}`)
+  const deleteGoal = (id, i) => {
+    let newGoals = goals;
+    newGoals.splice(i, 1);
+    axios.delete(`/api/chatroom/goals/${id}/delete`)
       .then(() => {
-        setGoals([...goals])
+        setGoals([...newGoals])
       })
-      .catch(err => console.log(err))
+      .catch(err => console.log('DELETE GOAL: ', err))
   }
-  // console.log('events: ', events)
-  // console.log('goals: ', goals)
+  
   return (
     <div style={leftDrawerSx}>
       <div style={sectionSx}>
@@ -194,18 +205,17 @@ const LeftDrawer = (props) => {
                 <Button size="small">
                   <RemoveCircleIcon size="small"
                     onClick={() => {
-                      deleteEvents(event.id)
+                      deleteEvents(event.id, i)
                     }}
                 />
                 </Button>
               </ListItem>    
           ))}
           { editCurrentEvent ? (
-          <EditEvent editCurrentEvent={editCurrentEvent} setEditEvent={setEditEvent} currentEvent={currentEvent} updateEvent={updateEvent}/>
-        ) : null }
+            <EditEvent editCurrentEvent={editCurrentEvent} setEditEvent={setEditEvent} currentEvent={currentEvent} updateEvent={updateEvent}/>
+          ) : null }
         </div>
       </div>
-
       <div style={sectionSx}>
         <div>
           <span style={titleSx}>Goals</span>
@@ -237,7 +247,7 @@ const LeftDrawer = (props) => {
             </Button>
             <Button size="small"
               onClick={() => {
-                deleteGoal(goal.id)
+                deleteGoal(goal.id, i)
               }}
             >
               Delete

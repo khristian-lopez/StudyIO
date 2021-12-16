@@ -43,24 +43,24 @@ router.get('/events', (req, res) => {
 router.post('/events', (req, res) => {
   axios.post(`${APIurl}/rooms/create_event`, req.body)
     .then((results) => {
-      res.status(201).send('Successfully added event');
+      res.status(201).send(results.data);
     })
     .catch((err) => res.status(404).send(err));
 });
 
 // update event - pass in id
-router.put('/events', (req, res) => {
-  axios.put(`${APIurl}/blahblah`)
+router.put('/events/:eventId/update', (req, res) => {
+  axios.put(`${APIurl}/events/${req.params.eventId}`, req.body)
     .then((results) => {
-      res.status(201).send(`Successfully updated event ${id}`)
+      res.status(201).send(`Successfully updated event`)
     })
     .catch((err) => res.status(404).send(err))
 })
 // delete event - pass in id
-router.delete('/events', (req, res) => {
-  axios.delete(`${APIurl}/blahblah`)
+router.delete('/events/:eventId/delete', (req, res) => {
+  axios.delete(`${APIurl}/events/${req.params.eventId}`)
     .then((results) => {
-      res.status(201).send(`Successfully deleted event ${id}`)
+      res.status(201).send(`Successfully deleted event`)
     })
     .catch((err) => res.status(404).send(err))
 })
@@ -78,26 +78,25 @@ router.post('/goals', (req, res) => {
   console.log(req.body)
   axios.post(`${APIurl}/rooms/${req.body.room_id}/goals`, req.body.info)
     .then((results) => {
-      res.status(201).send('Successfully added event');
+      res.status(201).send(results.data);
     })
     .catch((err) => res.status(404).send(err));
 });
 
 // update goal - pass in id
-router.put('/goals', (req, res) => {
-  axios.put(`${APIurl}/blahblah`)
+router.put('/goals/:goalId/update', (req, res) => {
+  axios.put(`${APIurl}/goals/${req.params.goalId}`, req.body)
     .then((results) => {
-      res.status(201).send(`Successfully updated goal ${id}`)
+      res.status(201).send(`Successfully updated goal`)
     })
-    .catch(err => res.status(404).send(err))
+    .catch(err => res.status(404).send(err.response))
 })
 
 // delete goal - pass in id
-router.delete('/goals', (req, res) => {
-  let id = req.params.goal_id;
-  axios.delete(`${APIurl}/rooms/${req.body.room_id}/goals/${id}`)
+router.delete('/goals/:goalId/delete', (req, res) => {
+  axios.delete(`${APIurl}/goals/${req.params.goalId}`)
     .then((results) => {
-      res.status(201).send(`Successfully deleted goal ${id}`)
+      res.status(201).send(`Successfully deleted goal`)
     })
     .catch(err => res.status(404).send(err))
 })

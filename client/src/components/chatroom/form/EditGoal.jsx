@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
+import axios from 'axios';
 
 const EditGoal = (props) => {
     const [goal, setGoal] = useState(props.currentGoal)
@@ -14,7 +15,16 @@ const EditGoal = (props) => {
         const {name, value} = e.target;
         setGoal({ ...goal, [name]: value });
     }
-    console.log('current goal: ', goal)
+
+    const updateDatabaseGoal = (id, goal) => {
+        let goal_id = id.toString()
+        axios.put(`/api/chatroom/goals/${goal_id}/update`, { name: goal })
+            .then(() => {
+                console.log('success')
+            })
+            .catch(err => console.log(err))
+    }
+    
     return (
         <div>
             <h4>Edit Goal</h4>
@@ -31,6 +41,7 @@ const EditGoal = (props) => {
                     onClick={e => {
                         e.preventDefault()
                         props.updateGoal(goal.id, goal)
+                        updateDatabaseGoal(goal.id, goal.name)
                     }}>
                         Save
                 </Button>
