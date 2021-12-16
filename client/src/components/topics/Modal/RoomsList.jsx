@@ -52,7 +52,7 @@ const RoomsList = ({ topicId, search, user, open, setOpen }) => {
                         {rooms.map((room, i) => ( // might need to add room.members.includes(user) to conditional
                             !room['is_private'] ?
                                 <div key={room.id}>
-                                    <ListItem sx={style} key={room.id} >
+                                    <ListItem key={room.id} >
                                         <ListItemAvatar >
                                             {room.thumbnail ? <Avatar src={room.thumbnail} sx={imageStyle} />
                                                 : <Avatar style={imageStyle} alt='https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png' />}
@@ -60,11 +60,11 @@ const RoomsList = ({ topicId, search, user, open, setOpen }) => {
                                         <ListItemText sx={style} >
                                             {room.name}
                                         </ListItemText>
-                                        <div>{userCounts[i]}/{room.max_users}</div>
+                                        {userCounts[i]}/{room.max_users}
                                         <Button
-                                            sx={{ marginRight: "10px" }}
+                                            sx={{ marginLeft: "5px", backgroundColor: "#f0c44f", color: "white" }}
                                             size="medium"
-                                            variant="outlined"
+                                            variant="contained"
                                             key={room.id}
                                             onClick={() => { user ? window.location.href = window.location.origin + `/chatroom?room=${room.id}` : setOpen(true) }}
                                         >
@@ -94,8 +94,8 @@ const loadStyle = {
     margin: "auto",
     padding: "10px",
     height: "350px",
-    width: "380px",
-    overflowX: "visible"
+    width: "390px",
+    overflowX: "visible",
 }
 
 const imageStyle = {
@@ -108,6 +108,6 @@ const imageStyle = {
 const innerGrid = {
     border: "1px solid #000",
     height: "350px",
-    width: "380px",
-    overflowY: "scroll"
+    width: "390px",
+    overflowY: "scroll",
 }

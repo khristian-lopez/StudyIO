@@ -67,7 +67,7 @@ const TopicsModal = ({openModal, topicId, topics, handleClose, user, search, ope
                             >
                                 Create a new study room?
                             </Typography>
-                            <Button sx={{ width: "200px" }}
+                            <Button sx={{ width: "200px", backgroundColor: "#f0c44f", color: "white" }}
                                 variant="contained"
                                 size="large"
                                 onClick={e => openForm(e)}
@@ -95,7 +95,7 @@ const boxStyle = {
     width: 400,
     height: 630,
     border: "1px solid #000",
-    backgroundColor: "white",
+    backgroundColor: "#FBFAF9",
     gap: "20px",
     spacing: 20,
 }
