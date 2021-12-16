@@ -109,13 +109,13 @@ const RoomForm = ({ user, topicId }) => {
                     exclusive
                     onChange={handleInputChange}
                     value={inputs.setting}
-                    sx={{ backgroundColor: "#ffdc7d" }}
+                    sx={{ backgroundColor: "#f0c44f" }}
                 >
                     <ToggleButton
                         label="Public"
                         name="setting"
                         value="public"
-                        sx={{ color: "white", backgroundColor: "#ffdc7d" }}
+                        sx={{ color: "white", backgroundColor: "#f0c44f" }}
                     >
                         Public
                     </ToggleButton>
@@ -123,7 +123,7 @@ const RoomForm = ({ user, topicId }) => {
                         label="Private"
                         name="setting"
                         value="private"
-                        sx={{ color: "white", backgroundColor: "#ffdc7d" }}
+                        sx={{ color: "white", backgroundColor: "#f0c44f" }}
                     >
                         Private
                     </ToggleButton>
@@ -207,5 +207,5 @@ const buttonStyle = {
     marginTop: "20px",
     marginBottom: "10px",
     width: "200px",
-    backgroundColor: "#ffdc7d"
+    backgroundColor: "#f0c44f"
 }

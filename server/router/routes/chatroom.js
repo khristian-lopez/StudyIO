@@ -94,7 +94,8 @@ router.put('/goals', (req, res) => {
 
 // delete goal - pass in id
 router.delete('/goals', (req, res) => {
-  axios.delete(`${APIurl}/blahblah`)
+  let id = req.params.goal_id;
+  axios.delete(`${APIurl}/rooms/${req.body.room_id}/goals/${id}`)
     .then((results) => {
       res.status(201).send(`Successfully deleted goal ${id}`)
     })

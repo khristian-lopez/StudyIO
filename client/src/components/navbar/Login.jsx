@@ -31,6 +31,7 @@ function Login(props) {
             props.setUserId(response.data.id);
             props.setUserName(res.profileObj.name);
             props.setLogin(true);
+            debugger;
           } else {
             alert('Something went wrong! Please try again in a few minutes.')
           }

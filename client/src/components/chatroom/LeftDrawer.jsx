@@ -141,13 +141,13 @@ const LeftDrawer = (props) => {
     setGoals(goals.map(goal => (goal.id === id ? updatedGoal : goal)))
   }
 
-  // const deleteGoal = (id) => {
-  //   axios.delete(`/api/chatroom/goals/${id}`)
-  //     .then(() => {
-  //       setGoals([...goals])
-  //     })
-  //     .catch(err => console.log(err))
-  // }
+  const deleteGoal = (id) => {
+    axios.delete(`/api/chatroom/goals/${id}`)
+      .then(() => {
+        setGoals([...goals])
+      })
+      .catch(err => console.log(err))
+  }
   // console.log('events: ', events)
   // console.log('goals: ', goals)
   return (
