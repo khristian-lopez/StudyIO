@@ -40,4 +40,11 @@ router.post('/:topicId/create', (req, res) => { // POST /rooms/:topic_id/create
     .catch((err) => res.send(err).status(500));
 });
 
+router.put('/new-invite-key', (req, res) => {
+  axios.put(url + '/rooms/new-invite-key', req.body)
+  .then(() => {
+    res.sendStatus(204);
+  })
+})
+
 module.exports = router;
