@@ -47,7 +47,7 @@ const TopicsPage = (props) => {
 
   return (
     <div style={containerStyle}>
-        <Grid sx={{ margin: "70px 60px 50px 60px" }}>
+        <Grid sx={{ margin: "90px 60px 40px 60px" }}>
           <Navbar
             userId={props.userId}
             setUserId={props.setUserId}

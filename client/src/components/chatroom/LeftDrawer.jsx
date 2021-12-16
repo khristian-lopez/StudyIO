@@ -2,16 +2,19 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import SingleEvent from './SingleEvent.jsx';
 import SingleGoal from './SingleGoal.jsx';
+import EditGoal from './form/EditGoal.jsx';
+import EditEvent from './form/EditEvent.jsx';
 
 import Divider from '@mui/material/Divider';
-
+import {List, ListItem, ListItemText, Button} from '@mui/material';
+import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 
 const leftDrawerSx = {
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
   marginTop: '56px',
-  padding: '12px',
+  padding: '12px'
 }
 
 const sectionSx = {
@@ -33,7 +36,7 @@ const listSx = {
   display: 'flex',
   flexDirection: 'column',
   fontSize: '14px',
-  marginBottom: '16px',
+  marginBottom: '16px'
 }
 
 const LeftDrawer = (props) => {
@@ -50,9 +53,11 @@ const LeftDrawer = (props) => {
 
   }, [])
 
-
   const [addingEvent, setAddEvent] = useState(false);
+  const [editCurrentEvent, setEditEvent] = useState(false);
+
   const [addingGoal, setAddGoal] = useState(false);
+  const [editCurrentGoal, setEditGoal] = useState(false);
 
   const handlePlusClick = (e) => {
     e.preventDefault();
@@ -68,7 +73,10 @@ const LeftDrawer = (props) => {
   }
 
   const [newEvent, setNewEvent] = useState({ name: '', event_date: '', event_time: '' });
+  const [currentEvent, setCurrentEvent] = useState({ name: '', event_date: '', event_time: '' });
+
   const [newGoal, setNewGoal] = useState({ name: '' });
+  const [currentGoal, setCurrentGoal] = useState({ name: '' });
 
   const handleNewEvent = (e) => {
     e.preventDefault();
@@ -93,20 +101,85 @@ const LeftDrawer = (props) => {
     setNewGoal({ name: '' });
   }
 
+  // TODO: update & delete events
+  const editEvents = (updatedEvent) => {
+    setEditEvent(true);
+    setCurrentEvent({ id: updatedEvent.id, name: updatedEvent.name, event_date: updatedEvent.event_date, event_time: updatedEvent.event_time})
+    // axios.put(`/api/chatroom/events/${id}`)
+    //   .then(() => {
+    //     setEvents([...events])
+    //   })
+    //   .catch(err => console.log(err))
+  }
+
+  const updateEvent = (id, updatedEvent) => {
+    setEditEvent(false)
+    setEvents(events.map(event => (event.id === id ? updatedEvent : event)))
+  }
+  // const deleteEvents = (id) => {
+  //   axios.delete(`/api/chatroom/events/${id}`)
+  //     .then(() => {
+  //       setEvents([...events])
+  //     })
+  //     .catch(err => console.log(err))
+  // }
+
+  // TODO: update & delete goals
+  const editGoals = (updatedGoal) => {
+    setEditGoal(true);
+    setCurrentGoal({ id: updatedGoal.id, name: updatedGoal.name })
+    // axios.put(`/api/chatroom/goals/${id}`)
+    //   .then(() => {
+    //     setGoals([...goals])
+    //   })
+    //   .catch(err => console.log(err))
+  }
+  const updateGoal = (id, updatedGoal) => {
+    setEditGoal(false)
+    setGoals(goals.map(goal => (goal.id === id ? updatedGoal : goal)))
+  }
+
+  // const deleteGoal = (id) => {
+  //   axios.delete(`/api/chatroom/goals/${id}`)
+  //     .then(() => {
+  //       setGoals([...goals])
+  //     })
+  //     .catch(err => console.log(err))
+  // }
+  // console.log('events: ', events)
+  // console.log('goals: ', goals)
   return (
     <div style={leftDrawerSx}>
-
       <div style={sectionSx}>
-
         <div>
           <span style={titleSx}>Events</span>
           {addingEvent === false ?
             <button value='event' onClick={handlePlusClick}>+</button> :
             <button value='event' onClick={handleCancelClick}>x</button>}
         </div>
-
         <div style={listSx}>
-          {events.map((event, i) => <SingleEvent content={event} key={i} />)}
+          {events.map((event, i) => (
+              <ListItem key={i} sx={{ alignItems: "baseline" }}>
+                <SingleEvent content={event} key={i} />
+                <Button
+                  onClick={() => {
+                    editEvents(event)
+                  }}
+                >
+                  Edit
+                </Button>
+                <Button
+                  onClick={() => {
+                    deleteEvents(event.id)
+                  }}
+                >
+                  Delete
+                </Button>
+              </ListItem>    
+          ))}
+          { editCurrentEvent ? (
+            <EditEvent editCurrentEvent={editCurrentEvent} setEditEvent={setEditEvent} currentEvent={currentEvent} updateEvent={updateEvent}/>
+          ) : null }
           {addingEvent ?
             <div>
               <form onSubmit={handleNewEvent}>
@@ -129,20 +202,39 @@ const LeftDrawer = (props) => {
               </form>
             </div> : null}
         </div>
-
       </div>
 
       <div style={sectionSx}>
-
         <div>
           <span style={titleSx}>Goals</span>
           {addingGoal === false ?
             <button value='goal' onClick={handlePlusClick}>+</button> :
             <button value='goal' onClick={handleCancelClick}>x</button>}
         </div>
-
         <div style={listSx}>
-          {goals.map((goal, i) => <SingleGoal content={goal} key={i} />)}
+          {goals.map((goal, i) => (
+          <ListItem key={i} sx={{ alignItems: "baseline" }}>
+            <SingleGoal content={goal} key={i} />
+            <Button
+             onClick={() => {
+               editGoals(goal)
+             }} 
+            >
+              Edit
+            </Button>
+            <Button
+              onClick={() => {
+                deleteGoal(goal.id)
+              }}
+            >
+              Delete
+            </Button>
+          </ListItem>
+          ))}
+          { editCurrentGoal ? (
+            <EditGoal editCurrentGoal={editCurrentGoal} setEditGoal={setEditGoal} currentGoal={currentGoal} updateGoal={updateGoal} /> 
+          ) : null }
+          <br></br>
           {addingGoal ?
             <div>
               <form onSubmit={handleNewGoal}>
@@ -155,9 +247,7 @@ const LeftDrawer = (props) => {
               </form>
             </div> : null}
         </div>
-
       </div>
-
       <div>
         <h3>Memes</h3>
       </div>

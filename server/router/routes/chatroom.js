@@ -48,6 +48,23 @@ router.post('/events', (req, res) => {
     .catch((err) => res.status(404).send(err));
 });
 
+// update event - pass in id
+router.put('/events', (req, res) => {
+  axios.put(`${APIurl}/blahblah`)
+    .then((results) => {
+      res.status(201).send(`Successfully updated event ${id}`)
+    })
+    .catch((err) => res.status(404).send(err))
+})
+// delete event - pass in id
+router.delete('/events', (req, res) => {
+  axios.delete(`${APIurl}/blahblah`)
+    .then((results) => {
+      res.status(201).send(`Successfully deleted event ${id}`)
+    })
+    .catch((err) => res.status(404).send(err))
+})
+
 // Goals
 router.get('/goals', (req, res) => {
   axios.get(`${APIurl}/rooms/${req.query.room_id}/goals`)
@@ -65,6 +82,24 @@ router.post('/goals', (req, res) => {
     })
     .catch((err) => res.status(404).send(err));
 });
+
+// update goal - pass in id
+router.put('/goals', (req, res) => {
+  axios.put(`${APIurl}/blahblah`)
+    .then((results) => {
+      res.status(201).send(`Successfully updated goal ${id}`)
+    })
+    .catch(err => res.status(404).send(err))
+})
+
+// delete goal - pass in id
+router.delete('/goals', (req, res) => {
+  axios.delete(`${APIurl}/blahblah`)
+    .then((results) => {
+      res.status(201).send(`Successfully deleted goal ${id}`)
+    })
+    .catch(err => res.status(404).send(err))
+})
 
 // Members
 router.get('/members', (req, res) => {
