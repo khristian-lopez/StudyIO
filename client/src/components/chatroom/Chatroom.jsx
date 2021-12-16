@@ -13,8 +13,6 @@ import "./Chatroom.scss";
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import Divider from '@mui/material/Divider';
-import Button from '@mui/material/Button';
-import SendIcon from '@mui/icons-material/Send';
 
 const connection_port = 'localhost:3000/'
 
@@ -195,8 +193,6 @@ let Chatroom = (props) => {
             >
             </input>
             <button>Send</button>
-            {/* <Button size="medium" variant="text" startIcon={<SendIcon />}>
-            </Button> */}
           </form>
         </div>
       </div>

@@ -27,7 +27,7 @@ const RoomsList = ({ topicId, search, user }) => {
                 .catch(err => console.log(err))
         }
     }, [])
-
+    console.log(rooms.thumbnail)
     return (
         <Box>
             { loading ?
@@ -44,7 +44,7 @@ const RoomsList = ({ topicId, search, user }) => {
                         <ListItem sx={style} key={room.id} >
                             <ListItemAvatar >
                                 {room.thumbnail ? <Avatar src={room.thumbnail} sx={imageStyle} />
-                                : <Avatar style={imageStyle} alt='https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png'/>}
+                                : <Avatar style={imageStyle} />}
                             </ListItemAvatar >
                             <ListItemText sx={style} >
                                 {room.name}
