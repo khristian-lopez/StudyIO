@@ -56,9 +56,11 @@ io.on('connection', (socket) => {
   })
 })
 
-app.get('/server/:roomId', (req, res) => {
-  console.log(req.params.roomId);
-  const userCount = io.sockets.adapter.rooms.get(req.params.roomId);
+app.get('/server/rooms/users', (req, res) => {
+  const userCount = req.query.roomIDs.map(roomID => {
+    let userCount = io.sockets.adapter.rooms.get(roomID);
+    return userCount ? userCount.size : 0
+  });
   console.log(userCount);
-  res.status(200).send(userCount ? userCount : []);
+  res.status(200).send(userCount);
 })
