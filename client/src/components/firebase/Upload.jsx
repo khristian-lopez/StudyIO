@@ -14,6 +14,7 @@ let Upload = (props) => {
   }
 
   const formHandler = (e) => {
+    console.log('file has been sent');
     e.preventDefault();
     const file = e.target[0].files[0]
     console.log(file)
@@ -61,7 +62,7 @@ let Upload = (props) => {
         <div>
           <form onSubmit={formHandler}>
             <input type="file" className="input" />
-            <Button variant="outlined"
+            <Button variant="outlined" type="submit"
             >
               Upload
             </Button>
