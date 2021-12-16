@@ -15,10 +15,10 @@ let Upload = (props) => {
 
   const formHandler = (e) => {
     console.log('file has been sent');
-    e.preventDefault();
     const file = e.target[0].files[0]
     console.log(file)
     uploadFile(file)
+    e.preventDefault();
   }
 
   const uploadFile = (file) => {
