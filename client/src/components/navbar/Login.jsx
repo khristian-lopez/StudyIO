@@ -21,24 +21,24 @@ function Login(props) {
     .then(function (response) {
       // console.log('google login reponse', response)
       if (response.data.code) {
-        //user already exists. send axios to log in and send back id information
-        axios.post(`${config.api_url}/users/auth`, {
-          email: res.profileObj.email,
-          googleId: res.profileObj.googleId
-        })
-        .then(function (response) {
-          if (typeof(response.data) === "object"){
-            props.setUserId(response.data.id);
-            props.setUserName(res.profileObj.name);
-            props.setLogin(true);
-          } else {
-            alert('Something went wrong! Please try again in a few minutes.')
-          }
-        })
-        .catch(function (error) {
-          alert('Something went wrong! Please try again in a few minutes.')
-          console.log(error);
-        });
+        // //user already exists. send axios to log in and send back id information
+        // axios.post(`${config.api_url}/users/auth`, {
+        //   email: res.profileObj.email,
+        //   googleId: res.profileObj.googleId
+        // })
+        // .then(function (response) {
+        //   if (typeof(response.data) === "object"){
+        //     props.setUserId(response.data.id);
+        //     props.setUserName(res.profileObj.name);
+        //     props.setLogin(true);
+        //   } else {
+        //     alert('Something went wrong! Please try again in a few minutes. (else)')
+        //   }
+        // })
+        // .catch(function (error) {
+        //   alert('Something went wrong! Please try again in a few minutes. (first Castch')
+        //   console.log(error);
+        // });
       } else if (response.data.command){
         // create user was successful. send axios request to get id
         axios.post(`${config.api_url}/users/auth`, {
@@ -55,11 +55,29 @@ function Login(props) {
           }
         })
       } else {
-        alert('Something went wrong! Please try again in a few minutes.')
+        alert('Something went wrong! Please try again in a few minutes.(second catch)')
       }
     })
     .catch(function (error) {
-      alert('Something went wrong! Please try again in a few minutes.')
+      //user already exists. send axios to log in and send back id information
+      axios.post(`${config.api_url}/users/auth`, {
+        email: res.profileObj.email,
+        googleId: res.profileObj.googleId
+      })
+      .then(function (response) {
+        if (typeof(response.data) === "object"){
+          props.setUserId(response.data.id);
+          props.setUserName(res.profileObj.name);
+          props.setLogin(true);
+        } else {
+          alert('Something went wrong! Please try again in a few minutes. (else)')
+        }
+      })
+      .catch(function (error) {
+        alert('Something went wrong! Please try again in a few minutes. (first Castch')
+        console.log(error);
+      });
+      // alert('Something went wrong! Please try again in a few minutes. (last catch)')
       console.log(error);
     })
   };
