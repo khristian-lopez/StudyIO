@@ -62,7 +62,9 @@ let Upload = (props) => {
         <div>
           <form onSubmit={formHandler}>
             <input type="file" className="input" />
-            <Button variant="outlined" type="submit"
+            <Button
+              variant="outlined" 
+              type="submit"
             >
               Submit
             </Button>
