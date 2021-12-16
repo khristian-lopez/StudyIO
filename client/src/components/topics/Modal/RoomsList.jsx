@@ -3,7 +3,7 @@ import { Avatar, Button, CircularProgress } from '@mui/material';
 import { Box, Grid, List, ListItem, ListItemText, ListItemAvatar } from '@mui/material';
 import axios from 'axios';
 
-const RoomsList = ({ topicId, search, user, opem, setOpen }) => {
+const RoomsList = ({ topicId, search, user, open, setOpen }) => {
     const [rooms, setRooms] = useState([]);
     const [loading, setLoading] = useState(true);
     const [userCounts, setUserCounts] = useState([]);
@@ -60,7 +60,11 @@ const RoomsList = ({ topicId, search, user, opem, setOpen }) => {
                                         <ListItemText sx={style} >
                                             {room.name}
                                         </ListItemText>
+<<<<<<< HEAD
                                         <div>{userCounts[i]}/{room.max_users}</div>
+=======
+                                        <div style={style}>{userCounts[i]}</div>
+>>>>>>> main
                                         <Button
                                             sx={{ marginRight: "10px" }}
                                             size="medium"

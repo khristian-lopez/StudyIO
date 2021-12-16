@@ -3,9 +3,10 @@ import axios from 'axios';
 import StudyDocs from './userFiles/StudyDocs.jsx';
 import Drawer from '@mui/material/Drawer';
 import Divider from '@mui/material/Divider';
+import Button from '@mui/material/Button';
 
 const rightDrawerSx = {
-  marginTop: '56px',
+  marginTop: '70px',
   padding: '12px',
 }
 
@@ -13,8 +14,9 @@ const titleSx = {
   fontSize: '1.17em',
   // marginBlockStart: '1em',
   // marginBlockEnd: '1em',
+  bottom: "0",
   fontWeight: 'bold',
-  marginBottom: '16px',
+  marginBottom: '16px'
 }
 
 const RightDrawer = (props) => {
@@ -28,10 +30,10 @@ const RightDrawer = (props) => {
 
   return (
     <div style={rightDrawerSx}>
-      <div style={{ marginBottom: '24px' }}>
+      <div style={{ marginBottom: '24px', marginLeft: '10px' }}>
         <div style={titleSx}>
           <span>Members</span>
-          <button>Invite</button>
+          <Button sx={buttonStyle} size="small" variant="outlined">Invite</Button>
         </div>
         {members.length !== 0 ? members.map(member =>
           <li key={member.first_name+member.last_name}>
@@ -40,10 +42,18 @@ const RightDrawer = (props) => {
       </div>
       <Divider />
       <div>
-        <StudyDocs room={props.room} />
+        <StudyDocs room={props.room} user={props.user}/>
       </div>
     </div>
   )
 }
 
 export default RightDrawer;
+
+const buttonStyle = {
+  marginLeft: "10px",
+  fontSize: "14px",
+  maxHeight: "28px",
+  maxWidth: "20px",
+  overflow: "hidden"
+}
