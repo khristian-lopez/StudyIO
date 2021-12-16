@@ -60,7 +60,7 @@ const RoomsList = ({ topicId, search, user, opem, setOpen }) => {
                                         <ListItemText sx={style} >
                                             {room.name}
                                         </ListItemText>
-                                        <div>{userCounts[i]}</div>
+                                        <div>{userCounts[i]}/{room.max_users}</div>
                                         <Button
                                             sx={{ marginRight: "10px" }}
                                             size="medium"
