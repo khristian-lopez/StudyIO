@@ -18,7 +18,7 @@ const EditGoal = (props) => {
     return (
         <div>
             <h4>Edit Goal</h4>
-            <Box>
+            <Box sx={style}>
                 <TextField 
                     variant="standard"
                     name="name"
@@ -47,5 +47,9 @@ const EditGoal = (props) => {
     )
 }
 
-
 export default EditGoal;
+
+const style = {
+    display: "flex",
+    gap: "5px"
+}
