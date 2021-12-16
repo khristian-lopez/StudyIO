@@ -56,7 +56,7 @@ let Account = (props) => {
     })
     // remove from your rooms and add to archived rooms
     setArchivedRooms([...archivedRooms, room])
-    setYourRooms(yourRooms.filter(singleRoom => singleRoom.roomId !== room.roomId))
+    setYourRooms(yourRooms.filter(singleRoom => singleRoom.id !== room.id))
   };
 
   const handleReactivate = (room) => {
@@ -65,7 +65,7 @@ let Account = (props) => {
     })
     // remove from archived rooms and add to your rooms
     setYourRooms([...yourRooms, room])
-    setArchivedRooms(archivedRooms.filter(singleRoom => singleRoom.roomId !== room.roomId))
+    setArchivedRooms(archivedRooms.filter(singleRoom => singleRoom.id !== room.id))
   };
 
   return (

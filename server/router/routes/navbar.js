@@ -34,7 +34,7 @@ router.get('/rooms', (req, res) => {
 
 router.put('/archive', (req, res) => {
   console.log(req.body.room_id)
-  axios.put(`${APIurl}/toggle-archive`, { room_id: req.body.roomId }).then((results) => {
+  axios.put(`${APIurl}/toggle-archive`, { room_id: req.body.room_id }).then((results) => {
     res.status(204).send('put archive');
   })
     .catch((err) => res.send(err).status(404));
@@ -42,7 +42,7 @@ router.put('/archive', (req, res) => {
 
 router.put('/reactivate', (req, res) => {
   console.log(req.body)
-  axios.put(`${APIurl}/toggle-archive`, { room_id: req.body.roomId }).then((results) => {
+  axios.put(`${APIurl}/toggle-archive`, { room_id: req.body.room_id }).then((results) => {
     res.status(204).send('put reactivated');
   })
     .catch((err) => res.send(err).status(404));
