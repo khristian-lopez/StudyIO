@@ -32,7 +32,7 @@ const centerBlockSx = {
 
 const inputSx = {
   height: '32px',
-  width: '300px',
+  width: '500px',
   borderRadius: '6px',
   paddingLeft: '16px',
   color: '#333',
@@ -191,12 +191,12 @@ let Chatroom = (props) => {
               className="inputBox"
               type='text' placeholder='Message...'
               value={message}
-              onChange={e => setMessage(e.target.value)}>
+              onChange={e => setMessage(e.target.value)}
+            >
             </input>
             <button>Send</button>
           </form>
         </div>
-
       </div>
     </Box>
   )
