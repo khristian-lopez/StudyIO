@@ -51,21 +51,21 @@ let Account = (props) => {
   }, [])
 
   const handleArchive = (room) => {
-    axios.put('/api/navbar/archive', { room_id: room.roomId }).then(results => {
+    axios.put('/api/navbar/archive', { room_id: room.id }).then(results => {
       console.log(results.data)
     })
     // remove from your rooms and add to archived rooms
     setArchivedRooms([...archivedRooms, room])
-    setYourRooms(yourRooms.filter(singleRoom => singleRoom.roomId !== room.roomId))
+    setYourRooms(yourRooms.filter(singleRoom => singleRoom.id !== room.id))
   };
 
   const handleReactivate = (room) => {
-    axios.put('/api/navbar/archive', { room_id: room.roomId }).then(results => {
+    axios.put('/api/navbar/reactivate', { room_id: room.id }).then(results => {
       console.log(results.data)
     })
     // remove from archived rooms and add to your rooms
     setYourRooms([...yourRooms, room])
-    setArchivedRooms(archivedRooms.filter(singleRoom => singleRoom.roomId !== room.roomId))
+    setArchivedRooms(archivedRooms.filter(singleRoom => singleRoom.id !== room.id))
   };
 
   return (

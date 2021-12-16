@@ -15,13 +15,17 @@ let StudyDocs = (props) => {
   const [docs, setDocs] = useState([]);
 
   useEffect(() => {
-    axios.get('/api/files/', { params: { room_id: props.room } }).then(results => {
-      setDocs(results.data)
-    })
+    axios.get('/api/files/', { params: { room_id: props.room } })
+      .then(results => {
+        setDocs(results.data)
+      })
+      .catch(err => console.log(err))
   }, [])
 
   const handleUpload = (file) => {
     axios.post('/api/files', { room_id: props.room, info: { url: file.url, name: file.name, user_id: props.user } })
+      .then(results => console.log(results))
+      .catch(err => console.log(err))
     setDocs([...docs, file])
   }
 
