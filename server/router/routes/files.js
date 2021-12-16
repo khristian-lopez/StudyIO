@@ -3,7 +3,7 @@ const axios = require('axios');
 
 const router = express.Router();
 
-const APIurl = 'http://studyio-api-523737087.us-west-1.elb.amazonaws.com';
+const APIurl = require('../../config.js').api_url;
 
 router.get('/', (req, res) => {
   axios.get(`${APIurl}/rooms/${req.query.room_id}/files`).then((results) => {

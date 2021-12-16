@@ -60,8 +60,8 @@ const RightDrawer = (props) => {
         })
         .catch((err) => {console.log('Invite Key Error'); console.log(err)});
     } else {
-      alert('Invite copied to clipboard');
       navigator.clipboard.writeText(currentURL.host + currentURL.pathname + searchParams)
+      alert('Invite copied to clipboard');
     }
   }
 
@@ -79,7 +79,7 @@ const RightDrawer = (props) => {
       </div>
       <Divider />
       <div>
-        <StudyDocs room={props.room} user={props.userId}/>
+        <StudyDocs room={props.roomData.id} user={props.userId}/>
       </div>
     </div>
   )
