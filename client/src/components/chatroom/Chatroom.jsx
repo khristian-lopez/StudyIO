@@ -89,7 +89,7 @@ let Chatroom = (props) => {
   useEffect(() => {
     socket.current = io.connect('/')
     socket.current.on('message_update', (data) => {
-      console.log('Updating List');
+      // console.log('Updating List');
       setMessageList(prevList => [...prevList, data]);
     })
 
@@ -113,7 +113,7 @@ let Chatroom = (props) => {
 
   useEffect(() => {
     if (!roomId) { return }
-    console.log('Changing to room: ' + roomId);
+    // console.log('Changing to room: ' + roomId);
     socket.current.emit('join_room', roomId)
   }, [roomId])
 
@@ -165,7 +165,7 @@ let Chatroom = (props) => {
         variant="permanent"
         sx={{ maxHeight: '100vh', '& .MuiDrawer-paper': { boxSizing: 'border-box', width: rightDrawerWidth }, }}
       >
-        <RightDrawer roomData={roomData} userId={props.userId} />
+        {Object.keys(roomData).length ? <RightDrawer roomData={roomData} userId={props.userId} /> : null}
       </Drawer>
 
       <div

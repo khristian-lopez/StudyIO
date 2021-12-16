@@ -26,7 +26,7 @@ const RightDrawer = (props) => {
   useEffect(() => {
     if (!props.roomData.id) { return }
 
-    console.log(props.roomData);
+    // console.log(props.roomData);
     axios.get('/api/chatroom/members', { params: { room_id: props.roomData.id } })
       .then(results => setMembers(results.data))
       .catch(err => console.log(err));
@@ -42,21 +42,21 @@ const RightDrawer = (props) => {
 
     let searchParams = `?room=${roomId}`;
 
-    console.log(props.roomData);
-    console.log(props.userId);
-    console.log(typeof props.userId);
-    console.log(props.roomData.admin_id);
+    // console.log(props.roomData);
+    // console.log(props.userId);
+    // console.log(typeof props.userId);
+    // console.log(props.roomData.admin_id);
     if (props.roomData.is_private && (props.userId == props.roomData.admin_id)) {
       let invite_key = nanoid();
-      console.log(invite_key);
+      // console.log(invite_key);
 
 
 
       axios.put('/api/rooms/new-invite-key', { room_id: props.roomData.id, invite_key })
         .then(res => {
           searchParams += `&invite=${invite_key}`;
-          alert('Invite copied to clipboard');
           navigator.clipboard.writeText(currentURL.host + currentURL.pathname + searchParams)
+          alert('Invite copied to clipboard');
         })
         .catch((err) => {console.log('Invite Key Error'); console.log(err)});
     } else {
@@ -79,6 +79,7 @@ const RightDrawer = (props) => {
       </div>
       <Divider />
       <div>
+        {console.log(props.roomData.id)}
         <StudyDocs room={props.roomData.id} user={props.userId}/>
       </div>
     </div>

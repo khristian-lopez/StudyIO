@@ -17,8 +17,11 @@ let StudyDocs = (props) => {
   const [docs, setDocs] = useState([]);
 
   useEffect(() => {
-    axios.get('/api/files/', { params: { room_id: props.room } })
+    console.log(props);
+    axios.get(`/api/files/${props.room}`)
       .then(results => {
+        console.log('Get data');
+        console.log(results.data);
         setDocs(results.data)
       })
       .catch(err => console.log(err))
