@@ -53,11 +53,12 @@ const RightDrawer = (props) => {
       axios.put('/api/rooms/new-invite-key', { room_id: props.roomData.id, invite_key })
         .then(res => {
           searchParams += `&invite=${invite_key}`;
+          alert('Invite copied to clipboard');
           navigator.clipboard.writeText(currentURL.host + currentURL.pathname + searchParams)
         })
         .catch((err) => {console.log('Invite Key Error'); console.log(err)});
     } else {
-      console.log('Invite copied to clipboard');
+      alert('Invite copied to clipboard');
       navigator.clipboard.writeText(currentURL.host + currentURL.pathname + searchParams)
     }
   }
