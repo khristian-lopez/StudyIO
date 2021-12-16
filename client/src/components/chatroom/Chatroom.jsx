@@ -77,7 +77,7 @@ let Chatroom = (props) => {
 
   //Before Login
   const [roomId, setRoomId] = useState(new URLSearchParams(window.location.search).get('room'));
-  const [room, setRoom] = useState({});
+  const [roomData, setRoomData] = useState({});
 
   //After Login
   const [message, setMessage] = useState('');
@@ -100,7 +100,9 @@ let Chatroom = (props) => {
 
     // Get room info
     axios.get('/api/chatroom/room', { params: { room_id: roomId } })
-      .then(results => setRoom(results.data))
+      .then(results => {
+        setRoomData(results.data)
+      })
       .catch(err => console.log(err))
 
     return () => {
@@ -163,7 +165,7 @@ let Chatroom = (props) => {
         variant="permanent"
         sx={{ maxHeight: '100vh', '& .MuiDrawer-paper': { boxSizing: 'border-box', width: rightDrawerWidth }, }}
       >
-        <RightDrawer room={roomId} user={props.userId} />
+        <RightDrawer roomData={roomData} userId={props.userId} />
       </Drawer>
 
       <div
@@ -173,7 +175,7 @@ let Chatroom = (props) => {
         {/* Messages block */}
         <div style={messagesBlockSx}>
           <div style={titleDivSx}>
-            {room.name ? <span style={titleSx}>{room.name}</span> : <span></span>}
+            {roomData.name ? <span style={titleSx}>{roomData.name}</span> : <span></span>}
             <button>Join Video Chat</button>
           </div>
 
