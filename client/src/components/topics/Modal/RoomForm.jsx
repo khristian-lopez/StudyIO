@@ -53,7 +53,6 @@ const RoomForm = ({ user, topicId }) => {
                 is_private: setting,
                 admin_id: user
             }
-            // TODO: retrieve id from sign up to be passed in as admin_id
             axios.post(`/api/rooms/${topicId}/create`, data)
                 .then((result) => {
                     joinRoom(result.data.room_id)
@@ -110,12 +109,13 @@ const RoomForm = ({ user, topicId }) => {
                     exclusive
                     onChange={handleInputChange}
                     value={inputs.setting}
+                    sx={{ backgroundColor: "#f0c44f" }}
                 >
                     <ToggleButton
                         label="Public"
                         name="setting"
                         value="public"
-                        color="primary"
+                        sx={{ color: "white", backgroundColor: "#f0c44f" }}
                     >
                         Public
                     </ToggleButton>
@@ -123,7 +123,7 @@ const RoomForm = ({ user, topicId }) => {
                         label="Private"
                         name="setting"
                         value="private"
-                        color="primary"
+                        sx={{ color: "white", backgroundColor: "#f0c44f" }}
                     >
                         Private
                     </ToggleButton>
@@ -139,7 +139,6 @@ const RoomForm = ({ user, topicId }) => {
                     />
                     <Button
                         variant="contained"
-                        color="secondary"
                         size="medium"
                         component="span"
                         style={buttonStyle}
@@ -205,6 +204,8 @@ const inputStyle = {
 }
 
 const buttonStyle = {
-    marginTop: "30px",
+    marginTop: "20px",
+    marginBottom: "10px",
     width: "200px",
+    backgroundColor: "#f0c44f"
 }
