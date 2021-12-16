@@ -2,7 +2,7 @@ const express = require('express');
 const axios = require('axios');
 const router = express.Router();
 
-const APIurl = 'http://studyio-api-523737087.us-west-1.elb.amazonaws.com';
+const APIurl = require('../../config.js').api_url;
 
 // need to replace archived vs active with just rooms with isArchived field and filter from there on client side or here
 
