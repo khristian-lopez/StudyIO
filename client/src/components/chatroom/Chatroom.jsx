@@ -125,7 +125,7 @@ let Chatroom = (props) => {
     let messageObject = {
       room: roomId,
       message: {
-        user_id: 1,
+        user_id: props.userId,
         body: message,
         first_name: props.userName.split(' ')[0],
         last_name: props.userName.split(' ')[1],
