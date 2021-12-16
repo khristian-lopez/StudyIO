@@ -60,8 +60,8 @@ const RightDrawer = (props) => {
         })
         .catch((err) => {console.log('Invite Key Error'); console.log(err)});
     } else {
-      alert('Invite copied to clipboard');
       navigator.clipboard.writeText(currentURL.host + currentURL.pathname + searchParams)
+      alert('Invite copied to clipboard');
     }
   }
 
