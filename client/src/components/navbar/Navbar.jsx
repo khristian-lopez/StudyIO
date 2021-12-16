@@ -17,10 +17,13 @@ let navSx = {
   // background: '#888b8e',
   display: 'flex',
   // mb: '20px',
-  justifyContent: 'space-between',
+  justifyContent: 'flex-start',
+  gap: '35%',
   alignItems: 'center',
   zIndex: 1201,
 }
+
+
 
 
 let Navbar = (props) => {
@@ -41,22 +44,22 @@ let Navbar = (props) => {
         StudyIO
       </IconButton>
 
-      {props.login === true ? <Account
-      // userId={props.userId}
-      userId={1}
-      setUserId={props.setUserId}
-      userName={props.userName}
-      setUserName={props.setUserName}
-      login={props.login}
-      setLogin={props.setLogin} /> : <LoginModal
-      userId={props.userId}
-      setUserId={props.setUserId}
-      userName={props.userName}
-      setUserName={props.setUserName}
-      login={props.login}
-      setLogin={props.setLogin}
-      open={props.open}
-      setOpen={props.setOpen} />}
+        {props.login === true ? <Account
+        // userId={props.userId}
+        userId={1}
+        setUserId={props.setUserId}
+        userName={props.userName}
+        setUserName={props.setUserName}
+        login={props.login}
+        setLogin={props.setLogin} /> : <LoginModal
+        userId={props.userId}
+        setUserId={props.setUserId}
+        userName={props.userName}
+        setUserName={props.setUserName}
+        login={props.login}
+        setLogin={props.setLogin}
+        open={props.open}
+        setOpen={props.setOpen} />}
 
     </div>
   )

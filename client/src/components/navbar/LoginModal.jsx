@@ -27,13 +27,13 @@ const LoginSx = {
   // background: '#ffbd33',
   // background: 'white',
   background: 'transparent',
-  height: '36px',
+  height: '50px',
   width: '100px',
   marginRight: '36px',
   // color: '#333',
   color: 'white',
-  fontFamily: 'sans-serif',
-  fontSize: '20px',
+  fontSize: '30px',
+  cursor: 'pointer',
 }
 
 const inputContainerSx = {
