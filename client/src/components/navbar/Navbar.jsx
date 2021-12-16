@@ -54,7 +54,9 @@ let Navbar = (props) => {
       userName={props.userName}
       setUserName={props.setUserName}
       login={props.login}
-      setLogin={props.setLogin} />}
+      setLogin={props.setLogin}
+      open={props.open}
+      setOpen={props.setOpen} />}
 
     </div>
   )
