@@ -55,3 +55,10 @@ io.on('connection', (socket) => {
     console.log(`User: ${socket.id} has disconnected`);
   })
 })
+
+app.get('/server/:roomId', (req, res) => {
+  console.log(req.params.roomId);
+  const userCount = io.sockets.adapter.rooms.get(req.params.roomId);
+  console.log(userCount);
+  res.status(200).send(userCount ? userCount : []);
+})

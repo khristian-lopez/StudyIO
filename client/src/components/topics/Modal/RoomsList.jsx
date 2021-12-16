@@ -3,9 +3,10 @@ import {Avatar, Button, CircularProgress} from '@mui/material';
 import {Box, Grid, List, ListItem, ListItemText, ListItemAvatar} from '@mui/material';
 import axios from 'axios';
 
-const RoomsList = ({ topicId, search, user }) => {
+const RoomsList = ({ topicId, search, user, opem, setOpen }) => {
     const [rooms, setRooms] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [userCounts, setUserCounts] = useState([]);
 
     useEffect(() => {
         if (topicId) {
@@ -27,7 +28,18 @@ const RoomsList = ({ topicId, search, user }) => {
                 .catch(err => console.log(err))
         }
     }, [])
-    console.log(rooms.thumbnail)
+
+    useEffect(() => {
+        console.log('Getting User Count Data');
+        Promise.all(
+            rooms.map(room => {
+                return axios.get(`/server/${room.id}`)
+            })
+        )
+        .then(res => console.log(res))
+        .catch(err => console.log(err))
+    },[rooms])
+
     return (
         <Box>
             { loading ?
@@ -38,7 +50,7 @@ const RoomsList = ({ topicId, search, user }) => {
             </Box> :
             <Grid item sx={innerGrid}>
                 <List>
-                    {rooms.map((room) => ( // might need to add room.members.includes(user) to conditional
+                    {rooms.map((room, i) => ( // might need to add room.members.includes(user) to conditional
                          !room['is_private'] ?
                         <div key={room.id}>
                         <ListItem sx={style} key={room.id} >
@@ -49,12 +61,13 @@ const RoomsList = ({ topicId, search, user }) => {
                             <ListItemText sx={style} >
                                 {room.name}
                             </ListItemText>
+                            <div>{userCounts[i] ? userCounts[i].data : 0}/{room.max_users}</div>
                             <Button
                                 sx={{ marginRight: "10px" }}
                                 size="medium"
                                 variant="outlined"
                                 key={room.id}
-                                onClick={()=>{window.location.href = window.location.origin + `/chatroom?room=${room.id}&&name=${room.name}`}}
+                                onClick={()=>{user ? window.location.href = window.location.origin + `/chatroom?room=${room.id}` : setOpen(true)}}
                             >
                                 Join
                             </Button>

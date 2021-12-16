@@ -16,6 +16,7 @@ const TopicsPage = (props) => {
   const [search, setSearch] = useState('');
   const [currentTopicId, setCurrentTopicId] = useState(null);
   const [openModal, setOpenModal] = useState(false);
+  const [open, setOpen] = useState(false);
 
   const searchHandler = (e) => {
     setSearch(e.target.value);
@@ -55,6 +56,8 @@ const TopicsPage = (props) => {
             setUserName={props.setUserName}
             login={props.login}
             setLogin={props.setLogin}
+            open={open}
+            setOpen={setOpen}
           />
           <Box container sx={rowOneStyle}>
             <Grid item xs={2.5} >
@@ -100,6 +103,8 @@ const TopicsPage = (props) => {
           topics={topics}
           user={props.userId}
           search={search}
+          open={open}
+          setOpen={setOpen}
         />
     </div>
   )
