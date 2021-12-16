@@ -25,6 +25,11 @@ let buttonSx = {
 
 let Room = (props) => {
 
+  const handleRoomClick = (e) => {
+    e.preventDefault;
+    window.location.href = window.location.origin + `/chatroom?room=${props.room.id}`;
+  }
+
   let buttonMessage = 'Archive';
   let handleDrawerButton = (e) => {
     props.archive(props.room)
@@ -38,7 +43,7 @@ let Room = (props) => {
   }
   return (
     <div style={roomsRowSx}>
-      <span style={roomSx}>{props.room.name}</span>
+      <span style={roomSx} onClick={handleRoomClick}>{props.room.name}</span>
       <span><button style={buttonSx} onClick={handleDrawerButton}>{buttonMessage}</button></span>
     </div>
   )

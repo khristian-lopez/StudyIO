@@ -20,9 +20,6 @@ let archivedRoomsMockData = [
 
 
 router.get('/rooms', (req, res) => {
-  // needs user id as a param to query for active rooms of that user
-  // res.status(200).send(roomsMockData) // to remove once back end set up
-
   axios.get(`${APIurl}/user/${req.query.user_id}/rooms`)
     .then((results) => {
       let rooms = { active: [], archived: [] }
@@ -35,28 +32,18 @@ router.get('/rooms', (req, res) => {
     .catch((err) => res.send(err).status(404));
 });
 
-// router.get('/archivedRooms', (req, res) => {
-//   // needs user id as a param to query for archived rooms of that user
-//   res.status(200).send(archivedRoomsMockData) // to remove once back end set up
-
-//   // axios.get(APIurl).then((results) => {
-//   //     res.status(200).send(results.data);
-//   //   })
-//   //   .catch((err) => res.send(err).status(404));
-// });
-
 router.put('/archive', (req, res) => {
-  // needs room id to change that room to archived
-  axios.put(`${APIurl}/toggle-archive`, { room_id: req.body.roomId }).then((results) => {
+  console.log(req.body.room_id)
+  axios.put(`${APIurl}/toggle-archive`, { room_id: req.body.room_id }).then((results) => {
     res.status(204).send('put archive');
   })
     .catch((err) => res.send(err).status(404));
 });
 
 router.put('/reactivate', (req, res) => {
-  // needs room id to change that room to archived
-  axios.put(`${APIurl}/toggle-archive`, { room_id: req.body.roomId }).then((results) => {
-    res.status(204).send('put archive');
+  console.log(req.body)
+  axios.put(`${APIurl}/toggle-archive`, { room_id: req.body.room_id }).then((results) => {
+    res.status(204).send('put reactivated');
   })
     .catch((err) => res.send(err).status(404));
 });

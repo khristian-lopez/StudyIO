@@ -1,5 +1,5 @@
-import React, {useState}from 'react';
-import { Routes, Route, Link } from "react-router-dom";
+import React, {useState, useEffect}from 'react';
+import { Routes, Route, Link, useNavigate } from "react-router-dom";
 import TopicsPage from '../topics/TopicsPage.jsx';
 import Chatroom from '../chatroom/Chatroom.jsx';
 import Topbar from './topbar/Topbar';
@@ -10,20 +10,25 @@ import Slide from './slide/Slide';
 
 
 const Home = (props) => {
+  const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
+  useEffect(() => {
+    navigate('/topics')
+  }, [])
+
   return (
 
     <div className="homepage" id="homepage">
       {/* <Topbar menuOpen={menuOpen} setMenuOpen={setMenuOpen}/> */}
-      <NavBar
+      {/* <NavBar
         userId={props.userId}
         setUserId={props.setUserId}
         userName={props.userName}
         setUserName={props.setUserName}
         login={props.login}
-        setLogin={props.setLogin}/>
+        setLogin={props.setLogin}/> */}
       {/* <Menu menuOpen={menuOpen} setMenuOpen={setMenuOpen}/> */}
-      <div className="container">
+      {/* <div className="container">
         <div className="left">
 
           <div className="wrapper">
@@ -36,7 +41,7 @@ const Home = (props) => {
                   GET STARTED
                 </Link>
               </nav>
-            </button>
+            </button> */}
 
               {/* <nav>
                 <Link to="/chatroom">Chat Room</Link>
@@ -45,16 +50,16 @@ const Home = (props) => {
               <nav>
                 <Link to='/videochat'>Video Chat</Link>
               </nav> */}
-          </div>
+          {/* </div>
         </div>
-        <div className="right">
+        <div className="right"> */}
           {/* <div className="imgContainer"> */}
-            <Slide/>
+            {/* <Slide/> */}
             {/* <img src="assets/001.jpg" alt=""></img> */}
           {/* </div> */}
-        </div>
+        {/* </div> */}
 
-      </div>
+      {/* </div> */}
 
 
     </div>
