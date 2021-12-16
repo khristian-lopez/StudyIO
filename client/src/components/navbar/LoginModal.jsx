@@ -69,9 +69,9 @@ const loginButtonSx = {
 let LoginModal = (props) => {
   const _isMounted = useRef(true);
   // Modal hooks
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  // const [open, setOpen] = useState(false);
+  const handleOpen = () => props.setOpen(true);
+  const handleClose = () => props.setOpen(false);
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -127,7 +127,7 @@ let LoginModal = (props) => {
         Log in
       </button>
 
-      <Modal open={open} onClose={handleClose} >
+      <Modal open={props.open} onClose={handleClose} >
         <div style={modalStyle}>
           <h3>Log in</h3>
           <form onSubmit={handleLogin}>
