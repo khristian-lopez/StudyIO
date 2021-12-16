@@ -2,12 +2,9 @@ import React, { useState, useEffect } from 'react';
 import StudyDocs from './userFiles/StudyDocs.jsx';
 import Drawer from '@mui/material/Drawer';
 import Divider from '@mui/material/Divider';
-<<<<<<< HEAD
+import Button from '@mui/material/Button';
 import axios from 'axios';
 import { nanoid } from 'nanoid';
-=======
-import Button from '@mui/material/Button';
->>>>>>> origin/main
 
 const rightDrawerSx = {
   marginTop: '70px',
