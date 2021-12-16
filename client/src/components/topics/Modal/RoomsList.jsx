@@ -3,7 +3,7 @@ import {Avatar, Button, CircularProgress} from '@mui/material';
 import {Box, Grid, List, ListItem, ListItemText, ListItemAvatar} from '@mui/material';
 import axios from 'axios';
 
-const RoomsList = ({ topicId, search, user }) => {
+const RoomsList = ({ topicId, search, user, opem, setOpen }) => {
     const [rooms, setRooms] = useState([]);
     const [loading, setLoading] = useState(true);
 
@@ -54,7 +54,7 @@ const RoomsList = ({ topicId, search, user }) => {
                                 size="medium"
                                 variant="outlined"
                                 key={room.id}
-                                onClick={()=>{window.location.href = window.location.origin + `/chatroom?room=${room.id}&&name=${room.name}`}}
+                                onClick={()=>{user ? window.location.href = window.location.origin + `/chatroom?room=${room.id}` : setOpen(true)}}
                             >
                                 Join
                             </Button>
