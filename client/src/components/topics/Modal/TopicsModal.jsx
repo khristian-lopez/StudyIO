@@ -63,11 +63,15 @@ const TopicsModal = ({openModal, topicId, topics, handleClose, user, search, ope
                                 id="modal-description"
                                 variant="h6"
                                 component="h2"
-                                sx={{ mt: 10 }}
+                                sx={{ mt: 10}}
                             >
                                 Create a new study room?
                             </Typography>
-                            <Button sx={{ width: "200px" }}
+                            <Button sx={{ width: "200px",
+                                border: '1px solid #f48c06',
+                                backgroundColor: '#f48c06',
+                                color: 'white',
+                                borderRadius:'15px'}}
                                 variant="contained"
                                 size="large"
                                 onClick={e => user ? openForm(e) : setOpen(true)}
