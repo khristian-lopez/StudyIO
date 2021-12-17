@@ -39,6 +39,16 @@ const RoomsList = ({ topicId, search, user, open, setOpen }) => {
         }).then(res => setUserCounts(res.data));
     }, [rooms])
 
+    const joinRoom = (roomId) => {
+        if(user) {
+            axios.post('/api/addUserToRoom',{user_id: user, room_id: roomId})
+            .then(window.location.href = window.location.origin + `/chatroom?room=${roomId}`)
+            .catch(err=>console.error(err))
+        } else {
+            setOpen(true);
+        }
+    }
+
     return (
         <Box>
             {loading ?
@@ -66,7 +76,7 @@ const RoomsList = ({ topicId, search, user, open, setOpen }) => {
                                             size="medium"
                                             variant="outlined"
                                             key={room.id}
-                                            onClick={() => { user ? window.location.href = window.location.origin + `/chatroom?room=${room.id}` : setOpen(true) }}
+                                            onClick={()=>Number(userCounts[i]) < Number(room.max_users) ? joinRoom(room.id) : alert('Room full!')}
                                         >
                                             Join
                                         </Button>
