@@ -94,7 +94,6 @@ const TopicsPage = (props) => {
                 setCurrentTopicId={setCurrentTopicId}
                 openModal={openModal}
                 open={open}
-                
               />
             </Box>
           ))}
