@@ -17,6 +17,27 @@ const leftDrawerSx = {
   marginTop: '70px',
   padding: '12px',
 }
+const titleSection = {
+  display: 'flex',
+ // flexDirection: 'column',
+  justifyContent: 'flex-start',
+  // height: '100px',
+  width: '200px',
+  height: '50px',
+  borderRadius: '20px',
+  border: '1px solid #f48c06',
+  alignItems: 'center',
+  justifyContent: 'center',
+  backgroundColor: '#ffb703',
+  color: 'white'
+}
+
+const iconButton = {
+  marginLeft: '10px',
+  borderRadius: '50%',
+  width: '30px',
+  height: '30px'
+}
 
 const eventRowSx = {
   display: 'flex',
@@ -29,7 +50,7 @@ const eventRowSx = {
   borderRadius: '10px',
   backgroundColor: '#ffb703',
   marginTop: '10px',
-  marginBottom: '10px',
+  marginBottom:'10px',
   padding: '0px',
   color: 'white',
   fontWeight: 'bold',
@@ -42,7 +63,12 @@ const eventRowIcon = {
   padding:'0px',
   //backgroundColor:'white'
 }
-
+const goalRowIcon = {
+  marginLeft: '0px',
+  minWidth: '0px',
+  padding:'0px',
+  //backgroundColor:'white'
+}
 const goalRowSx = {
   display: 'flex',
   flexDirection: 'row',
@@ -54,7 +80,6 @@ const goalRowSx = {
   borderRadius: '10px',
   backgroundColor: '#ffb703',
   marginTop: '10px',
-  marginBottom: '10px',
   padding: '0px',
   color: 'white',
   fontWeight: 'bold',
@@ -62,24 +87,31 @@ const goalRowSx = {
 }
 const sectionSx = {
   display: 'flex',
-  alignItems: 'center',
+  // alignItems: 'flex-start',
+  // justifyContent: 'flex-start',
   flexDirection: 'column',
   marginBottom: '24px',
+  backgroundColor: 'white',
+  borderLeft: '2px solid #f48c06',
+  borderRadius: '20px'
 }
 
 const titleSx = {
-  fontSize: '1.17em',
-  // marginBlockStart: '1em',
-  // marginBlockEnd: '1em',
+  fontSize: '20px',
   fontWeight: 'bold',
-  marginBottom: '16px',
 }
 
 const listSx = {
   display: 'flex',
   flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'center',
   fontSize: '15px',
-  marginBottom: '16px'
+  marginTop: '16px',
+  backgroundColor:'white',
+  //border: '1px solid',
+  borderRadius: '20px'
+
 }
 
 const LeftDrawer = (props) => {
@@ -205,11 +237,11 @@ const LeftDrawer = (props) => {
   return (
     <div style={leftDrawerSx}>
       <div style={sectionSx}>
-        <div>
+        <div style={titleSection}>
           <span style={titleSx}>Events</span>
           {addingEvent === false ?
-            <button value='event' onClick={handlePlusClick}>+</button> :
-            <button value='event' onClick={handleCancelClick}>x</button>}
+            <button value='event' onClick={handlePlusClick} style={iconButton}>+</button> :
+            <button value='event' onClick={handleCancelClick} style={iconButton}>x</button>}
         </div>
         {addingEvent ?
             <div>
@@ -235,7 +267,7 @@ const LeftDrawer = (props) => {
         <div style={listSx}>
           {events.map((event, i) => (
               <ListItem key={i} sx={eventRowSx}>
-                <SingleEvent content={event} key={i} sx={{backgroundColor: 'red'}}/>
+                <SingleEvent content={event} key={i}/>
                 <Button size="small" sx={eventRowIcon}>
                   <EditIcon size="small"
                     onClick={() => {
@@ -258,11 +290,11 @@ const LeftDrawer = (props) => {
         </div>
       </div>
       <div style={sectionSx}>
-        <div>
+        <div style={titleSection}>
           <span style={titleSx}>Goals</span>
           {addingGoal === false ?
-            <button value='goal' onClick={handlePlusClick}>+</button> :
-            <button value='goal' onClick={handleCancelClick}>x</button>}
+            <button value='goal' onClick={handlePlusClick} style={iconButton}>+</button> :
+            <button value='goal' onClick={handleCancelClick} style={iconButton}>x</button>}
         </div>
         {addingGoal ?
             <div>
@@ -283,6 +315,7 @@ const LeftDrawer = (props) => {
              onClick={() => {
                editGoals(goal)
              }}
+             sx={goalRowIcon}
             >
               Edit
             </Button>
@@ -290,6 +323,7 @@ const LeftDrawer = (props) => {
               onClick={() => {
                 deleteGoal(goal.id, i)
               }}
+              sx={goalRowIcon}
             >
               Delete
             </Button>
@@ -301,9 +335,9 @@ const LeftDrawer = (props) => {
           <br></br>
         </div>
       </div>
-      <div>
+      {/* <div>
         <h3>Memes</h3>
-      </div>
+      </div> */}
     </div >
   )
 }
