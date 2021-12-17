@@ -105,7 +105,7 @@ let Chatroom = (props) => {
   const navigate = useNavigate();
 
   if (props.userId === "") {
-    navigate('/topics')
+    navigate('/')
   }
 
   //Before Login
