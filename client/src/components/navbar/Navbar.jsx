@@ -17,10 +17,13 @@ let navSx = {
   // background: '#888b8e',
   display: 'flex',
   // mb: '20px',
-  justifyContent: 'space-between',
+  justifyContent: 'flex-start',
+  gap: '35%',
   alignItems: 'center',
   zIndex: 1201,
 }
+
+
 
 
 let Navbar = (props) => {
@@ -43,7 +46,7 @@ let Navbar = (props) => {
 
       {props.login === true ? <Account
       userId={props.userId}
-      // userId={1}
+      roomId={props.roomId}
       setUserId={props.setUserId}
       userName={props.userName}
       setUserName={props.setUserName}

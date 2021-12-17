@@ -24,12 +24,14 @@ let roomListSx = {
 
 let signOutSx = {
   float: 'left',
-  border: '1px solid black',
+  border: '1px solid',
   width: '84px',
   height: '36px',
   borderRadius: '4px',
   background: 'white',
   cursor: 'pointer',
+  backgroundColor: '#FAA307',
+  color:'white',
 }
 
 
@@ -80,15 +82,15 @@ let Account = (props) => {
         <AccountCircleIcon style={{ fontSize: 40 }} />
       </IconButton>
 
-      <Drawer anchor={'right'} open={drawerStatus} onClose={toggleDrawer(false)} style={{ zIndex: '1202' }}>
+      <Drawer anchor={'right'} open={drawerStatus} onClose={toggleDrawer(false)} style={{ zIndex: '1202'}}>
         <div className="account-drawer" style={drawerSx}>
           <h2>Your rooms</h2>
           <div className="rooms-list" style={roomListSx}>
-            {yourRooms.map((room, i) => <Room room={room} active={true} key={i} archive={handleArchive} />)}
+            {yourRooms.map((room, i) => <Room room={room} user={props.userId} active={true} key={i} archive={handleArchive} />)}
           </div>
           <h2>Archived rooms</h2>
           <div className="rooms-list" style={roomListSx}>
-            {archivedRooms.map((room, i) => <Room room={room} active={false} key={i} reactivate={handleReactivate} />)}
+            {archivedRooms.map((room, i) => <Room room={room} user={props.userId} active={false} key={i} reactivate={handleReactivate} />)}
           </div>
           <Logout
             style={signOutSx}
@@ -97,7 +99,8 @@ let Account = (props) => {
             userName={props.userName}
             setUserName={props.setUserName}
             login={props.login}
-            setLogin={props.setLogin} />
+            setLogin={props.setLogin}
+            roomId={props.roomId} />
         </div>
       </Drawer>
     </div>

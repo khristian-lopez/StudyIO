@@ -56,12 +56,12 @@ const RightDrawer = (props) => {
         .then(res => {
           searchParams += `&invite=${invite_key}`;
           navigator.clipboard.writeText(currentURL.host + currentURL.pathname + searchParams)
-          alert('Invite copied to clipboard');
+          // alert('Invite copied to clipboard');
         })
         .catch((err) => {console.log('Invite Key Error'); console.log(err)});
     } else {
       navigator.clipboard.writeText(currentURL.host + currentURL.pathname + searchParams)
-      alert('Invite copied to clipboard');
+      // alert('Invite copied to clipboard');
     }
   }
 
@@ -79,7 +79,7 @@ const RightDrawer = (props) => {
           </li>) : null}
       </div>
       <Divider />
-      <div>
+      <div style={studySection}>
         {console.log(props.roomData.id)}
         <StudyDocs room={props.roomData.id} user={props.userId}/>
       </div>
@@ -94,5 +94,13 @@ const buttonStyle = {
   fontSize: "14px",
   maxHeight: "28px",
   maxWidth: "20px",
-  overflow: "hidden"
+  overflow: "hidden",
+  border: '1px solid #f48c06',
+  backgroundColor: '#f48c06',
+  color: 'white'
+}
+
+const studySection = {
+  borderRadius: '15px',
+  border: "1px solid #f48c06",
 }
