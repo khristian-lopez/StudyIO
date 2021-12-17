@@ -8,6 +8,7 @@ let roomsRowSx = {
   justifyContent: 'space-between',
   marginBottom: '10px',
   alignItems: 'center',
+  height: '36px',
   border: '1px solid #FAA307',
   borderRadius: '5px',
   backgroundColor: '#fcbf49',
@@ -32,6 +33,7 @@ let buttonSx = {
 }
 
 let Room = (props) => {
+  const numUserId = Number(props.user)
 
   const handleRoomClick = (e) => {
     e.preventDefault;
@@ -52,7 +54,7 @@ let Room = (props) => {
   return (
     <div style={roomsRowSx}>
       <span style={roomSx} onClick={handleRoomClick}>{props.room.name}</span>
-      <span><button style={buttonSx} onClick={handleDrawerButton}>{buttonMessage}</button></span>
+      <span>{numUserId === props.room.admin_id ? <button style={buttonSx} onClick={handleDrawerButton}>{buttonMessage}</button> : null}</span>
     </div>
   )
 }
