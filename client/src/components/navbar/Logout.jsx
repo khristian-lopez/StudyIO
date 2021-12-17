@@ -14,7 +14,7 @@ function Logout(props) {
     if(props.roomId) {
       // remove user from room
     }
-    navigate('/topics');
+    navigate('/');
   };
 
   return (
