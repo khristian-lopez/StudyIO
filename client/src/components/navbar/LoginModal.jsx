@@ -21,19 +21,19 @@ const modalStyle = {
 };
 
 const LoginSx = {
-  // border: '1px solid black',
-  border: 'none',
-  // borderRadius: '4px',
+  border: '1px solid #FAA307',
+  borderRadius: '15px',
   color: '#4285F4',
   // background: 'white',
-  background: 'transparent',
+  background: 'white',
   height: '50px',
   width: '100px',
   marginRight: '36px',
   // color: '#333',
-  color: 'white',
+  color: '#FAA307',
   fontSize: '30px',
   cursor: 'pointer',
+  zIndex: 2000,
 }
 
 const inputContainerSx = {
@@ -61,7 +61,8 @@ const loginButtonSx = {
   color: 'white',
   // paddingLeft: '16px',
   fontFamily: 'sans-serif',
-  background: '#FAA307'
+  background: '#FAA307',
+  cursor: 'pointer'
 }
 
 

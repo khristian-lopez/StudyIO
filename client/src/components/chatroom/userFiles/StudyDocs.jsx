@@ -4,13 +4,14 @@ import Upload from '../../firebase/Upload.jsx';
 import SingleDoc from './SingleDoc.jsx';
 
 const titleSx = {
-  fontSize: '1.17em',
+  fontSize: '20px',
   // marginBlockStart: '1em',
   // marginBlockEnd: '1em',
   textAlign: "center",
   fontWeight: 'bold',
   marginTop: "5px",
   marginBottom: '16px',
+  color: 'white'
 }
 
 let StudyDocs = (props) => {
@@ -40,7 +41,7 @@ let StudyDocs = (props) => {
       <div style={grid}>
         {docs ? docs.map((doc, i) => <SingleDoc key={i} name={doc.name} url={doc.url} />) : null}
       </div>
-      <div style={buttonStyle}>
+      <div style={buttonWrapper}>
         <Upload room={props.room} update={handleUpload} />
       </div>
     </div>
@@ -50,17 +51,21 @@ let StudyDocs = (props) => {
 export default StudyDocs;
 
 const grid = {
-  border: "1px solid #000",
+  border: "1px solid #f48c06",
   height: "300px",
   overflowY: "scroll",
-  marginBottom: "3mm"
+  marginBottom: "3mm",
+  borderRadius: '15px',
+  backgroundColor:'white'
 }
 
 const containerStyle = {
-  margin: "3px"
+  backgroundColor: '#fcbf49',
+  borderRadius: '15px',
 }
 
-const buttonStyle = {
+const buttonWrapper = {
   display: "flex",
-  justifyContent: "center"
+  justifyContent: "flex-start",
+  margin:'5px'
 }

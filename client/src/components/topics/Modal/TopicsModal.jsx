@@ -95,6 +95,7 @@ const boxStyle = {
     width: 400,
     height: 630,
     border: "1px solid #000",
+    borderRadius: '15px',
     backgroundColor: "white",
     gap: "20px",
     spacing: 20,

@@ -5,7 +5,7 @@ let SingleDoc = (props) => {
 
   return (
     <div style={docStyle}>
-      <a href={props.url} target="_blank">{props.name}</a>
+      <a href={props.url} target="_blank" style={docStyle}>{props.name}</a>
     </div>
   )
 }
@@ -13,5 +13,11 @@ let SingleDoc = (props) => {
 export default SingleDoc;
 
 const docStyle = {
-  margin: "5px"
+  textDecoration:'none',
+  margin: "5px",
+  maxWidth: '180px',
+  height: '15px',
+  color: '#f48c06',
+  fontSize: '15px',
+  oveflow: 'hidden'
 }
