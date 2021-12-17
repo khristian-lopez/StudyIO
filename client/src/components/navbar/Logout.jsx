@@ -8,7 +8,6 @@ const clientId =
 function Logout(props) {
   const navigate = useNavigate();
   const onSuccess = () => {
-    // console.log('Logout made successfully');
     props.setUserName('');
     props.setUserId('');
     props.setLogin(false);

@@ -62,7 +62,7 @@ const RoomsList = ({ topicId, search, user, open, setOpen }) => {
                 </Box> :
                 <Grid item sx={innerGrid}>
                     <List>
-                        {rooms.map((room, i) => ( // might need to add room.members.includes(user) to conditional
+                        {rooms.map((room, i) => (
                             !room.is_private && !room.is_archived ?
                                 <div key={room.id}>
                                     <ListItem sx={style} key={room.id} >

@@ -27,9 +27,6 @@ const inputSx = {
   paddingLeft: '16px',
   fontFamily: 'sans-serif',
 }
-const inputContainerSx = {
-  // marginBottom: '8px',
-}
 
 const signupButtonSx = {
   height: '32px',
@@ -110,7 +107,6 @@ function SignupModal(props) {
 
   return (
     <React.Fragment>
-      {/* <Button onClick={handleOpen}>Sign up</Button> */}
       <button onClick={handleOpen} style={signupButtonSx}>Sign up</button>
       <Modal
         hideBackdrop
@@ -122,21 +118,20 @@ function SignupModal(props) {
         <Box sx={{ ...modalStyle, width: 400 }}>
           <h3>Sign up</h3>
           <form onSubmit={handleSignup}>
-            <div style={inputContainerSx}>
+            <div>
               <input style={inputSx} placeholder="Enter first name" value={firstName} onChange={e => setFirstName(e.target.value)}></input>
             </div>
-            <div style={inputContainerSx}>
+            <div>
               <input style={inputSx} placeholder="Enter last name" value={lastName} onChange={e => setLastName(e.target.value)}></input>
             </div>
-            <div style={inputContainerSx}>
+            <div>
               <input style={inputSx} placeholder="Enter email" value={email} onChange={e => setEmail(e.target.value)}></input>
             </div>
-            <div style={inputContainerSx}>
+            <div>
               <input style={inputSx} placeholder="Enter password" value={password} onChange={e => setPassword(e.target.value)}></input>
             </div>
             <button style={submitButtonSx}>Submit</button>
           </form>
-          {/* <Button onClick={handleClose}>Close Child Modal</Button> */}
           <br />
           <button style={closeButtonSx} onClick={handleClose}>Cancel</button>
         </Box>
