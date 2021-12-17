@@ -7,6 +7,7 @@ const messageSx = {
   padding: '10px',
   minHeight: '40px',
   backgroundColor: '#f9c74f',
+  overflow: "hidden",
 }
 
 let SingleMessage = (props) => {
