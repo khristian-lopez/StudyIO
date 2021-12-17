@@ -55,7 +55,11 @@ const RoomForm = ({ user, topicId }) => {
             }
             axios.post(`/api/rooms/${topicId}/create`, data)
                 .then((result) => {
-                    joinRoom(result.data.room_id)
+                    if(result.data.message) {
+                        alert('Room Name already taken')
+                    } else {
+                        joinRoom(result.data.room_id)
+                    }
                 })
                 .catch(err => {
                     console.log(err.response)
