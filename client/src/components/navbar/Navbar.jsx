@@ -17,10 +17,13 @@ let navSx = {
   // background: '#888b8e',
   display: 'flex',
   // mb: '20px',
-  justifyContent: 'space-between',
+  justifyContent: 'flex-start',
+  gap: '35%',
   alignItems: 'center',
   zIndex: 1201,
 }
+
+
 
 
 let Navbar = (props) => {

@@ -108,7 +108,7 @@ const loadStyle = {
     padding: "10px",
     height: "350px",
     width: "380px",
-    overflowX: "visible"
+    overflowX: "visible",
 }
 
 const imageStyle = {

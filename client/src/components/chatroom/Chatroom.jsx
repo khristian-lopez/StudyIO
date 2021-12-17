@@ -58,9 +58,26 @@ const messagesBlockSx = {
 const titleDivSx = {
   display: 'flex',
   justifyContent: 'space-between',
+  alignItems:'center',
   marginBottom: '24px',
   minHeight: '60px',
+  border: '2px solid #f48c06',
+  borderRadius:'15px',
+  paddingLeft: '10px',
+  color: 'orange',
+  fontWeight: '900'
   // alignItems: 'center',
+}
+
+const videoButton = {
+  width: '150px',
+  height: '50px',
+  borderRadius:'15px',
+  marginRight: '10px',
+  backgroundColor: '#f48c06',
+  border: '1px solid #f48c06',
+  color: 'white',
+  fontWeight: '600'
 }
 
 const titleSx = {
@@ -71,6 +88,18 @@ const titleSx = {
 const messagesListSx = {
   display: 'flex',
   flexDirection: 'column',
+}
+
+const buttonStyle = {
+  marginLeft: "10px",
+  fontSize: "14px",
+  width: '80px',
+  overflow: "hidden",
+  border: '1px solid #f48c06',
+  backgroundColor: '#f48c06',
+  color: 'white',
+  borderRadius: '15px',
+  cursor:'pointer'
 }
 
 let Chatroom = (props) => {
@@ -198,7 +227,7 @@ let Chatroom = (props) => {
               onChange={e => setMessage(e.target.value)}
             >
             </input>
-            <button>Send</button>
+            <button style={buttonStyle}>Send</button>
           </form>
         </div>
       </div>

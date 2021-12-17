@@ -53,7 +53,10 @@ let Upload = (props) => {
   return (
     <>
       {uploading === false ?
-        <Button variant="outlined" onClick={handleSwitch}
+        <Button
+        variant="outlined"
+        onClick={handleSwitch}
+        sx={buttonStyle}
         >
           Upload
           <FileUploadIcon sx={{ marginLeft: "3px" }}/>
@@ -63,6 +66,7 @@ let Upload = (props) => {
           <form onSubmit={formHandler}>
             <input type="file" className="input" />
             <Button variant="outlined" type="submit"
+            sx={buttonStyle2}
             >
               Upload
             </Button>
@@ -75,3 +79,19 @@ let Upload = (props) => {
 }
 
 export default Upload;
+
+const buttonStyle = {
+  border: '1px solid #f48c06',
+  backgroundColor: '#f48c06',
+  color: 'white',
+  borderRadius:'15px'
+}
+
+const buttonStyle2 = {
+  border: '1px solid #f48c06',
+  backgroundColor: '#f48c06',
+  color: 'white',
+  borderRadius:'15px',
+  width: '50px',
+  height: '30px'
+}
