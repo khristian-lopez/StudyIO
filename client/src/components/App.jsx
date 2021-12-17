@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Routes, Route, Link } from "react-router-dom";
-import Home from './homepage/Home.jsx';
 import TopicsPage from './topics/TopicsPage.jsx';
 import Chatroom from './chatroom/Chatroom.jsx';
 import Navbar from './navbar/Navbar.jsx';
@@ -33,14 +32,7 @@ let App = () => {
   return (
     <>
       <Routes>
-        <Route path="/" element={<Home
-          userId={userId}
-          setUserId={setUserId}
-          userName={userName}
-          setUserName={setUserName}
-          login={login}
-          setLogin={setLogin} />} />
-        <Route path="/topics" element={<TopicsPage
+        <Route path="/" element={<TopicsPage
           userId={userId}
           setUserId={setUserId}
           userName={userName}
