@@ -247,7 +247,7 @@ const LeftDrawer = (props) => {
             <div>
               <form onSubmit={handleNewEvent}>
                 <input
-                  type='text' placeholder='Event Name'
+                  type='text' placeholder='Event Name' maxLength="25"
                   value={newEvent.name}
                   onChange={e => setNewEvent({ name: e.target.value, event_date: newEvent.event_date, event_time: newEvent.event_time })}>
                 </input>
@@ -300,7 +300,7 @@ const LeftDrawer = (props) => {
             <div>
               <form onSubmit={handleNewGoal}>
                 <input
-                  type='text' placeholder='Goal'
+                  type='text' placeholder='Goal' maxLength="25"
                   value={newGoal.name}
                   onChange={e => setNewGoal({ name: e.target.value })}>
                 </input>

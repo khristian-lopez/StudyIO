@@ -70,7 +70,7 @@ const TopicsModal = ({openModal, topicId, topics, handleClose, user, search, ope
                             <Button sx={{ width: "200px" }}
                                 variant="contained"
                                 size="large"
-                                onClick={e => openForm(e)}
+                                onClick={e => user ? openForm(e) : setOpen(true)}
                             >
                                 Create Room
                                 <AddIcon sx={{ marginLeft: "3px" }}/>

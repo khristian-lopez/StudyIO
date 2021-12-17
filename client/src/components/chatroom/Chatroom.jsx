@@ -179,7 +179,8 @@ let Chatroom = (props) => {
       userName={props.userName}
       setUserName={props.setUserName}
       login={props.login}
-      setLogin={props.setLogin} />
+      setLogin={props.setLogin}
+      roomId={roomId} />
 
       <Drawer
         anchor={'left'}
@@ -205,7 +206,7 @@ let Chatroom = (props) => {
         <div style={messagesBlockSx}>
           <div style={titleDivSx}>
             {roomData.name ? <span style={titleSx}>{roomData.name}</span> : <span></span>}
-            <button style={videoButton}>Join Video Chat</button>
+            {/* <button>Join Video Chat</button> */}
           </div>
 
           <div style={messagesListSx} ref={messageListComponent}>
@@ -218,6 +219,7 @@ let Chatroom = (props) => {
           <Divider />
           <form onSubmit={handleSendMessage}>
             <input
+              maxLength="500"
               style={inputSx}
               className="inputBox"
               type='text' placeholder='Message...'
