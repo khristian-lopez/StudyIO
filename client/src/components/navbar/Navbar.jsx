@@ -43,7 +43,7 @@ let Navbar = (props) => {
 
       {props.login === true ? <Account
       userId={props.userId}
-      // userId={1}
+      roomId={props.roomId}
       setUserId={props.setUserId}
       userName={props.userName}
       setUserName={props.setUserName}

@@ -150,7 +150,8 @@ let Chatroom = (props) => {
       userName={props.userName}
       setUserName={props.setUserName}
       login={props.login}
-      setLogin={props.setLogin} />
+      setLogin={props.setLogin}
+      roomId={roomId} />
 
       <Drawer
         anchor={'left'}
