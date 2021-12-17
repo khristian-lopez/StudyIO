@@ -189,6 +189,7 @@ let Chatroom = (props) => {
           <Divider />
           <form onSubmit={handleSendMessage}>
             <input
+              maxLength="500"
               style={inputSx}
               className="inputBox"
               type='text' placeholder='Message...'

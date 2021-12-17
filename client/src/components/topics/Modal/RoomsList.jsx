@@ -39,6 +39,19 @@ const RoomsList = ({ topicId, search, user, open, setOpen }) => {
         }).then(res => setUserCounts(res.data));
     }, [rooms])
 
+    const joinRoom = (roomId) => {
+        if(user) {
+            axios.get('/api/chatroom/members', { params: { room_id: roomId} })
+            .then(results => results.data.filter(item => item.id === Number(user)))
+            .then(check => check.length !== 0 ? window.location.href = window.location.origin + `/chatroom?room=${roomId}` : axios.post('/api/addUserToRoom',{user_id: user, room_id: roomId})
+                        .then(window.location.href = window.location.origin + `/chatroom?room=${roomId}`)
+                        .catch(err=>console.error(err)))
+            .catch(err => console.log(err));
+        } else {
+            setOpen(true);
+        }
+    }
+
     return (
         <Box>
             {loading ?
@@ -50,7 +63,7 @@ const RoomsList = ({ topicId, search, user, open, setOpen }) => {
                 <Grid item sx={innerGrid}>
                     <List>
                         {rooms.map((room, i) => ( // might need to add room.members.includes(user) to conditional
-                            !room['is_private'] ?
+                            !room.is_private && !room.is_archived ?
                                 <div key={room.id}>
                                     <ListItem key={room.id} >
                                         <ListItemAvatar >
@@ -66,7 +79,7 @@ const RoomsList = ({ topicId, search, user, open, setOpen }) => {
                                             size="medium"
                                             variant="contained"
                                             key={room.id}
-                                            onClick={() => { user ? window.location.href = window.location.origin + `/chatroom?room=${room.id}` : setOpen(true) }}
+                                            onClick={()=>Number(userCounts[i]) < Number(room.max_users) ? joinRoom(room.id) : alert('Room full!')}
                                         >
                                             Join
                                         </Button>

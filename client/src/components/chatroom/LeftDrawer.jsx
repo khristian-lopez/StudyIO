@@ -87,10 +87,10 @@ const LeftDrawer = (props) => {
 
   const handleNewEvent = (e) => {
     e.preventDefault();
-  
+
     let user = Number(props.user)
     let date = new Date(newEvent.event_date)
-    
+
     if (newEvent.name === '' || newEvent.event_date === '' || newEvent.event_time === '') return;
     axios.post('/api/chatroom/events', { name: newEvent.name, user_id: user, room_id: props.room, event_date: date, event_time: newEvent.event_time })
       .then(results => {
@@ -161,7 +161,7 @@ const LeftDrawer = (props) => {
       })
       .catch(err => console.log('DELETE GOAL: ', err))
   }
-  
+
   return (
     <div style={leftDrawerSx}>
       <div style={sectionSx}>
@@ -175,7 +175,7 @@ const LeftDrawer = (props) => {
             <div>
               <form onSubmit={handleNewEvent}>
                 <input
-                  type='text' placeholder='Event Name'
+                  type='text' placeholder='Event Name' maxLength="25"
                   value={newEvent.name}
                   onChange={e => setNewEvent({ name: e.target.value, event_date: newEvent.event_date, event_time: newEvent.event_time })}>
                 </input>
@@ -210,7 +210,7 @@ const LeftDrawer = (props) => {
                     }}
                 />
                 </Button>
-              </ListItem>    
+              </ListItem>
           ))}
           { editCurrentEvent ? (
             <EditEvent editCurrentEvent={editCurrentEvent} setEditEvent={setEditEvent} currentEvent={currentEvent} updateEvent={updateEvent}/>
@@ -228,7 +228,7 @@ const LeftDrawer = (props) => {
             <div>
               <form onSubmit={handleNewGoal}>
                 <input
-                  type='text' placeholder='Goal'
+                  type='text' placeholder='Goal' maxLength="25"
                   value={newGoal.name}
                   onChange={e => setNewGoal({ name: e.target.value })}>
                 </input>
@@ -242,7 +242,7 @@ const LeftDrawer = (props) => {
             <Button size="small"
              onClick={() => {
                editGoals(goal)
-             }} 
+             }}
             >
               Edit
             </Button>
@@ -256,7 +256,7 @@ const LeftDrawer = (props) => {
           </ListItem>
           ))}
           { editCurrentGoal ? (
-            <EditGoal editCurrentGoal={editCurrentGoal} setEditGoal={setEditGoal} currentGoal={currentGoal} updateGoal={updateGoal} /> 
+            <EditGoal editCurrentGoal={editCurrentGoal} setEditGoal={setEditGoal} currentGoal={currentGoal} updateGoal={updateGoal} />
           ) : null }
           <br></br>
         </Grid>
