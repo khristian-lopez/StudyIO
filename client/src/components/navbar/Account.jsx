@@ -97,7 +97,8 @@ let Account = (props) => {
             userName={props.userName}
             setUserName={props.setUserName}
             login={props.login}
-            setLogin={props.setLogin} />
+            setLogin={props.setLogin}
+            roomId={props.roomId} />
         </div>
       </Drawer>
     </div>
