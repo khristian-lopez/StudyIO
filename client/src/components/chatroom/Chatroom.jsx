@@ -176,7 +176,7 @@ let Chatroom = (props) => {
         <div style={messagesBlockSx}>
           <div style={titleDivSx}>
             {roomData.name ? <span style={titleSx}>{roomData.name}</span> : <span></span>}
-            <button>Join Video Chat</button>
+            {/* <button>Join Video Chat</button> */}
           </div>
 
           <div style={messagesListSx} ref={messageListComponent}>
