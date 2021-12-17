@@ -42,8 +42,8 @@ let Navbar = (props) => {
       </IconButton>
 
       {props.login === true ? <Account
-      // userId={props.userId}
-      userId={1}
+      userId={props.userId}
+      // userId={1}
       setUserId={props.setUserId}
       userName={props.userName}
       setUserName={props.setUserName}
