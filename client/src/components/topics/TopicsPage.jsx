@@ -11,6 +11,7 @@ import TopicCard from './components/topicCard.jsx';
 import Motivational from './components/motivation.jsx';
 import TopicsModal from './Modal/TopicsModal.jsx';
 
+
 const TopicsPage = (props) => {
   const [topics, setTopics] = useState([]);
   const [search, setSearch] = useState('');
@@ -89,7 +90,7 @@ const TopicsPage = (props) => {
             >
               <TopicCard
                 topic={topic.name}
-                pic={topic.url}
+                pic={`./topicImages/${topic.name}.webp`}
                 name={topic.id}
               />
             </Box>
