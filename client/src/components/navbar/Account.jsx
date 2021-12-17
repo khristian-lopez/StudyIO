@@ -86,11 +86,11 @@ let Account = (props) => {
         <div className="account-drawer" style={drawerSx}>
           <h2>Your rooms</h2>
           <div className="rooms-list" style={roomListSx}>
-            {yourRooms.map((room, i) => <Room room={room} active={true} key={i} archive={handleArchive} />)}
+            {yourRooms.map((room, i) => <Room room={room} user={props.userId} active={true} key={i} archive={handleArchive} />)}
           </div>
           <h2>Archived rooms</h2>
           <div className="rooms-list" style={roomListSx}>
-            {archivedRooms.map((room, i) => <Room room={room} active={false} key={i} reactivate={handleReactivate} />)}
+            {archivedRooms.map((room, i) => <Room room={room} user={props.userId} active={false} key={i} reactivate={handleReactivate} />)}
           </div>
           <Logout
             style={signOutSx}
