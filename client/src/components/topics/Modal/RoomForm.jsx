@@ -141,7 +141,7 @@ const RoomForm = ({ user, topicId }) => {
                         variant="contained"
                         size="medium"
                         component="span"
-                        style={buttonStyle}
+                        sx={buttonStyle}
                     >
                         Add Thumbnail
                     </Button>
@@ -159,9 +159,8 @@ const RoomForm = ({ user, topicId }) => {
                 <Button
                     type="submit"
                     variant="contained"
-                    color="secondary"
                     size="large"
-                    style={buttonStyle}
+                    sx={buttonStyle}
                     onClick={(e) => {
                         addRoom(e)
                     }}

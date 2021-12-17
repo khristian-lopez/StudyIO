@@ -37,6 +37,7 @@ const titleSx = {
 const listSx = {
   display: 'flex',
   flexDirection: 'column',
+  justifyContent: "flex-end",
   fontSize: '15px',
   marginBottom: '16px'
 }
@@ -191,9 +192,9 @@ const LeftDrawer = (props) => {
                 <button>Create</button>
               </form>
             </div> : null}
-        <div style={listSx}>
+        <Grid style={listSx}>
           {events.map((event, i) => (
-              <ListItem key={i} sx={{ alignItems: "baseline" }}>
+              <ListItem key={i} sx={{ display: "flex", alignItems: "baseline", justifyContent: "flex-end" }}>
                 <SingleEvent content={event} key={i}/>
                 <Button size="small">
                   <EditIcon size="small"
@@ -214,7 +215,7 @@ const LeftDrawer = (props) => {
           { editCurrentEvent ? (
             <EditEvent editCurrentEvent={editCurrentEvent} setEditEvent={setEditEvent} currentEvent={currentEvent} updateEvent={updateEvent}/>
           ) : null }
-        </div>
+        </Grid>
       </div>
       <div style={sectionSx}>
         <div>
