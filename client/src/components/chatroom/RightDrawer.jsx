@@ -56,12 +56,12 @@ const RightDrawer = (props) => {
         .then(res => {
           searchParams += `&invite=${invite_key}`;
           navigator.clipboard.writeText(currentURL.host + currentURL.pathname + searchParams)
-          alert('Invite copied to clipboard');
+          // alert('Invite copied to clipboard');
         })
         .catch((err) => {console.log('Invite Key Error'); console.log(err)});
     } else {
       navigator.clipboard.writeText(currentURL.host + currentURL.pathname + searchParams)
-      alert('Invite copied to clipboard');
+      // alert('Invite copied to clipboard');
     }
   }
 

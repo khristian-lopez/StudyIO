@@ -6,7 +6,8 @@ let roomsRowSx = {
   display: 'flex',
   justifyContent: 'space-between',
   marginBottom: '10px',
-  alignItems: 'center'
+  alignItems: 'center',
+  height: '36px'
 }
 
 let roomSx = {
@@ -25,6 +26,7 @@ let buttonSx = {
 }
 
 let Room = (props) => {
+  const numUserId = Number(props.user)
 
   const handleRoomClick = (e) => {
     e.preventDefault;
@@ -45,7 +47,7 @@ let Room = (props) => {
   return (
     <div style={roomsRowSx}>
       <span style={roomSx} onClick={handleRoomClick}>{props.room.name}</span>
-      <span><button style={buttonSx} onClick={handleDrawerButton}>{buttonMessage}</button></span>
+      <span>{numUserId === props.room.admin_id ? <button style={buttonSx} onClick={handleDrawerButton}>{buttonMessage}</button> : null}</span>
     </div>
   )
 }
