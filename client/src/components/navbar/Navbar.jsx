@@ -17,7 +17,7 @@ let navSx = {
   // background: '#888b8e',
   display: 'flex',
   // mb: '20px',
-  justifyContent: 'flex-start',
+  justifyContent: 'space-around',
   gap: '35%',
   alignItems: 'center',
   zIndex: 1201,
