@@ -36,10 +36,11 @@ const signupButtonSx = {
   width: '120px',
   marginTop: '12px',
   borderRadius: '6px',
-  border: '1px solid #808080',
+  border: '1px solid #f9c74f',
   color: 'white',
   fontFamily: 'sans-serif',
-  background: '#808080',
+  background: '#f9c74f',
+  cursor: 'pointer'
 }
 
 const submitButtonSx = {

@@ -12,6 +12,9 @@ function Logout(props) {
     props.setUserName('');
     props.setUserId('');
     props.setLogin(false);
+    if(props.roomId) {
+      // remove user from room
+    }
     navigate('/topics');
   };
 
