@@ -2,18 +2,20 @@ const express = require('express');
 const path = require('path');
 const cors = require('cors');
 const socket = require('socket.io');
-
+const expressStaticGzip = require('express-static-gzip')
 const app = express();
 const morgan = require('morgan');
 const port = 3000;
 const router = require('./router/routes.js');
 
-app.use(express.static(path.join(__dirname, '../client/dist')));
-app.use('/topics', express.static(path.join(__dirname, '../client/dist')));
-app.use('/chatroom', express.static(path.join(__dirname, '../client/dist')));
-app.use('/videochat', express.static(path.join(__dirname, '../client/dist')));
-//app.use('/rooms', express.static(path.join(__dirname, '../client/dist')))
+app.use(expressStaticGzip(path.join(__dirname, '../client/dist')))
+app.use('/topics', expressStaticGzip(path.join(__dirname, '../client/dist')));
+app.use('/chatroom', expressStaticGzip(path.join(__dirname, '../client/dist')));
+app.use('/videochat', expressStaticGzip(path.join(__dirname, '../client/dist')));
+app.use('/rooms', expressStaticGzip(path.join(__dirname, '../client/dist')))
+const compression = require('compression');
 
+app.use(compression());
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(cors());
