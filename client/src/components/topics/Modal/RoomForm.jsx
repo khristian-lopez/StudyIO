@@ -109,7 +109,7 @@ const RoomForm = ({ user, topicId }) => {
                     exclusive
                     onChange={handleInputChange}
                     value={inputs.setting}
-                    sx={{ backgroundColor: "#f0c44f" }}
+                    sx={{ backgroundColor: "#ffea00", color: 'white' }}
                 >
                     <ToggleButton
                         label="Public"
