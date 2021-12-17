@@ -24,7 +24,7 @@ const LoginSx = {
   // border: '1px solid black',
   border: 'none',
   // borderRadius: '4px',
-  // background: '#ffbd33',
+  color: '#4285F4',
   // background: 'white',
   background: 'transparent',
   height: '50px',
@@ -57,11 +57,11 @@ const loginButtonSx = {
   marginTop: '12px',
   borderRadius: '6px',
   // border: '1px solid #888b8e',
-  border: '1px solid #4285F4',
+  border: '1px solid #ffb703',
   color: 'white',
   // paddingLeft: '16px',
   fontFamily: 'sans-serif',
-  background: '#4285F4',
+  background: '#FAA307'
 }
 
 

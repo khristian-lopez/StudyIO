@@ -15,9 +15,51 @@ const leftDrawerSx = {
   flexDirection: 'column',
   alignItems: 'center',
   marginTop: '70px',
-  padding: '12px'
+  padding: '12px',
 }
 
+const eventRowSx = {
+  display: 'flex',
+  flexDirection: 'row',
+  alignItems:'space-evenly',
+  width: '220px',
+  height: '40px',
+  justifyContent:'space-evenly',
+  border: '1px solid #f48c06',
+  borderRadius: '10px',
+  backgroundColor: '#ffb703',
+  marginTop: '10px',
+  marginBottom: '10px',
+  padding: '0px',
+  color: 'white',
+  fontWeight: 'bold',
+  fontSize: '16px'
+}
+
+const eventRowIcon = {
+  marginLeft: '0px',
+  minWidth: '0px',
+  padding:'0px',
+  //backgroundColor:'white'
+}
+
+const goalRowSx = {
+  display: 'flex',
+  flexDirection: 'row',
+  alignItems:'space-evenly',
+  width: '220px',
+  height: '40px',
+  justifyContent:'space-evenly',
+  border: '1px solid #f48c06',
+  borderRadius: '10px',
+  backgroundColor: '#ffb703',
+  marginTop: '10px',
+  marginBottom: '10px',
+  padding: '0px',
+  color: 'white',
+  fontWeight: 'bold',
+  fontSize: '16px'
+}
 const sectionSx = {
   display: 'flex',
   alignItems: 'center',
@@ -31,7 +73,6 @@ const titleSx = {
   // marginBlockEnd: '1em',
   fontWeight: 'bold',
   marginBottom: '16px',
-  marginRight: "10px"
 }
 
 const listSx = {
@@ -86,10 +127,10 @@ const LeftDrawer = (props) => {
 
   const handleNewEvent = (e) => {
     e.preventDefault();
-  
+
     let user = Number(props.user)
     let date = new Date(newEvent.event_date)
-    
+
     if (newEvent.name === '' || newEvent.event_date === '' || newEvent.event_time === '') return;
     axios.post('/api/chatroom/events', { name: newEvent.name, user_id: user, room_id: props.room, event_date: date, event_time: newEvent.event_time })
       .then(results => {
@@ -160,7 +201,7 @@ const LeftDrawer = (props) => {
       })
       .catch(err => console.log('DELETE GOAL: ', err))
   }
-  
+
   return (
     <div style={leftDrawerSx}>
       <div style={sectionSx}>
@@ -193,23 +234,23 @@ const LeftDrawer = (props) => {
             </div> : null}
         <div style={listSx}>
           {events.map((event, i) => (
-              <ListItem key={i} sx={{ alignItems: "baseline" }}>
-                <SingleEvent content={event} key={i}/>
-                <Button size="small">
-                  <EditIcon size="small" 
+              <ListItem key={i} sx={eventRowSx}>
+                <SingleEvent content={event} key={i} sx={{backgroundColor: 'red'}}/>
+                <Button size="small" sx={eventRowIcon}>
+                  <EditIcon size="small"
                     onClick={() => {
                       editEvents(event)
                     }}
                   />
                 </Button>
-                <Button size="small">
+                <Button size="small" sx={eventRowIcon}>
                   <RemoveCircleIcon size="small"
                     onClick={() => {
                       deleteEvents(event.id, i)
                     }}
                 />
                 </Button>
-              </ListItem>    
+              </ListItem>
           ))}
           { editCurrentEvent ? (
             <EditEvent editCurrentEvent={editCurrentEvent} setEditEvent={setEditEvent} currentEvent={currentEvent} updateEvent={updateEvent}/>
@@ -236,12 +277,12 @@ const LeftDrawer = (props) => {
             </div> : null}
         <div style={listSx}>
           {goals.map((goal, i) => (
-          <ListItem key={i} sx={{ alignItems: "baseline" }}>
+          <ListItem key={i} sx={goalRowSx}>
             <SingleGoal content={goal} key={i} />
             <Button size="small"
              onClick={() => {
                editGoals(goal)
-             }} 
+             }}
             >
               Edit
             </Button>
@@ -255,7 +296,7 @@ const LeftDrawer = (props) => {
           </ListItem>
           ))}
           { editCurrentGoal ? (
-            <EditGoal editCurrentGoal={editCurrentGoal} setEditGoal={setEditGoal} currentGoal={currentGoal} updateGoal={updateGoal} /> 
+            <EditGoal editCurrentGoal={editCurrentGoal} setEditGoal={setEditGoal} currentGoal={currentGoal} updateGoal={updateGoal} />
           ) : null }
           <br></br>
         </div>
