@@ -91,6 +91,9 @@ const TopicsPage = (props) => {
                 topic={topic.name}
                 pic={topic.url}
                 name={topic.id}
+                setCurrentTopicId={setCurrentTopicId}
+                openModal={openModal}
+                open={open}
               />
             </Box>
           ))}

@@ -27,7 +27,7 @@ const EditEvent = (props) => {
 
     return (
         <div>
-            <h3>Edit Event</h3>
+            <h4>Edit Event</h4>
             <Box>
                 <TextField
                     variant="standard"

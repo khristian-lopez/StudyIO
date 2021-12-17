@@ -6,7 +6,7 @@ import EditGoal from './form/EditGoal.jsx';
 import EditEvent from './form/EditEvent.jsx';
 
 import Divider from '@mui/material/Divider';
-import {List, ListItem, ListItemText, Button} from '@mui/material';
+import {List, ListItem, ListItemText, Button, Grid} from '@mui/material';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 import EditIcon from '@mui/icons-material/Edit';
 
@@ -251,7 +251,7 @@ const LeftDrawer = (props) => {
                 <button>Create</button>
               </form>
             </div> : null}
-        <div style={listSx}>
+        <Grid style={listSx}>
           {events.map((event, i) => (
               <ListItem key={i} sx={eventRowSx}>
                 <SingleEvent content={event} key={i}/>
@@ -274,7 +274,7 @@ const LeftDrawer = (props) => {
           { editCurrentEvent ? (
             <EditEvent editCurrentEvent={editCurrentEvent} setEditEvent={setEditEvent} currentEvent={currentEvent} updateEvent={updateEvent}/>
           ) : null }
-        </div>
+        </Grid>
       </div>
       <div style={sectionSx}>
         <div style={titleSection}>
@@ -294,7 +294,7 @@ const LeftDrawer = (props) => {
                 <button>Create</button>
               </form>
             </div> : null}
-        <div style={listSx}>
+        <Grid style={listSx}>
           {goals.map((goal, i) => (
           <ListItem key={i} sx={goalRowSx}>
             <SingleGoal content={goal} key={i} />
@@ -320,7 +320,7 @@ const LeftDrawer = (props) => {
             <EditGoal editCurrentGoal={editCurrentGoal} setEditGoal={setEditGoal} currentGoal={currentGoal} updateGoal={updateGoal} />
           ) : null }
           <br></br>
-        </div>
+        </Grid>
       </div>
       {/* <div>
         <h3>Memes</h3>

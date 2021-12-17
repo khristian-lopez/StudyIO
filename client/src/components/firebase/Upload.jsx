@@ -65,10 +65,14 @@ let Upload = (props) => {
         <div>
           <form onSubmit={formHandler}>
             <input type="file" className="input" />
-            <Button variant="outlined" type="submit"
-            sx={buttonStyle2}
+            <Button 
+              sx={buttonStyle2}
+              variant="outlined"
+              onClick={() => {
+                setUploading(false)
+              }}
             >
-              Upload
+              Cancel
             </Button>
           </form>
           {progress !== 0 ? <h4>Uploaded {progress} %</h4> : null}
@@ -93,5 +97,6 @@ const buttonStyle2 = {
   color: 'white',
   borderRadius:'15px',
   width: '50px',
-  height: '30px'
+  height: '30px',
+  marginTop: "5px"
 }
