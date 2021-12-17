@@ -16,7 +16,6 @@ import ListItemText from '@mui/material/ListItemText';
 import MailIcon from '@mui/icons-material/Mail';
 import MenuIcon from '@mui/icons-material/Menu';
 
-
 import Navbar from '../navbar/Navbar.jsx';
 import ChatRoom from './Chatroom.jsx';
 
@@ -54,7 +53,6 @@ const test = (props) => {
   return (
     <Box sx={{ display: 'flex' }}>
       <Navbar user={props.user} setUser={props.setUser} />
-
       <Drawer
         anchor={'left'}
         variant="permanent"
@@ -62,7 +60,6 @@ const test = (props) => {
           display: 'block',
           '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
         }}
-      // open
       >
         {drawer}
       </Drawer>
@@ -74,7 +71,6 @@ const test = (props) => {
           display: { xs: 'none', sm: 'block' },
           '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
         }}
-      // open
       >
         {drawer}
       </Drawer>
