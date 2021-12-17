@@ -6,6 +6,7 @@ import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
 
 export default function TopicCard({pic, topic, name}) {
+
   return (
     <Card sx={{ maxWidth: 300, backgroundColor: "#FBFAF9"}}>
       <CardActionArea>

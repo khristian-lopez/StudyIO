@@ -63,10 +63,14 @@ let Upload = (props) => {
           <form onSubmit={formHandler}>
             <input type="file" className="input" />
             <Button
-              variant="outlined" 
-              type="submit"
+              sx={{ marginTop: "5px" }}
+              variant="outlined"
+              size="small"
+              onClick={() => {
+                setUploading(false)
+              }} 
             >
-              Submit
+              Cancel
             </Button>
           </form>
           {progress !== 0 ? <h4>Uploaded {progress} %</h4> : null}
