@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import io from 'socket.io-client';
 import axios from 'axios';
 
@@ -101,6 +102,11 @@ const buttonStyle = {
 }
 
 let Chatroom = (props) => {
+  const navigate = useNavigate();
+
+  if (props.userId === "") {
+    navigate('/topics')
+  }
 
   //Before Login
   const [roomId, setRoomId] = useState(new URLSearchParams(window.location.search).get('room'));
