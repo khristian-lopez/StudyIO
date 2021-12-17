@@ -41,9 +41,12 @@ const RoomsList = ({ topicId, search, user, open, setOpen }) => {
 
     const joinRoom = (roomId) => {
         if(user) {
-            axios.post('/api/addUserToRoom',{user_id: user, room_id: roomId})
-            .then(window.location.href = window.location.origin + `/chatroom?room=${roomId}`)
-            .catch(err=>console.error(err))
+            axios.get('/api/chatroom/members', { params: { room_id: roomId} })
+            .then(results => results.data.filter(item => item.id === Number(user)))
+            .then(check => check.length !== 0 ? window.location.href = window.location.origin + `/chatroom?room=${roomId}` : axios.post('/api/addUserToRoom',{user_id: user, room_id: roomId})
+                        .then(window.location.href = window.location.origin + `/chatroom?room=${roomId}`)
+                        .catch(err=>console.error(err)))
+            .catch(err => console.log(err));
         } else {
             setOpen(true);
         }
@@ -60,7 +63,7 @@ const RoomsList = ({ topicId, search, user, open, setOpen }) => {
                 <Grid item sx={innerGrid}>
                     <List>
                         {rooms.map((room, i) => ( // might need to add room.members.includes(user) to conditional
-                            !room['is_private'] ?
+                            !room.is_private && !room.is_archived ?
                                 <div key={room.id}>
                                     <ListItem sx={style} key={room.id} >
                                         <ListItemAvatar >
