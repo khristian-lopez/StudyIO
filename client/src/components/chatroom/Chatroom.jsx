@@ -52,7 +52,6 @@ const messagesBlockSx = {
   flexDirection: 'column',
   justifyContent: 'space-between',
   height: `${intFrameHeight - 130}px`,
-  // minHeight: '80vh'
   overflow: 'hidden'
 }
 
@@ -67,7 +66,6 @@ const titleDivSx = {
   paddingLeft: '10px',
   color: 'orange',
   fontWeight: '900'
-  // alignItems: 'center',
 }
 
 const videoButton = {
@@ -124,7 +122,6 @@ let Chatroom = (props) => {
   useEffect(() => {
     socket.current = io.connect('/')
     socket.current.on('message_update', (data) => {
-      // console.log('Updating List');
       setMessageList(prevList => [...prevList, data]);
     })
 
@@ -148,7 +145,6 @@ let Chatroom = (props) => {
 
   useEffect(() => {
     if (!roomId) { return }
-    // console.log('Changing to room: ' + roomId);
     socket.current.emit('join_room', roomId)
   }, [roomId])
 
@@ -181,13 +177,13 @@ let Chatroom = (props) => {
   return (
     <Box sx={{ display: 'flex' }}>
       <Navbar userId={props.userId}
-      setUserId={props.setUserId}
-      userName={props.userName}
-      setUserName={props.setUserName}
-      login={props.login}
-      setLogin={props.setLogin}
-      roomId={roomId} />
-
+        setUserId={props.setUserId}
+        userName={props.userName}
+        setUserName={props.setUserName}
+        login={props.login}
+        setLogin={props.setLogin}
+        roomId={roomId}
+      />
       <Drawer
         anchor={'left'}
         variant="permanent"
@@ -195,7 +191,6 @@ let Chatroom = (props) => {
       >
         <LeftDrawer room={roomId} user={props.userId} />
       </Drawer>
-
       <Drawer
         anchor={'right'}
         variant="permanent"
@@ -203,7 +198,6 @@ let Chatroom = (props) => {
       >
         {Object.keys(roomData).length ? <RightDrawer roomData={roomData} userId={props.userId} /> : null}
       </Drawer>
-
       <div
         // Center block
         style={centerBlockSx}
@@ -214,11 +208,9 @@ let Chatroom = (props) => {
             {roomData.name ? <span style={titleSx}>{roomData.name}</span> : <span></span>}
             {/* <button>Join Video Chat</button> */}
           </div>
-
           <div style={messagesListSx} ref={messageListComponent}>
             {messageList.length !== 0 ? messageList.map((message, i) => <SingleMessage key={i} message={message} />) : null}
           </div>
-
         </div>
         {/* input for messages */}
         <div style={inputMessagesSx}>

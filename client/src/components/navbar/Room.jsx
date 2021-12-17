@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Routes, Route, Link, useNavigate } from "react-router-dom";
 
-
 let roomsRowSx = {
   display: 'flex',
   marginTop: '10px',

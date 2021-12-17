@@ -1,13 +1,9 @@
 import React from 'react';
 
-const individualEventOrGoalSx = {
-
-}
-
 let SingleGoal = (props) => {
 
   return (
-    <div style={individualEventOrGoalSx}>
+    <div>
       <span>{props.content.name}</span>
     </div>
   )

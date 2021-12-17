@@ -21,9 +21,6 @@ export default function TopicCard({pic, topic, name}) {
           <Typography gutterBottom variant="h5" component="div">
             {topic}
           </Typography>
-          {/* <Typography variant="body2" color="text.secondary">
-            Potentially a small description, maybe as a tooltip
-          </Typography> */}
         </CardContent>
       </CardActionArea>
     </Card>

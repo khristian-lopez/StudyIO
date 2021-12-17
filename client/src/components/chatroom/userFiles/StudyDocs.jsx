@@ -5,8 +5,6 @@ import SingleDoc from './SingleDoc.jsx';
 
 const titleSx = {
   fontSize: '20px',
-  // marginBlockStart: '1em',
-  // marginBlockEnd: '1em',
   textAlign: "center",
   fontWeight: 'bold',
   marginTop: "5px",
