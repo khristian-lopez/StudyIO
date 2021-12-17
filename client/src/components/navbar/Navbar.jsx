@@ -37,7 +37,7 @@ let Navbar = (props) => {
         sx={{ mr: 2, ml: 4 }}
         onClick={handleHomeClick}
       >
-        StudyIO
+        <span style={{}}><img style={{maxWidth:'115px'}} src={'../../../logo/studyIO.webp'}/></span>
       </IconButton>
       {props.login === true ?
       <Account
