@@ -107,3 +107,5 @@ client/dist/bundle.js
 
 # server configuration
 server/config.js
+
+client/dist/bundle.js.gz
