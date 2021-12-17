@@ -3,7 +3,6 @@ import {Box, Button, Grid, Modal, Typography} from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import RoomsList from './RoomsList.jsx';
 import RoomForm from './RoomForm.jsx';
-// import axios from 'axios';
 
 const TopicsModal = ({openModal, topicId, topics, handleClose, user, search, open, setOpen}) => {
     const [form, showForm] = useState(false);

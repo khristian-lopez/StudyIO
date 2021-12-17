@@ -62,10 +62,10 @@ const RoomsList = ({ topicId, search, user, open, setOpen }) => {
                 </Box> :
                 <Grid item sx={innerGrid}>
                     <List>
-                        {rooms.map((room, i) => ( // might need to add room.members.includes(user) to conditional
+                        {rooms.map((room, i) => (
                             !room.is_private && !room.is_archived ?
                                 <div key={room.id}>
-                                    <ListItem sx={style} key={room.id} >
+                                    <ListItem key={room.id} >
                                         <ListItemAvatar >
                                             {room.thumbnail ? <Avatar src={room.thumbnail} sx={imageStyle} />
                                                 : <Avatar style={imageStyle} alt='https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png' />}
@@ -82,7 +82,7 @@ const RoomsList = ({ topicId, search, user, open, setOpen }) => {
                                             borderRadius:'15px'
                                             }}
                                             size="medium"
-                                            variant="outlined"
+                                            variant="contained"
                                             key={room.id}
                                             onClick={()=>Number(userCounts[i]) < Number(room.max_users) ? joinRoom(room.id) : alert('Room full!')}
                                         >
@@ -122,6 +122,6 @@ const imageStyle = {
 const innerGrid = {
     border: "1px solid #f48c06",
     height: "350px",
-    width: "380px",
-    overflowY: "scroll"
+    width: "390px",
+    overflowY: "scroll",
 }

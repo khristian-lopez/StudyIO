@@ -13,8 +13,6 @@ const rightDrawerSx = {
 
 const titleSx = {
   fontSize: '1.17em',
-  // marginBlockStart: '1em',
-  // marginBlockEnd: '1em',
   bottom: "0",
   fontWeight: 'bold',
   marginBottom: '16px'
@@ -25,33 +23,19 @@ const RightDrawer = (props) => {
 
   useEffect(() => {
     if (!props.roomData.id) { return }
-
-    // console.log(props.roomData);
     axios.get('/api/chatroom/members', { params: { room_id: props.roomData.id } })
       .then(results => setMembers(results.data))
       .catch(err => console.log(err));
 
   }, [props.roomData])
 
-  //TODO: If room is private then only the room owner can copy a room url
-  //With an invite key, if room is private non owners will only get the raw url
-  //if room is public then raw url is copied.
   function handleInvite() {
     let currentURL = new URL(window.location);
     let roomId = currentURL.searchParams.get('room');
 
     let searchParams = `?room=${roomId}`;
-
-    // console.log(props.roomData);
-    // console.log(props.userId);
-    // console.log(typeof props.userId);
-    // console.log(props.roomData.admin_id);
     if (props.roomData.is_private && (props.userId == props.roomData.admin_id)) {
       let invite_key = nanoid();
-      // console.log(invite_key);
-
-
-
       axios.put('/api/rooms/new-invite-key', { room_id: props.roomData.id, invite_key })
         .then(res => {
           searchParams += `&invite=${invite_key}`;
@@ -72,7 +56,6 @@ const RightDrawer = (props) => {
           <span>Members</span>
           <Button sx={buttonStyle} size="small" variant="outlined" onClick={handleInvite}>Invite</Button>
         </div>
-
         {members.length !== 0 ? members.map(member =>
           <li key={member.first_name + member.last_name}>
             {member.first_name} {member.last_name}

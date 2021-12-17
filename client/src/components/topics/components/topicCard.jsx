@@ -6,6 +6,7 @@ import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
 
 export default function TopicCard({pic, topic, name}) {
+
   return (
     <Card sx={{ maxWidth: 300, backgroundColor: "#ffbe0b", color:'white', fontWeight: '900'}}>
       <CardActionArea>
@@ -20,9 +21,6 @@ export default function TopicCard({pic, topic, name}) {
           <Typography gutterBottom variant="h5" component="div" sx={{marginBottom: 0, fontSize: "1.7em", letterSpacing: "1px"}}>
             {topic}
           </Typography>
-          {/* <Typography variant="body2" color="text.secondary">
-            Potentially a small description, maybe as a tooltip
-          </Typography> */}
         </CardContent>
       </CardActionArea>
     </Card>

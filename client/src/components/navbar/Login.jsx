@@ -10,7 +10,6 @@ const clientId =
 function Login(props) {
   const navigate = useNavigate();
   const onSuccess = (res) => {
-    // console.log('currentUser:', res.profileObj);
     axios.post(`${config.api_url}/users/create`, {
       first_name: res.profileObj.givenName,
       last_name: res.profileObj.familyName,
@@ -19,27 +18,7 @@ function Login(props) {
       avatar: res.profileObj.imageUrl
     })
     .then(function (response) {
-      // console.log('google login reponse', response)
-      if (response.data.code) {
-        // //user already exists. send axios to log in and send back id information
-        // axios.post(`${config.api_url}/users/auth`, {
-        //   email: res.profileObj.email,
-        //   googleId: res.profileObj.googleId
-        // })
-        // .then(function (response) {
-        //   if (typeof(response.data) === "object"){
-        //     props.setUserId(response.data.id);
-        //     props.setUserName(res.profileObj.name);
-        //     props.setLogin(true);
-        //   } else {
-        //     alert('Something went wrong! Please try again in a few minutes. (else)')
-        //   }
-        // })
-        // .catch(function (error) {
-        //   alert('Something went wrong! Please try again in a few minutes. (first Castch')
-        //   console.log(error);
-        // });
-      } else if (response.data.command){
+      if (response.data.command){
         // create user was successful. send axios request to get id
         axios.post(`${config.api_url}/users/auth`, {
           email: res.profileObj.email,
@@ -77,8 +56,6 @@ function Login(props) {
         alert('Something went wrong! Please try again in a few minutes. (first Castch')
         console.log(error);
       });
-      // alert('Something went wrong! Please try again in a few minutes. (last catch)')
-      console.log(error);
     })
   };
 

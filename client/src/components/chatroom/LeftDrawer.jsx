@@ -6,7 +6,7 @@ import EditGoal from './form/EditGoal.jsx';
 import EditEvent from './form/EditEvent.jsx';
 
 import Divider from '@mui/material/Divider';
-import {List, ListItem, ListItemText, Button} from '@mui/material';
+import {List, ListItem, ListItemText, Button, Grid} from '@mui/material';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 import EditIcon from '@mui/icons-material/Edit';
 
@@ -19,9 +19,7 @@ const leftDrawerSx = {
 }
 const titleSection = {
   display: 'flex',
- // flexDirection: 'column',
   justifyContent: 'flex-start',
-  // height: '100px',
   width: '200px',
   height: '50px',
   borderRadius: '20px',
@@ -61,14 +59,13 @@ const eventRowIcon = {
   marginLeft: '0px',
   minWidth: '0px',
   padding:'0px',
-  //backgroundColor:'white'
 }
 const goalRowIcon = {
   marginLeft: '0px',
   minWidth: '0px',
   padding:'0px',
-  //backgroundColor:'white'
 }
+
 const goalRowSx = {
   display: 'flex',
   flexDirection: 'row',
@@ -87,8 +84,6 @@ const goalRowSx = {
 }
 const sectionSx = {
   display: 'flex',
-  // alignItems: 'flex-start',
-  // justifyContent: 'flex-start',
   flexDirection: 'column',
   marginBottom: '24px',
   backgroundColor: 'white',
@@ -109,9 +104,7 @@ const listSx = {
   fontSize: '15px',
   marginTop: '16px',
   backgroundColor:'white',
-  //border: '1px solid',
   borderRadius: '20px'
-
 }
 
 const LeftDrawer = (props) => {
@@ -120,7 +113,6 @@ const LeftDrawer = (props) => {
   const [editCurrentEvent, setEditEvent] = useState(false);
   const [newEvent, setNewEvent] = useState({ id: '', name: '', event_date: '', event_time: '' });
   const [currentEvent, setCurrentEvent] = useState({ id: '', name: '', event_date: '', event_time: '' });
-
   const [goals, setGoals] = useState([]);
   const [addingGoal, setAddGoal] = useState(false);
   const [editCurrentGoal, setEditGoal] = useState(false);
@@ -135,7 +127,6 @@ const LeftDrawer = (props) => {
       .catch(err => {
         console.log(err)
       });
-
     axios.get('/api/chatroom/goals', { params: { room_id: props.room } })
       .then(results => {
         setGoals(results.data)
@@ -159,10 +150,8 @@ const LeftDrawer = (props) => {
 
   const handleNewEvent = (e) => {
     e.preventDefault();
-
     let user = Number(props.user)
     let date = new Date(newEvent.event_date)
-
     if (newEvent.name === '' || newEvent.event_date === '' || newEvent.event_time === '') return;
     axios.post('/api/chatroom/events', { name: newEvent.name, user_id: user, room_id: props.room, event_date: date, event_time: newEvent.event_time })
       .then(results => {
@@ -191,7 +180,6 @@ const LeftDrawer = (props) => {
       .catch(err => console.log(err))
   }
 
-  // TODO: update & delete events
   const editEvents = (updatedEvent) => {
     setEditEvent(true);
     let newEventDate = updatedEvent.event_date.slice(0, 10)
@@ -213,7 +201,6 @@ const LeftDrawer = (props) => {
       .catch(err => console.log(err))
   }
 
-  // TODO: delete goals
   const editGoals = (updatedGoal) => {
     setEditGoal(true);
     setCurrentGoal({ id: updatedGoal.id, name: updatedGoal.name })
@@ -264,7 +251,7 @@ const LeftDrawer = (props) => {
                 <button>Create</button>
               </form>
             </div> : null}
-        <div style={listSx}>
+        <Grid style={listSx}>
           {events.map((event, i) => (
               <ListItem key={i} sx={eventRowSx}>
                 <SingleEvent content={event} key={i}/>
@@ -287,7 +274,7 @@ const LeftDrawer = (props) => {
           { editCurrentEvent ? (
             <EditEvent editCurrentEvent={editCurrentEvent} setEditEvent={setEditEvent} currentEvent={currentEvent} updateEvent={updateEvent}/>
           ) : null }
-        </div>
+        </Grid>
       </div>
       <div style={sectionSx}>
         <div style={titleSection}>
@@ -307,7 +294,7 @@ const LeftDrawer = (props) => {
                 <button>Create</button>
               </form>
             </div> : null}
-        <div style={listSx}>
+        <Grid style={listSx}>
           {goals.map((goal, i) => (
           <ListItem key={i} sx={goalRowSx}>
             <SingleGoal content={goal} key={i} />
@@ -333,7 +320,7 @@ const LeftDrawer = (props) => {
             <EditGoal editCurrentGoal={editCurrentGoal} setEditGoal={setEditGoal} currentGoal={currentGoal} updateGoal={updateGoal} />
           ) : null }
           <br></br>
-        </div>
+        </Grid>
       </div>
       {/* <div>
         <h3>Memes</h3>

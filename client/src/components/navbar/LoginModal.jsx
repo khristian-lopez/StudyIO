@@ -24,20 +24,14 @@ const LoginSx = {
   border: '1px solid #FAA307',
   borderRadius: '15px',
   color: '#4285F4',
-  // background: 'white',
   background: 'white',
   height: '50px',
   width: '100px',
   marginRight: '36px',
-  // color: '#333',
   color: '#FAA307',
   fontSize: '30px',
   cursor: 'pointer',
   zIndex: 2000,
-}
-
-const inputContainerSx = {
-  // marginBottom: '8px',
 }
 
 const inputSx = {
@@ -56,10 +50,8 @@ const loginButtonSx = {
   width: '120px',
   marginTop: '12px',
   borderRadius: '6px',
-  // border: '1px solid #888b8e',
   border: '1px solid #ffb703',
   color: 'white',
-  // paddingLeft: '16px',
   fontFamily: 'sans-serif',
   background: '#FAA307',
   cursor: 'pointer'
@@ -70,7 +62,6 @@ const loginButtonSx = {
 let LoginModal = (props) => {
   const _isMounted = useRef(true);
   // Modal hooks
-  // const [open, setOpen] = useState(false);
   const handleOpen = () => props.setOpen(true);
   const handleClose = () => props.setOpen(false);
 
@@ -85,14 +76,12 @@ let LoginModal = (props) => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    // (some function thats probably passed down)
     axios.post(`${config.api_url}/users/auth`, {
       email: email,
       password: password
     })
     .then(function (response) {
       if (_isMounted.current) {
-        // console.log(response.data);
         if (response.data === false) {
           alert('Login failed. Email or password is incorrect.')
         } else if (typeof(response.data) === "object"){
@@ -121,21 +110,19 @@ let LoginModal = (props) => {
   return (
     <div>
       <button
-        // className="login-button"
         style={LoginSx}
         onClick={handleOpen}
       >
         Log in
       </button>
-
       <Modal open={props.open} onClose={handleClose} >
         <div style={modalStyle}>
           <h3>Log in</h3>
           <form onSubmit={handleLogin}>
-            <div style={inputContainerSx}>
+            <div>
               <input style={inputSx} placeholder="Enter email" value={email} onChange={e => setEmail(e.target.value)}></input>
             </div>
-            <div style={inputContainerSx}>
+            <div>
               <input style={inputSx} placeholder="Enter password" type="password" value={password} onChange={e => setPassword(e.target.value)}></input>
             </div>
             <button style={loginButtonSx}>Log in</button>
