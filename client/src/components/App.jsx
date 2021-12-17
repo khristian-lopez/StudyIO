@@ -23,21 +23,12 @@ let App = () => {
       return saved || false
     }
   )
-  // console.log('userName', userName)
-  // console.log('userId', userId)
-  // console.log('login', login)
 
   React.useEffect(() => {
     localStorage.setItem('login', login);
     localStorage.setItem('userId', userId);
     localStorage.setItem('userName', userName);
   }, [login]);
-
-  //TEST FUNCTION REMOVE AT SOME POINT
-  // useEffect(() => {
-  //   setUser(Math.floor(Math.random() * 1000000000))
-  // }, [])
-
 
   return (
     <>

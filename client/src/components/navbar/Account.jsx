@@ -7,9 +7,6 @@ import Drawer from '@mui/material/Drawer';
 import Room from './Room.jsx';
 import Logout from './Logout.jsx';
 
-// add crown next rooms where you are an admin
-// needs room ids
-
 let drawerSx = {
   minWidth: '350px',
   paddingLeft: '48px',
@@ -36,7 +33,6 @@ let signOutSx = {
 
 
 let Account = (props) => {
-  // drawer hooks
   const [drawerStatus, setDrawerStatus] = useState(false);
   const toggleDrawer = (open) => (event) => {
     setDrawerStatus(open);

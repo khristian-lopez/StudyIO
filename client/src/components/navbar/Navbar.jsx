@@ -14,17 +14,12 @@ let navSx = {
   left: 0,
   right: 0,
   background: '#FAA307',
-  // background: '#888b8e',
   display: 'flex',
-  // mb: '20px',
   justifyContent: 'flex-start',
   gap: '35%',
   alignItems: 'center',
   zIndex: 1201,
 }
-
-
-
 
 let Navbar = (props) => {
   const navigate = useNavigate();
@@ -43,15 +38,16 @@ let Navbar = (props) => {
       >
         StudyIO
       </IconButton>
-
-      {props.login === true ? <Account
+      {props.login === true ?
+      <Account
       userId={props.userId}
       roomId={props.roomId}
       setUserId={props.setUserId}
       userName={props.userName}
       setUserName={props.setUserName}
       login={props.login}
-      setLogin={props.setLogin} /> : <LoginModal
+      setLogin={props.setLogin} /> :
+      <LoginModal
       userId={props.userId}
       setUserId={props.setUserId}
       userName={props.userName}
@@ -60,7 +56,6 @@ let Navbar = (props) => {
       setLogin={props.setLogin}
       open={props.open}
       setOpen={props.setOpen} />}
-
     </div>
   )
 }
