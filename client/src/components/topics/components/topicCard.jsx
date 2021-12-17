@@ -18,7 +18,7 @@ export default function TopicCard({pic, topic, name}) {
           name={name}
         />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
+          <Typography gutterBottom sx={{ fontSize: "33px" }} component="div">
             {topic}
           </Typography>
         </CardContent>
