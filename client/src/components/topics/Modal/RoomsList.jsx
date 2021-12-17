@@ -76,7 +76,7 @@ const RoomsList = ({ topicId, search, user, open, setOpen }) => {
                                             size="medium"
                                             variant="outlined"
                                             key={room.id}
-                                            onClick={()=>joinRoom(room.id)}
+                                            onClick={()=>Number(userCounts[i]) < Number(room.max_users) ? joinRoom(room.id) : alert('Room full!')}
                                         >
                                             Join
                                         </Button>
