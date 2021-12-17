@@ -4,27 +4,36 @@ import { Routes, Route, Link, useNavigate } from "react-router-dom";
 
 let roomsRowSx = {
   display: 'flex',
+  marginTop: '10px',
   justifyContent: 'space-between',
   marginBottom: '10px',
-  alignItems: 'center'
+  alignItems: 'center',
+  height: '36px',
+  border: '1px solid #FAA307',
+  borderRadius: '5px',
+  backgroundColor: '#fcbf49',
+  color: '#03045e'
 }
 
 let roomSx = {
   float: 'left',
   cursor: 'pointer',
+  marginLeft: '5px',
 }
 
 let buttonSx = {
-  float: 'right',
-  border: '1px solid black',
-  width: '84px',
+  alignItems: 'center',
+  border: '1px solid',
+  width: '90px',
   height: '36px',
   borderRadius: '4px',
-  background: 'white',
+  background: '#FAA307',
+  color: 'white',
   cursor: 'pointer',
 }
 
 let Room = (props) => {
+  const numUserId = Number(props.user)
 
   const handleRoomClick = (e) => {
     e.preventDefault;
@@ -45,7 +54,7 @@ let Room = (props) => {
   return (
     <div style={roomsRowSx}>
       <span style={roomSx} onClick={handleRoomClick}>{props.room.name}</span>
-      <span><button style={buttonSx} onClick={handleDrawerButton}>{buttonMessage}</button></span>
+      <span>{numUserId === props.room.admin_id ? <button style={buttonSx} onClick={handleDrawerButton}>{buttonMessage}</button> : null}</span>
     </div>
   )
 }

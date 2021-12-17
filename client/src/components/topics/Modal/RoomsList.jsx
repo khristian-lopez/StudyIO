@@ -53,7 +53,7 @@ const RoomsList = ({ topicId, search, user, open, setOpen }) => {
     }
 
     return (
-        <Box>
+        <Box style={{border: '1px solid #f48c06', borderRadius:'15px'}}>
             {loading ?
                 <Box>
                     <Grid container sx={loadStyle}>
@@ -73,9 +73,14 @@ const RoomsList = ({ topicId, search, user, open, setOpen }) => {
                                         <ListItemText sx={style} >
                                             {room.name}
                                         </ListItemText>
-                                        {userCounts[i]}/{room.max_users}
+                                        <div style={{marginRight:'5px'}}>{userCounts[i]}/{room.max_users}</div>
                                         <Button
-                                            sx={{ marginLeft: "5px", backgroundColor: "#f0c44f", color: "white" }}
+                                            sx={{
+                                            border: '1px solid #f48c06',
+                                            backgroundColor: '#f48c06',
+                                            color: 'white',
+                                            borderRadius:'15px'
+                                            }}
                                             size="medium"
                                             variant="contained"
                                             key={room.id}
@@ -96,30 +101,26 @@ const RoomsList = ({ topicId, search, user, open, setOpen }) => {
 export default RoomsList;
 
 const style = {
-    margin: "10px",
     display: "flex",
     alignItems: "center"
 }
 
 const loadStyle = {
     justifyContent: "center",
-    border: "1px solid #000",
-    margin: "auto",
-    padding: "10px",
+    border: "1px solid #f48c06",
     height: "350px",
-    width: "390px",
+    width: "380px",
     overflowX: "visible",
 }
 
 const imageStyle = {
-    margin: "5px",
     width: "50px",
     height: "50px",
     borderRadius: "50%"
 }
 
 const innerGrid = {
-    border: "1px solid #000",
+    border: "1px solid #f48c06",
     height: "350px",
     width: "390px",
     overflowY: "scroll",

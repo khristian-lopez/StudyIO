@@ -15,31 +15,103 @@ const leftDrawerSx = {
   flexDirection: 'column',
   alignItems: 'center',
   marginTop: '70px',
-  padding: '12px'
+  padding: '12px',
+}
+const titleSection = {
+  display: 'flex',
+ // flexDirection: 'column',
+  justifyContent: 'flex-start',
+  // height: '100px',
+  width: '200px',
+  height: '50px',
+  borderRadius: '20px',
+  border: '1px solid #f48c06',
+  alignItems: 'center',
+  justifyContent: 'center',
+  backgroundColor: '#ffb703',
+  color: 'white'
 }
 
+const iconButton = {
+  marginLeft: '10px',
+  borderRadius: '50%',
+  width: '30px',
+  height: '30px'
+}
+
+const eventRowSx = {
+  display: 'flex',
+  flexDirection: 'row',
+  alignItems:'space-evenly',
+  width: '220px',
+  height: '40px',
+  justifyContent:'space-evenly',
+  border: '1px solid #f48c06',
+  borderRadius: '10px',
+  backgroundColor: '#ffb703',
+  marginTop: '10px',
+  marginBottom:'10px',
+  padding: '0px',
+  color: 'white',
+  fontWeight: 'bold',
+  fontSize: '16px'
+}
+
+const eventRowIcon = {
+  marginLeft: '0px',
+  minWidth: '0px',
+  padding:'0px',
+  //backgroundColor:'white'
+}
+const goalRowIcon = {
+  marginLeft: '0px',
+  minWidth: '0px',
+  padding:'0px',
+  //backgroundColor:'white'
+}
+const goalRowSx = {
+  display: 'flex',
+  flexDirection: 'row',
+  alignItems:'space-evenly',
+  width: '220px',
+  height: '40px',
+  justifyContent:'space-evenly',
+  border: '1px solid #f48c06',
+  borderRadius: '10px',
+  backgroundColor: '#ffb703',
+  marginTop: '10px',
+  padding: '0px',
+  color: 'white',
+  fontWeight: 'bold',
+  fontSize: '16px'
+}
 const sectionSx = {
   display: 'flex',
-  alignItems: 'center',
+  // alignItems: 'flex-start',
+  // justifyContent: 'flex-start',
   flexDirection: 'column',
   marginBottom: '24px',
+  backgroundColor: 'white',
+  borderLeft: '2px solid #f48c06',
+  borderRadius: '20px'
 }
 
 const titleSx = {
-  fontSize: '1.17em',
-  // marginBlockStart: '1em',
-  // marginBlockEnd: '1em',
+  fontSize: '20px',
   fontWeight: 'bold',
-  marginBottom: '16px',
-  marginRight: "10px"
 }
 
 const listSx = {
   display: 'flex',
   flexDirection: 'column',
-  justifyContent: "flex-end",
+  alignItems: 'center',
+  justifyContent: 'center',
   fontSize: '15px',
-  marginBottom: '16px'
+  marginTop: '16px',
+  backgroundColor:'white',
+  //border: '1px solid',
+  borderRadius: '20px'
+
 }
 
 const LeftDrawer = (props) => {
@@ -165,11 +237,11 @@ const LeftDrawer = (props) => {
   return (
     <div style={leftDrawerSx}>
       <div style={sectionSx}>
-        <div>
+        <div style={titleSection}>
           <span style={titleSx}>Events</span>
           {addingEvent === false ?
-            <button value='event' onClick={handlePlusClick}>+</button> :
-            <button value='event' onClick={handleCancelClick}>x</button>}
+            <button value='event' onClick={handlePlusClick} style={iconButton}>+</button> :
+            <button value='event' onClick={handleCancelClick} style={iconButton}>x</button>}
         </div>
         {addingEvent ?
             <div>
@@ -194,16 +266,16 @@ const LeftDrawer = (props) => {
             </div> : null}
         <Grid style={listSx}>
           {events.map((event, i) => (
-              <ListItem key={i} sx={{ display: "flex", alignItems: "baseline", justifyContent: "flex-end" }}>
+              <ListItem key={i} sx={eventRowSx}>
                 <SingleEvent content={event} key={i}/>
-                <Button size="small">
+                <Button size="small" sx={eventRowIcon}>
                   <EditIcon size="small"
                     onClick={() => {
                       editEvents(event)
                     }}
                   />
                 </Button>
-                <Button size="small">
+                <Button size="small" sx={eventRowIcon}>
                   <RemoveCircleIcon size="small"
                     onClick={() => {
                       deleteEvents(event.id, i)
@@ -218,11 +290,11 @@ const LeftDrawer = (props) => {
         </Grid>
       </div>
       <div style={sectionSx}>
-        <div>
+        <div style={titleSection}>
           <span style={titleSx}>Goals</span>
           {addingGoal === false ?
-            <button value='goal' onClick={handlePlusClick}>+</button> :
-            <button value='goal' onClick={handleCancelClick}>x</button>}
+            <button value='goal' onClick={handlePlusClick} style={iconButton}>+</button> :
+            <button value='goal' onClick={handleCancelClick} style={iconButton}>x</button>}
         </div>
         {addingGoal ?
             <div>
@@ -237,12 +309,13 @@ const LeftDrawer = (props) => {
             </div> : null}
         <Grid style={listSx}>
           {goals.map((goal, i) => (
-          <ListItem key={i} sx={{ alignItems: "baseline" }}>
+          <ListItem key={i} sx={goalRowSx}>
             <SingleGoal content={goal} key={i} />
             <Button size="small"
              onClick={() => {
                editGoals(goal)
              }}
+             sx={goalRowIcon}
             >
               Edit
             </Button>
@@ -250,6 +323,7 @@ const LeftDrawer = (props) => {
               onClick={() => {
                 deleteGoal(goal.id, i)
               }}
+              sx={goalRowIcon}
             >
               Delete
             </Button>
@@ -261,9 +335,9 @@ const LeftDrawer = (props) => {
           <br></br>
         </Grid>
       </div>
-      <div>
+      {/* <div>
         <h3>Memes</h3>
-      </div>
+      </div> */}
     </div >
   )
 }

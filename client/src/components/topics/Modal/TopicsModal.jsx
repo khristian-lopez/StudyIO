@@ -63,14 +63,18 @@ const TopicsModal = ({openModal, topicId, topics, handleClose, user, search, ope
                                 id="modal-description"
                                 variant="h6"
                                 component="h2"
-                                sx={{ mt: 10 }}
+                                sx={{ mt: 10}}
                             >
                                 Create a new study room?
                             </Typography>
-                            <Button sx={{ width: "200px", backgroundColor: "#f0c44f", color: "white" }}
+                            <Button sx={{ width: "200px",
+                                border: '1px solid #f48c06',
+                                backgroundColor: '#f48c06',
+                                color: 'white',
+                                borderRadius:'15px'}}
                                 variant="contained"
                                 size="large"
-                                onClick={e => openForm(e)}
+                                onClick={e => user ? openForm(e) : setOpen(true)}
                             >
                                 Create Room
                                 <AddIcon sx={{ marginLeft: "3px" }}/>
@@ -95,7 +99,8 @@ const boxStyle = {
     width: 400,
     height: 630,
     border: "1px solid #000",
-    backgroundColor: "#FBFAF9",
+    borderRadius: '15px',
+    backgroundColor: "white",
     gap: "20px",
     spacing: 20,
 }

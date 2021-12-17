@@ -31,7 +31,7 @@ const TopicsPage = (props) => {
   }
 
   const handleOpen = (id) => {
-    setCurrentTopicId(Number(id));
+    setCurrentTopicId(id);
     setOpenModal(true);
   }
 
@@ -81,11 +81,11 @@ const TopicsPage = (props) => {
           </Box>
         </Grid>
         <Box style={boxStyle}>
-          {topics.map((topic) => (
+          {topics.map((topic,i) => (
             <Box item
               sx={{ margin: "5px", padding: "5px", width: "300px" }}
               key={topic.id}
-              onClick={(e) => handleOpen(e.target.name)}
+              onClick={(e) => handleOpen(i+1)}
             >
               <TopicCard
                 topic={topic.name}

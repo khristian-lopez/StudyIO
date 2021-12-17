@@ -1,9 +1,7 @@
 import React from 'react';
 
 const individualEventOrGoalSx = {
-  display: 'flex',
-  justifyContent: 'space-between',
-  marginBottom: '12px',
+
 }
 
 let SingleEvent = (props) => {
