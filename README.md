@@ -9,7 +9,7 @@
 - [Erik Dan Tran](https://github.com/erikdantran)
 - [Weixuan Jin](names should link to their github or portfolio page)
 - [Brian Lowther](https://github.com/bLowther)
-- [Taite Jernigan](names should link to their github or portfolio page)
+- [Taite Jernigan](https://github.com/taite510)
 - [Matthew Nguyen](names should link to their github or portfolio page)
 
 # Introduction
