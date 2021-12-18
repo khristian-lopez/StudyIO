@@ -6,11 +6,11 @@
 - [Teresa Nguyen](names should link to their github or portfolio page)
 - [Edwin Baranov](names should link to their github or portfolio page)
 - [Khristian Lopez](names should link to their github or portfolio page)
-- [Erik Dan Tran] https://github.com/erikdantran
+- [Erik Dan Tran](names should link to their github or portfolio page)
 - [Weixuan Jin](names should link to their github or portfolio page)
 - [Brian Lowther](https://github.com/bLowther)
 - [Taite Jernigan](names should link to their github or portfolio page)
-- [Matthew Nguyen](names should link to their github or portfolio page)
+- [Matthew Nguyen](https://github.com/coosey)
 
 # Introduction
 
