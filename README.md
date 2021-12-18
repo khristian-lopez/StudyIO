@@ -7,7 +7,7 @@
 - [Edwin Baranov](https://github.com/Edwin-Baranov)
 - [Khristian Lopez](https://github.com/khristian-lopez)
 - [Erik Dan Tran](https://github.com/erikdantran)
-- [Weixuan Jin](https://github.com/DRufusLord)
+- [Rufus Jin](https://github.com/DRufusLord)
 - [Brian Lowther](https://github.com/bLowther)
 - [Taite Jernigan](https://github.com/taite510)
 - [Matthew Nguyen](https://github.com/coosey)
