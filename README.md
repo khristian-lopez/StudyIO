@@ -5,7 +5,7 @@
 - [Phi Truong](https://github.com/phihtruong)
 - [Teresa Nguyen](names should link to their github or portfolio page)
 - [Edwin Baranov](https://github.com/Edwin-Baranov)
-- [Khristian Lopez](names should link to their github or portfolio page)
+- [Khristian Lopez](https://github.com/khristian-lopez)
 - [Erik Dan Tran](https://github.com/erikdantran)
 - [Weixuan Jin](names should link to their github or portfolio page)
 - [Brian Lowther](https://github.com/bLowther)
