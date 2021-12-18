@@ -23,7 +23,7 @@ Study.io is an application used to connect users who share similar learning obje
 - Express
 - React
 - React Router (for a multiple page app)
-- Firebase Authentication (user login)
+- Google Authentication (user login)
 - Firebase File Storage (if we have time)
 = MUI (a React component library)
 - Normalize.css (css normalizer)
