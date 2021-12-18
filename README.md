@@ -3,7 +3,7 @@
 # Contributers
 
 - [Phi Truong](https://github.com/phihtruong)
-- [Teresa Nguyen](names should link to their github or portfolio page)
+- [Teresa Nguyen](https://github.com/teresaanguyen)
 - [Edwin Baranov](https://github.com/Edwin-Baranov)
 - [Khristian Lopez](https://github.com/khristian-lopez)
 - [Erik Dan Tran](https://github.com/erikdantran)
