@@ -2,7 +2,7 @@
 ![placeholder](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbxuprf521ecjvxLfq-2o92kPAj_5vgtR-Bw&usqp=CAU)
 # Contributers
 
-- [Phi Truong](names should link to their github or portfolio page)
+- [Phi Truong](https://github.com/phihtruong)
 - [Teresa Nguyen](names should link to their github or portfolio page)
 - [Edwin Baranov](names should link to their github or portfolio page)
 - [Khristian Lopez](names should link to their github or portfolio page)
