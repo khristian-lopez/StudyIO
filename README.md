@@ -1,5 +1,5 @@
 # Study.IO
-![placeholder](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbxuprf521ecjvxLfq-2o92kPAj_5vgtR-Bw&usqp=CAU)
+![placeholder](https://cdn.discordapp.com/attachments/918276890777767986/921544588571844618/Screen_Shot_2021-12-17_at_3.28.35_PM.png)
 # Contributers
 
 - [Phi Truong](https://github.com/phihtruong)
